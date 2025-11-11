@@ -1,42 +1,7 @@
 ﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Tours_Travels.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-   
-        .login-gradient-overlay {
-            background: rgba(7, 59, 58, 0.65); 
-        }
-
-        .login-card {
-            background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .login-btn {
-            background-image: linear-gradient( to right, var(--pigment-green) 0%, var(--dartmouth-green) 100% );
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-            .login-btn:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            }
-
-        .form-input {
-            background-color: #f3f4f6;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-            .form-input:focus {
-                background-color: white;
-                border-color: var(--dartmouth-green);
-                box-shadow: 0 0 0 3px rgba(11, 110, 79, 0.2);
-                outline: none;
-            }
-    </style>
+    <link rel="stylesheet" href="~/css/Auth.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

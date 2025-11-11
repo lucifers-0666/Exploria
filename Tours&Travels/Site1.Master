@@ -11,6 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- AOS Animation -->
@@ -28,11 +29,26 @@
             --ivory-bg: #fcf8f3;
             --text-dark: #1f2937;
             --text-light: #4b5563;
+            /* Enhanced Color Palette */
+            --primary-emerald: #1d5e33;
+            --emerald: #1d5e33;
+            --emerald-dark: #164426;
+            --emerald-light: #2a7d4a;
+            --emerald-pale: #e8f4ed;
+            --champagne-gold: #E5CBAF;
+            --gold-rich: #c9a877;
+            --gold-shimmer: #f5e8d8;
+            --gold-light: #d4b896;
         }
 
         body {
             font-family: "Poppins", sans-serif;
             background-color: var(--ivory-bg);
+            padding-top: 110px; /* 40px utility + 70px header */
+        }
+
+        body.scrolled {
+            padding-top: 65px; /* Header only when scrolled */
         }
 
         .heading-font {
@@ -48,30 +64,1137 @@
             .container {
                 max-width: 95%;
             }
+            body {
+                padding-top: 80px;
+            }
         }
 
+        /* ============================================
+           ENHANCED HEADER - COMPLETE DESIGN
+           ============================================ */
+        
+        /* Page Load Progress Bar */
+        .page-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #1d5e33, #E5CBAF, #c9a877);
+            z-index: 1002;
+            animation: progressBar 1.5s ease-out forwards;
+            transform-origin: left;
+        }
+
+        @keyframes progressBar {
+            0% {
+                width: 0;
+            }
+            50% {
+                width: 70%;
+            }
+            100% {
+                width: 100%;
+                opacity: 0;
+            }
+        }
+
+        /* Top Utility Bar - Enhanced Modern Design */
+        .utility-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+            height: 40px;
+            background: var(--emerald-dark); /* Solid color for better contrast */
+            font-size: 13px;
+            transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 1px solid rgba(42, 125, 74, 0.3);
+            animation: fadeInDown 600ms ease-out;
+        }
+
+        .utility-bar.hide-on-scroll {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .utility-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .utility-left,
+        .utility-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .utility-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--emerald-pale);
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .utility-item:hover {
+            color: var(--gold-shimmer);
+            transform: translateY(-1px);
+        }
+
+        .utility-item i {
+            font-size: 12px;
+            color: var(--champagne-gold);
+            transition: all 300ms ease;
+        }
+
+        .utility-item:hover i {
+            transform: scale(1.1);
+            color: var(--gold-shimmer);
+        }
+
+        .utility-separator {
+            width: 1px;
+            height: 16px;
+            background: var(--emerald-light);
+            margin: 0 12px;
+        }
+
+        .utility-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--emerald-pale);
+            transition: all 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 50%;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .social-link i {
+            font-size: 14px;
+            transition: all 300ms ease;
+        }
+
+        .social-link:hover {
+            color: var(--champagne-gold);
+            transform: translateY(-2px) scale(1.15) rotate(5deg);
+        }
+
+        .social-link:hover i {
+            transform: scale(1.1);
+        }
+
+        .utility-dropdown {
+            position: relative;
+            cursor: pointer;
+            padding: 4px 10px;
+            border-radius: 4px;
+            color: var(--emerald-pale);
+            transition: all 250ms ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .utility-dropdown:hover {
+            background: rgba(42, 125, 74, 0.2);
+            color: var(--champagne-gold);
+        }
+
+        .utility-dropdown i {
+            font-size: 10px;
+            transition: transform 300ms ease;
+        }
+
+        .utility-dropdown:hover i {
+            transform: rotate(180deg);
+        }
+
+        .utility-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 120px;
+            background: white;
+            border-radius: 6px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            padding: 8px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 200ms ease;
+            z-index: 1000;
+        }
+
+        .utility-dropdown:hover .utility-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .utility-dropdown-menu a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            color: var(--emerald-dark);
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 150ms ease;
+        }
+
+        .utility-dropdown-menu a:hover {
+            background: var(--emerald-pale);
+            color: var(--primary-emerald);
+        }
+
+        .utility-dropdown-menu a.active {
+            color: var(--champagne-gold);
+            font-weight: 600;
+        }
+
+        .utility-dropdown-menu a.active i {
+            display: block;
+            color: var(--champagne-gold);
+        }
+
+        .utility-dropdown-menu a i {
+            display: none;
+            font-size: 12px;
+        }
+
+        /* Main Navigation Header - Transparent to Solid Sticky Header */
+        .modern-header {
+            position: fixed;
+            top: 40px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 70px;
+            background: transparent; /* TRULY TRANSPARENT - No rgba, no backdrop */
+            backdrop-filter: none; /* Remove blur for true transparency */
+            -webkit-backdrop-filter: none;
+            box-shadow: none;
+            border-bottom: none;
+            transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+            animation: slideInFromTop 800ms cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: background-color, box-shadow, height;
+        }
+
+        .modern-header.scrolled {
+            top: 0;
+            height: 65px;
+            background: var(--primary-emerald); /* Solid emerald when scrolled */
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(42, 125, 74, 0.3);
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Logo Styles - Minimalist Text Only */
+        .logo-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-decoration: none;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-container:hover .logo-text {
+            text-shadow: 0 0 20px rgba(229, 203, 175, 0.6);
+            letter-spacing: 0.5px;
+        }
+
+        .logo-icon {
+            width: 28px;
+            height: 28px;
+            font-size: 28px;
+            color: var(--champagne-gold);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+            transition: all 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .logo-container:hover .logo-icon {
+            transform: translateX(8px) translateY(-8px) rotate(-15deg);
+        }
+
+        .logo-text {
+            font-family: "Playfair Display", serif;
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: 0px;
+            color: #FFFFFF;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+            transition: all 300ms ease;
+        }
+
+        /* Scrolled state - logo remains white */
+        .modern-header.scrolled .logo-text {
+            font-size: 24px;
+            color: #FFFFFF;
+        }
+
+        .modern-header.scrolled .logo-icon {
+            font-size: 24px;
+            width: 24px;
+            height: 24px;
+            color: var(--champagne-gold);
+        }
+
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 24px;
+            }
+            .logo-icon {
+                font-size: 24px;
+                width: 24px;
+                height: 24px;
+            }
+            .modern-header.scrolled .logo-text {
+                font-size: 22px;
+            }
+        }
+
+        /* Navigation Menu - Enhanced with Visibility */
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-item {
+            position: relative;
+            animation: fadeInUp 600ms ease-out backwards;
+        }
+
+        /* Staggered animation for nav items */
+        .nav-item:nth-child(1) { animation-delay: 100ms; }
+        .nav-item:nth-child(2) { animation-delay: 200ms; }
+        .nav-item:nth-child(3) { animation-delay: 300ms; }
+        .nav-item:nth-child(4) { animation-delay: 400ms; }
+        .nav-item:nth-child(5) { animation-delay: 500ms; }
+        .nav-item:nth-child(6) { animation-delay: 600ms; }
+        .nav-item:nth-child(7) { animation-delay: 700ms; }
+        .nav-item:nth-child(8) { animation-delay: 800ms; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #FFFFFF;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+            letter-spacing: 0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav-link > i:first-child {
+            font-size: 16px;
+            color: var(--champagne-gold);
+            transition: all 300ms ease;
+        }
+
+        .nav-link:hover > i:first-child {
+            transform: scale(1.1);
+            color: var(--gold-shimmer);
+        }
+
+        .nav-link:hover {
+            color: var(--champagne-gold);
+            transform: translateY(-2px);
+        }
+
+        /* Underline animation */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            left: 16px;
+            width: 0;
+            height: 2px;
+            background: var(--champagne-gold);
+            transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-link:hover::after {
+            width: calc(100% - 32px);
+        }
+
+        /* Active page */
+        .nav-link.active {
+            color: var(--champagne-gold);
+            font-weight: 600;
+        }
+
+        .nav-link.active::after {
+            width: calc(100% - 32px);
+        }
+
+        /* Chevron icon for dropdowns */
+        .chevron-icon {
+            font-size: 10px;
+            margin-left: 2px;
+            color: rgba(255, 255, 255, 0.6) !important;
+            transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .nav-item:hover .chevron-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Scrolled state - Keep white text on emerald background */
+        .modern-header.scrolled .nav-link {
+            color: #FFFFFF;
+            font-size: 14px;
+            text-shadow: none; /* Remove shadow on solid background */
+        }
+
+        .modern-header.scrolled .nav-link > i:first-child {
+            color: var(--champagne-gold);
+        }
+
+        .modern-header.scrolled .nav-link:hover {
+            color: var(--champagne-gold);
+        }
+
+        .modern-header.scrolled .nav-link:hover > i:first-child {
+            color: var(--gold-shimmer);
+        }
+
+        .modern-header.scrolled .nav-link.active {
+            color: var(--champagne-gold);
+        }
+
+        .modern-header.scrolled .nav-link.active > i:first-child {
+            color: var(--gold-shimmer);
+        }
+        
+        /* Remove shadows on logo when scrolled */
+        .modern-header.scrolled .logo-text {
+            text-shadow: none;
+        }
+        
+        .modern-header.scrolled .logo-icon {
+            filter: none;
+        }
+
+        /* Dropdown Menus - Enhanced Modern Design */
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            min-width: 280px;
+            background: white;
+            border-radius: 12px;
+            padding: 16px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--emerald-pale);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            animation-delay: 150ms;
+        }
+
+        .dropdown-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: var(--emerald-dark);
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 200ms ease;
+            position: relative;
+        }
+
+        .dropdown-menu a i {
+            font-size: 16px;
+            color: var(--champagne-gold);
+            transition: all 200ms ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--emerald-pale);
+            color: var(--primary-emerald);
+            padding-left: 24px;
+        }
+
+        .dropdown-menu a:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Trending badge */
+        .trending-badge {
+            background: var(--champagne-gold);
+            color: var(--primary-emerald);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: auto;
+            animation: pulse-badge 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-badge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Fire icon animation for trending */
+        .fire-icon {
+            animation: flicker 1.5s ease-in-out infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Multi-column dropdown for destinations */
+        .dropdown-wide {
+            min-width: 600px;
+            padding: 20px;
+        }
+
+        .dropdown-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .dropdown-column h4 {
+            padding: 8px 20px;
+            color: #1d5e33;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #e8f4ed;
+        }
+
+        .dropdown-column a {
+            padding: 8px 20px;
+        }
+
+        /* Featured items in dropdown */
+        .featured-item {
+            display: flex;
+            flex-direction: column;
+            padding: 12px;
+            border-radius: 8px;
+            transition: transform 200ms ease;
+            margin: 8px;
+        }
+
+        .featured-item:hover {
+            transform: scale(1.03);
+            background: #e8f4ed;
+        }
+
+        .featured-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 8px;
+        }
+
+        .featured-item .price {
+            color: #c9a877;
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        /* Search Bar - Premium Design */
+        .search-bar {
+            position: relative;
+            width: 280px;
+            transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .search-input {
+            width: 100%;
+            height: 40px;
+            padding: 0 18px 0 44px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            color: #FFFFFF;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            transition: all 300ms ease;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+            pointer-events: none;
+            transition: all 300ms ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--champagne-gold);
+            background: white;
+            color: var(--primary-emerald);
+            text-shadow: none;
+            outline: none;
+            box-shadow: 0 4px 12px rgba(229, 203, 175, 0.3);
+            width: 340px;
+        }
+
+        .search-input:focus::placeholder {
+            color: rgba(29, 94, 51, 0.5);
+            text-shadow: none;
+        }
+
+        .search-input:focus ~ .search-icon {
+            color: var(--champagne-gold);
+            filter: none;
+            transform: translateY(-50%) scale(1.15) rotate(90deg);
+        }
+
+        /* Scrolled state */
+        .modern-header.scrolled .search-input {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: white;
+            text-shadow: none;
+        }
+
+        .modern-header.scrolled .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            text-shadow: none;
+        }
+
+        .modern-header.scrolled .search-icon {
+            color: rgba(255, 255, 255, 0.7);
+            filter: none;
+        }
+
+        .modern-header.scrolled .search-input:focus {
+            background: white;
+            color: var(--primary-emerald);
+            border-color: var(--champagne-gold);
+        }
+
+        .modern-header.scrolled .search-input:focus::placeholder {
+            color: rgba(29, 94, 51, 0.5);
+        }
+
+        .modern-header.scrolled .search-input:focus ~ .search-icon {
+            color: var(--champagne-gold);
+        }
+
+        /* User Account - Premium Interactive */
+        .user-account {
+            position: relative;
+        }
+
+        .user-account-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+        }
+
+        .user-icon {
+            font-size: 16px;
+            color: #FFFFFF;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+            transition: all 400ms ease;
+        }
+
+        .user-account-btn:hover {
+            background: var(--champagne-gold);
+            border-color: var(--champagne-gold);
+            transform: scale(1.1);
+        }
+
+        .user-account-btn:hover .user-icon {
+            color: var(--primary-emerald);
+            filter: none;
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        /* Scrolled state */
+        .modern-header.scrolled .user-account-btn {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .modern-header.scrolled .user-icon {
+            color: #FFFFFF;
+            filter: none;
+        }
+
+        .modern-header.scrolled .user-account-btn:hover {
+            background: var(--champagne-gold);
+            border-color: var(--champagne-gold);
+        }
+
+        .modern-header.scrolled .user-account-btn:hover .user-icon {
+            color: var(--primary-emerald);
+            filter: none;
+        }
+
+        /* User dropdown */
+        .user-dropdown {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 8px 0;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(229, 203, 175, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+
+        .user-account:hover .user-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-header {
+            padding: 12px 20px;
+            border-bottom: 1px solid #e8f4ed;
+            margin-bottom: 8px;
+        }
+
+        .dropdown-header span {
+            color: #1d5e33;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .user-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            color: #164426;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 200ms ease;
+        }
+
+        .user-dropdown a:hover {
+            background: #e8f4ed;
+            color: #1d5e33;
+            padding-left: 24px;
+        }
+
+        .user-dropdown a i {
+            font-size: 16px;
+            color: #c9a877;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #e8f4ed;
+            margin: 8px 0;
+        }
+
+        /* CTA Button - Premium Design */
+        .cta-book-now {
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--champagne-gold);
+            color: var(--primary-emerald);
+            border: none;
+            cursor: pointer;
+            transition: all 300ms ease-out;
+            text-decoration: none;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(229, 203, 175, 0.4);
+            position: relative;
+        }
+
+        .arrow-icon {
+            font-size: 13px;
+            transition: all 300ms ease;
+        }
+
+        .cta-book-now:hover {
+            background: var(--gold-rich);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(229, 203, 175, 0.6);
+        }
+
+        .cta-book-now:hover .arrow-icon {
+            transform: translateX(4px);
+        }
+
+        .cta-book-now:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        /* Scrolled state */
+        .modern-header.scrolled .cta-book-now {
+            background: var(--champagne-gold);
+            color: var(--primary-emerald);
+        }
+
+        /* Right Section Container */
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .right-actions > * {
+            animation: fadeInRight 600ms ease-out backwards;
+        }
+
+        .right-actions > :nth-child(1) { animation-delay: 900ms; }
+        .right-actions > :nth-child(2) { animation-delay: 1000ms; }
+        .right-actions > :nth-child(3) { animation-delay: 1100ms; }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Mobile Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 300ms ease-in-out;
+        }
+
+        .modern-header.scrolled .hamburger span {
+            background: white; /* Keep white on scrolled state */
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translateY(7px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-7px);
+        }
+
+        /* Mobile Menu Panel */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 280px;
+            height: 100vh;
+            background: var(--primary-emerald);
+            transition: right 300ms ease-out;
+            z-index: 999;
+            padding: 5rem 0 2rem;
+            overflow-y: auto;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 200ms ease;
+            border-left: 3px solid transparent;
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .mobile-menu.active .mobile-nav-link {
+            animation: slideIn 300ms ease-out forwards;
+        }
+
+        .mobile-nav-link:nth-child(1) { animation-delay: 50ms; }
+        .mobile-nav-link:nth-child(2) { animation-delay: 100ms; }
+        .mobile-nav-link:nth-child(3) { animation-delay: 150ms; }
+        .mobile-nav-link:nth-child(4) { animation-delay: 200ms; }
+        .mobile-nav-link:nth-child(5) { animation-delay: 250ms; }
+        .mobile-nav-link:nth-child(6) { animation-delay: 300ms; }
+        .mobile-nav-link:nth-child(7) { animation-delay: 350ms; }
+        .mobile-nav-link:nth-child(8) { animation-delay: 400ms; }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .mobile-nav-link:hover {
+            background: var(--emerald-light);
+            border-left-color: var(--champagne-gold);
+        }
+
+        .mobile-nav-link i {
+            font-size: 1.25rem;
+            color: var(--champagne-gold);
+        }
+
+        /* Mobile Overlay */
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 400ms ease-in-out;
+            z-index: 998;
+        }
+
+        .mobile-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 1024px) {
+            .utility-bar {
+                display: none; /* Hide utility bar on tablet and mobile */
+            }
+
+            body {
+                padding-top: 70px;
+            }
+
+            body.scrolled {
+                padding-top: 65px;
+            }
+
+            .modern-header {
+                top: 0;
+                height: 65px;
+            }
+
+            .modern-header.scrolled {
+                height: 60px;
+            }
+
+            .header-container {
+                padding: 0 16px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .search-bar {
+                display: none;
+            }
+
+            .user-account-btn {
+                width: 36px;
+                height: 36px;
+            }
+
+            .user-icon {
+                font-size: 14px;
+            }
+
+            .cta-book-now {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .mobile-menu {
+                padding-top: 5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-text {
+                font-size: 22px;
+            }
+
+            .logo-icon {
+                font-size: 22px;
+                width: 22px;
+                height: 22px;
+            }
+
+            .modern-header.scrolled .logo-text {
+                font-size: 20px;
+            }
+
+            .cta-book-now span {
+                display: none;
+            }
+
+            .cta-book-now {
+                padding: 10px;
+                width: 40px;
+                height: 40px;
+                justify-content: center;
+            }
+
+            .mobile-menu {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .user-account {
+                display: none;
+            }
+
+            .cta-book-now {
+                width: 36px;
+                height: 36px;
+            }
+
+            .arrow-icon {
+                font-size: 16px;
+            }
+        }
+
+        /* Common Utility Styles */
         .hero-gradient {
             background: rgba(7, 59, 58, 0.6);
-        }
-
-        .navbar-scroll {
-            transition: all 0.4s ease-out;
-            background-color: var(--dartmouth-green);
-            border-bottom: 1px solid var(--midnight-green);
-        }
-
-        .floating-icon {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0)
-            }
-
-            50% {
-                transform: translateY(-10px)
-            }
         }
 
         .parallax-bg {
@@ -89,25 +1212,6 @@
                 background: rgba(7, 59, 58, 0.4);
             }
 
-        .pulse-btn {
-            animation: pulse 2s infinite;
-            background-image: linear-gradient(to right, var(--pigment-green), var(--dartmouth-green));
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 0 0 0 rgba(8, 160, 69, .7)
-            }
-
-            70% {
-                box-shadow: 0 0 0 10px rgba(8, 160, 69, 0)
-            }
-
-            100% {
-                box-shadow: 0 0 0 0 rgba(8, 160, 69, 0)
-            }
-        }
-
         .section-padding {
             padding: 5rem 0;
         }
@@ -123,17 +1227,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        .mobile-nav-container {
-            display: flex;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-
-            .mobile-nav-container::-webkit-scrollbar {
-                display: none;
-            }
 
         .footer-bg {
             position: relative;
@@ -179,72 +1272,375 @@
         .hero-title {
             text-shadow: 0 2px 10px rgba(0, 0, 0, .5);
         }
-
-        /* Mobile Nav Enhancements */
-        .mobile-nav-item {
-            color: var(--text-light);
-            transition: background-color 0.2s ease-in-out;
-            padding-top: 0.25rem; /* Add some padding for the border */
-            border-top: 3px solid transparent;
-        }
-
-            .mobile-nav-item.active {
-                color: var(--dartmouth-green);
-                border-top: 3px solid var(--dartmouth-green);
-            }
-
-            .mobile-nav-item:hover {
-                background-color: #f3f4f6; /* A light gray for hover */
-            }
     </style>
 
     <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
 </head>
-<body class="font-sans pb-16 lg:pb-0" style="color: var(--text-dark)">
+<body class="font-sans" style="color: var(--text-dark)">
 
+    <!-- Page Load Progress Bar -->
+    <div class="page-progress" id="pageProgress"></div>
 
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-midnight-green lg:bg-transparent">
-        <div class="container px-4 sm:px-6 py-4">
-            <div class="relative flex items-center justify-between">
-                <!-- Brand/Logo -->
-                <div class="flex items-center space-x-3">
-                    <i class="las la-compass text-3xl floating-icon text-white" id="nav-logo-icon"></i>
-                    <span class="text-xl sm:text-2xl font-bold text-white heading-font">Exploria</span>
+    <!-- Top Utility Bar -->
+    <div class="utility-bar" id="utilityBar">
+        <div class="utility-container">
+            <div class="utility-left">
+                <a href="tel:+911234567890" class="utility-item">
+                    <i class="las la-phone-alt"></i>
+                    <span>+91-1234567890</span>
+                </a>
+                <div class="utility-separator"></div>
+                <a href="mailto:info@exploria.com" class="utility-item">
+                    <i class="las la-envelope"></i>
+                    <span>info@exploria.com</span>
+                </a>
+            </div>
+            <div class="utility-right">
+                <div class="utility-social">
+                    <a href="#" class="social-link" aria-label="Visit our Facebook page">
+                        <i class="lab la-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Follow us on Instagram">
+                        <i class="lab la-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Follow us on Twitter">
+                        <i class="lab la-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Subscribe to our YouTube channel">
+                        <i class="lab la-linkedin-in"></i>
+                    </a>
                 </div>
-
-                <!-- Centered Desktop Menu -->
-                <div class="hidden lg:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
-                    <a href="/Home.aspx" class="text-white hover:text-ecru transition-colors font-medium">Home</a>
-                    <a href="/Destination.aspx" class="text-white hover:text-ecru transition-colors font-medium">Destinations</a>
-                    <% if (Session["Role"] != null && Session["Role"].ToString() == "admin")
-                        { %>
-                    <a href="/AddDestinations.aspx" class="text-white hover:text-ecru transition-colors font-medium">Add-Destination
-                    </a>
-                    <a href="/AdminUserManagement.aspx" class="text-white hover:text-ecru transition-colors font-medium">User-Management
-                    </a>
-                    <a href="/AdminDestinations.aspx" class="text-white hover:text-ecru transition-colors font-medium">Destinations-Management
-                    </a>
-                    <% } %>
-                    <% if (Session["Role"] != null && Session["Role"].ToString() == "users")
-                        { %>
-                    <a href="/MyBookings.aspx" class="text-white hover:text-ecru transition-colors font-medium">My-Bookings
-                    </a>
-                    <% } %>
-
-                    <a href="/About.aspx" class="text-white hover:text-ecru transition-colors font-medium">About</a>
-                    <a href="/Contact.aspx" class="text-white hover:text-ecru transition-colors font-medium">Contact</a>
+                <div class="utility-separator"></div>
+                <div class="utility-dropdown">
+                    <span>USD</span>
+                    <i class="las la-chevron-down"></i>
+                    <div class="utility-dropdown-menu">
+                        <a href="#" class="active">USD <i class="las la-check"></i></a>
+                        <a href="#">EUR</a>
+                        <a href="#">GBP</a>
+                        <a href="#">INR</a>
+                    </div>
                 </div>
-
-                <!-- Profile Section on Right -->
-                <div class="hidden lg:flex items-center">
-                    <a href="/Profile.aspx" class="flex items-center text-white hover:text-ecru transition-colors font-medium">
-                        <i class="las la-user-circle text-2xl mr-2"></i>
-                        <asp:Label ID="isAuth" runat="server" Text="Guest"></asp:Label>
-                    </a>
+                <div class="utility-dropdown">
+                    <span>EN</span>
+                    <i class="las la-chevron-down"></i>
+                    <div class="utility-dropdown-menu">
+                        <a href="#" class="active">EN <i class="las la-check"></i></a>
+                        <a href="#">ES</a>
+                        <a href="#">FR</a>
+                        <a href="#">DE</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </nav>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="modern-header" id="mainHeader">
+        <div class="header-container">
+            
+            <!-- Left: Logo -->
+            <a href="/Home.aspx" class="logo-container">
+                <i class="las la-paper-plane logo-icon"></i>
+                <span class="logo-text">Exploria</span>
+            </a>
+
+            <!-- Center: Complete Navigation -->
+            <ul class="nav-menu">
+                <!-- Home -->
+                <li class="nav-item">
+                    <a href="/Home.aspx" class="nav-link">
+                        <i class="las la-home"></i>
+                        Home
+                    </a>
+                </li>
+
+                <!-- Destinations Dropdown -->
+                <li class="nav-item">
+                    <a href="/Destination.aspx" class="nav-link">
+                        <i class="las la-map-marker"></i>
+                        Destinations
+                        <i class="las la-angle-down chevron-icon"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/Destination.aspx">
+                            <i class="las la-globe-americas"></i>
+                            Browse All Destinations
+                        </a>
+                        <a href="/Destination.aspx?filter=trending">
+                            <i class="las la-fire fire-icon"></i>
+                            Currently Trending
+                            <span class="trending-badge">HOT</span>
+                        </a>
+                        <a href="/Destination.aspx?filter=popular">
+                            <i class="las la-star"></i>
+                            Popular Destinations
+                        </a>
+                        <a href="/Destination.aspx?view=details">
+                            <i class="las la-info-circle"></i>
+                            View Details
+                        </a>
+                        <a href="/Destination.aspx?search=true">
+                            <i class="las la-search"></i>
+                            Search Tours
+                        </a>
+                    </div>
+                </li>
+
+                <!-- Packages Dropdown -->
+                <li class="nav-item">
+                    <a href="/Destination.aspx?view=packages" class="nav-link">
+                        <i class="las la-gift"></i>
+                        Packages
+                        <i class="las la-angle-down chevron-icon"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/Destination.aspx?package=adventure">
+                            <i class="las la-hiking"></i>
+                            Adventure Packages
+                        </a>
+                        <a href="/Destination.aspx?package=luxury">
+                            <i class="las la-gem"></i>
+                            Luxury Packages
+                        </a>
+                        <a href="/Destination.aspx?package=family">
+                            <i class="las la-users"></i>
+                            Family Packages
+                        </a>
+                        <a href="/Destination.aspx?package=honeymoon">
+                            <i class="las la-heart"></i>
+                            Honeymoon Packages
+                        </a>
+                        <a href="/Destination.aspx?package=custom">
+                            <i class="las la-cog"></i>
+                            Custom Packages
+                        </a>
+                        <a href="/Destination.aspx?package=weekend">
+                            <i class="las la-calendar-week"></i>
+                            Weekend Getaways
+                        </a>
+                    </div>
+                </li>
+
+                <!-- My Bookings (For logged-in users) -->
+                <% if (Session["Role"] != null && Session["Role"].ToString() == "users") { %>
+                <li class="nav-item">
+                    <a href="/MyBookings.aspx" class="nav-link">
+                        <i class="las la-ticket-alt"></i>
+                        My Bookings
+                        <i class="las la-angle-down chevron-icon"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/MyBookings.aspx">All Bookings</a>
+                        <a href="/MyBookings.aspx?status=upcoming">Upcoming Trips</a>
+                        <a href="/MyBookings.aspx?status=completed">Past Bookings</a>
+                        <a href="/bookingConfirmation.aspx">Booking Confirmation</a>
+                    </div>
+                </li>
+                <% } %>
+
+                <!-- About -->
+                <li class="nav-item">
+                    <a href="/About.aspx" class="nav-link">
+                        <i class="las la-info-circle"></i>
+                        About
+                    </a>
+                </li>
+
+                <!-- Contact -->
+                <li class="nav-item">
+                    <a href="/Contact.aspx" class="nav-link">
+                        <i class="las la-envelope"></i>
+                        Contact
+                    </a>
+                </li>
+
+                <!-- Admin (Conditional - admin only) -->
+                <% if (Session["Role"] != null && Session["Role"].ToString() == "admin") { %>
+                <li class="nav-item">
+                    <a href="/AdminDestinations.aspx" class="nav-link">
+                        <i class="las la-user-shield"></i>
+                        Admin
+                        <i class="las la-angle-down chevron-icon"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/AdminDestinations.aspx">Manage Destinations</a>
+                        <a href="/AddDest.aspx">Add Single Destination</a>
+                        <a href="/AddDestinations.aspx">Bulk Add Destinations</a>
+                        <a href="/AdminUserManagement.aspx">User Management</a>
+                        <a href="/AdminUserView.aspx">View Users</a>
+                    </div>
+                </li>
+                <% } %>
+
+                <!-- More Dropdown -->
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="las la-ellipsis-h"></i>
+                        More
+                        <i class="las la-angle-down chevron-icon"></i>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="/About.aspx">
+                            <i class="las la-info-circle"></i>
+                            About Us
+                        </a>
+                        <a href="/Contact.aspx">
+                            <i class="las la-envelope"></i>
+                            Contact Us
+                        </a>
+                        <a href="#faq">
+                            <i class="las la-question-circle"></i>
+                            FAQ
+                        </a>
+                        <a href="#privacy">
+                            <i class="las la-shield-alt"></i>
+                            Privacy Policy
+                        </a>
+                        <a href="#terms">
+                            <i class="las la-file-alt"></i>
+                            Terms & Conditions
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Right: Search, User, CTA -->
+            <div class="right-actions">
+                
+                <!-- Search Bar -->
+                <div class="search-bar">
+                    <input type="text" class="search-input" placeholder="Search destinations..." id="searchInput" aria-label="Search destinations">
+                    <i class="las la-search search-icon"></i>
+                </div>
+
+                <!-- User Account -->
+                <div class="user-account">
+                    <div class="user-account-btn" aria-label="User account">
+                        <i class="las la-user user-icon"></i>
+                    </div>
+                    <div class="user-dropdown">
+                        <% if (Session["Role"] != null) { %>
+                            <div class="dropdown-header">
+                                <span>Welcome, <asp:Label ID="isAuth" runat="server" Text="User"></asp:Label></span>
+                            </div>
+                            <a href="/Profile.aspx">
+                                <i class="las la-user-circle"></i>
+                                My Profile
+                            </a>
+                            <% if (Session["Role"].ToString() == "users") { %>
+                            <a href="/MyBookings.aspx">
+                                <i class="las la-ticket-alt"></i>
+                                My Bookings
+                            </a>
+                            <a href="/MyBookings.aspx?history=true">
+                                <i class="las la-history"></i>
+                                Booking History
+                            </a>
+                            <a href="/bookingConfirmation.aspx">
+                                <i class="las la-check-circle"></i>
+                                Confirmations
+                            </a>
+                            <% } %>
+                            <div class="dropdown-divider"></div>
+                            <a href="/Logout.aspx">
+                                <i class="las la-sign-out-alt"></i>
+                                Logout
+                            </a>
+                        <% } else { %>
+                            <a href="/Login.aspx">
+                                <i class="las la-sign-in-alt"></i>
+                                Login
+                            </a>
+                            <a href="/Register.aspx">
+                                <i class="las la-user-plus"></i>
+                                Sign Up
+                            </a>
+                            <a href="/ForgetPassword.aspx">
+                                <i class="las la-key"></i>
+                                Forgot Password
+                            </a>
+                        <% } %>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <a href="/Destination.aspx" class="cta-book-now">
+                    <span>Book Now</span>
+                    <i class="las la-arrow-right arrow-icon"></i>
+                </a>
+
+                <!-- Mobile Hamburger -->
+                <div class="hamburger" id="hamburger" aria-label="Open navigation menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Mobile Menu Panel -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/Home.aspx" class="mobile-nav-link">
+            <i class="las la-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="/Destination.aspx" class="mobile-nav-link">
+            <i class="las la-map-marked-alt"></i>
+            <span>Destinations</span>
+        </a>
+
+        <% if (Session["Role"] != null && Session["Role"].ToString() == "admin") { %>
+        <a href="/AddDestinations.aspx" class="mobile-nav-link">
+            <i class="las la-plus-circle"></i>
+            <span>Add Destination</span>
+        </a>
+        <a href="/AdminUserManagement.aspx" class="mobile-nav-link">
+            <i class="las la-users-cog"></i>
+            <span>User Management</span>
+        </a>
+        <a href="/AdminDestinations.aspx" class="mobile-nav-link">
+            <i class="las la-tasks"></i>
+            <span>Manage Destinations</span>
+        </a>
+        <% } %>
+
+        <% if (Session["Role"] != null && Session["Role"].ToString() == "users") { %>
+        <a href="/MyBookings.aspx" class="mobile-nav-link">
+            <i class="las la-suitcase-rolling"></i>
+            <span>My Bookings</span>
+        </a>
+        <% } %>
+
+        <a href="/About.aspx" class="mobile-nav-link">
+            <i class="las la-info-circle"></i>
+            <span>About Us</span>
+        </a>
+        <a href="/Contact.aspx" class="mobile-nav-link">
+            <i class="las la-envelope"></i>
+            <span>Contact</span>
+        </a>
+        <a href="/Profile.aspx" class="mobile-nav-link">
+            <i class="las la-user-circle"></i>
+            <span>Profile</span>
+        </a>
+
+        <% if (Session["Role"] != null) { %>
+        <a href="/Logout.aspx" class="mobile-nav-link">
+            <i class="las la-sign-out-alt"></i>
+            <span>Logout</span>
+        </a>
+        <% } else { %>
+        <a href="/Login.aspx" class="mobile-nav-link">
+            <i class="las la-sign-in-alt"></i>
+            <span>Login</span>
+        </a>
+        <% } %>
+    </div>
 
     <div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -308,112 +1704,171 @@
         </div>
     </footer>
 
-    <!-- Mobile Bottom Navigation -->
-    <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50" style="border-top: 1px solid #e2e8f0">
-        <div class="mobile-nav-container h-16 w-full">
-
-            <!-- Home (always visible) -->
-            <a href="/Home.aspx" class="flex-shrink-0 w-24 flex flex-col items-center justify-center text-center mobile-nav-item">
-                <i class="las la-home text-2xl"></i><span class="text-xs font-medium">Home</span>
-            </a>
-
-            <!-- Destinations (always visible) -->
-            <a href="/Destinations.aspx" class="flex-shrink-0 w-24 flex flex-col items-center justify-center text-center mobile-nav-item">
-                <i class="las la-map-marked-alt text-2xl"></i><span class="text-xs font-medium">Popular</span>
-            </a>
-
-            <% if (Session["Role"] != null && Session["Role"].ToString() == "admin")
-                { %>
-            <!-- Admin Links -->
-            <a href="/AddDestinations.aspx" class="flex-shrink-0 w-24 flex flex-col items-center justify-center text-center mobile-nav-item">
-                <i class="las la-plus-circle text-2xl"></i><span class="text-xs font-medium">Add</span>
-            </a>
-            <a href="/AdminUserManagement.aspx" class="flex-shrink-0 w-24 flex flex-col items-center justify-center text-center mobile-nav-item">
-                <i class="las la-users-cog text-2xl"></i><span class="text-xs font-medium">Users</span>
-            </a>
-            <a href="/AdminDestinations.aspx" class="flex-shrink-0 w-24 flex flex-col items-center justify-center text-center mobile-nav-item">
-                <i class="las la-tasks text-2xl"></i><span class="text-xs font-medium">Manage</span>
-            </a>
-            <% } %>
-
-            <% if (Session["Role"] != null && Session["Role"].ToString() == "users")
-                { %>
-            <!-- User Link -->
-            <a href="/MyBookings.aspx" class="flex-shrink-0 w-24 flex flex-col items-center justify-center text-center mobile-nav-item">
-                <i class="las la-suitcase-rolling text-2xl"></i><span class="text-xs font-medium">Bookings</span>
-            </a>
-            <% } %>
-
-            <!-- About -->
-            <a href="/About.aspx" class="flex-shrink-0 w-24 flex flex-col items-center justify-center text-center mobile-nav-item">
-                <i class="las la-info-circle text-2xl"></i><span class="text-xs font-medium">About</span>
-            </a>
-
-            <!-- Contact -->
-            <a href="/Contact.aspx" class="flex-shrink-0 w-24 flex flex-col items-center justify-center text-center mobile-nav-item">
-                <i class="las la-envelope text-2xl"></i><span class="text-xs font-medium">Contact</span>
-            </a>
-
-            <!-- Profile (always visible) -->
-            <a href="/Profile.aspx" class="flex-shrink-0 w-24 flex flex-col items-center justify-center text-center mobile-nav-item">
-                <i class="las la-user-circle text-2xl"></i><span class="text-xs font-medium">Profile</span>
-            </a>
-
-            <!-- Logout (always visible if logged in) -->
-            <% if (Session["Role"] != null)
-                { %>
-            <a href="/Logout.aspx" class="flex-shrink-0 w-24 flex flex-col items-center justify-center text-center mobile-nav-item">
-                <i class="las la-sign-out-alt text-2xl"></i><span class="text-xs font-medium">Logout</span>
-            </a>
-            <% }
-            else
-            { %>
-            <a href="/Login.aspx" class="flex-shrink-0 w-24 flex flex-col items-center justify-center text-center mobile-nav-item">
-                <i class="las la-sign-in-alt text-2xl"></i><span class="text-xs font-medium">Login</span>
-            </a>
-            <% } %>
-        </div>
-    </nav>
-
-
     <asp:ContentPlaceHolder ID="script" runat="server"></asp:ContentPlaceHolder>
 
     <script>
+        // Initialize AOS animations
         AOS.init({ duration: 1200, once: true, offset: 100, easing: "ease-in-out-cubic" });
 
-        // Navbar scroll effect
-        window.addEventListener("scroll", function () {
-            const navbar = document.getElementById("navbar");
-            const navIcon = document.getElementById("nav-logo-icon");
-            if (window.scrollY > 50) {
-                navbar.classList.add("navbar-scroll");
-                navbar.classList.remove("lg:bg-transparent");
-                if (navIcon) navIcon.style.color = "var(--ecru)";
-            } else {
-                navbar.classList.remove("navbar-scroll");
-                navbar.classList.add("lg:bg-transparent");
-                if (navIcon) navIcon.style.color = "white";
-            }
-        });
+        // ============================================
+        // ULTRA MODERN HEADER FUNCTIONALITY
+        // ============================================
 
-        // --- Mobile Nav Functionality ---
         document.addEventListener("DOMContentLoaded", function () {
-            const currentPagePath = window.location.pathname.toLowerCase();
-            const navLinks = document.querySelectorAll('.mobile-nav-item');
+            const header = document.getElementById("mainHeader");
+            const utilityBar = document.getElementById("utilityBar");
+            const hamburger = document.getElementById("hamburger");
+            const mobileMenu = document.getElementById("mobileMenu");
+            const mobileOverlay = document.getElementById("mobileOverlay");
+            const searchInput = document.getElementById("searchInput");
+            const pageProgress = document.getElementById("pageProgress");
 
-            navLinks.forEach(link => {
-                // FIX: Use link.pathname directly instead of constructing a new URL object.
-                const linkPath = link.pathname.toLowerCase();
+            // Remove progress bar after animation
+            if (pageProgress) {
+                setTimeout(() => {
+                    pageProgress.style.display = 'none';
+                }, 1600);
+            }
 
-                // Highlight link if its path matches the current page path
-                // Special check for root path to match Default.aspx
-                if (linkPath === currentPagePath || (currentPagePath === '/' && linkPath.includes('default.aspx'))) {
-                    link.classList.add('active');
+            // Enhanced Scroll Detection - Optimized with requestAnimationFrame
+            let ticking = false;
+            const SCROLL_THRESHOLD = 80;
+
+            function handleScroll() {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (currentScroll > SCROLL_THRESHOLD) {
+                    header.classList.add("scrolled");
+                    document.body.classList.add("scrolled");
+                    if (utilityBar) {
+                        utilityBar.classList.add("hide-on-scroll");
+                    }
+                } else {
+                    header.classList.remove("scrolled");
+                    document.body.classList.remove("scrolled");
+                    if (utilityBar) {
+                        utilityBar.classList.remove("hide-on-scroll");
+                    }
+                }
+
+                ticking = false;
+            }
+
+            // Optimized scroll handler with requestAnimationFrame for 60fps
+            function requestTick() {
+                if (!ticking) {
+                    window.requestAnimationFrame(handleScroll);
+                    ticking = true;
+                }
+            }
+
+            window.addEventListener("scroll", requestTick, { passive: true });
+
+            // Initial check on page load
+            handleScroll();
+
+            // Mobile Menu Toggle
+            function toggleMobileMenu() {
+                hamburger.classList.toggle("active");
+                mobileMenu.classList.toggle("active");
+                mobileOverlay.classList.toggle("active");
+                document.body.style.overflow = mobileMenu.classList.contains("active") ? "hidden" : "";
+            }
+
+            if (hamburger) {
+                hamburger.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    toggleMobileMenu();
+                });
+            }
+
+            // Close mobile menu when clicking overlay
+            if (mobileOverlay) {
+                mobileOverlay.addEventListener("click", function () {
+                    toggleMobileMenu();
+                });
+            }
+
+            // Close mobile menu when clicking a link
+            const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+            mobileNavLinks.forEach(function (link) {
+                link.addEventListener("click", function () {
+                    toggleMobileMenu();
+                });
+            });
+
+            // Search Input Handler
+            if (searchInput) {
+                searchInput.addEventListener("keypress", function (e) {
+                    if (e.key === "Enter") {
+                        const searchValue = searchInput.value.trim();
+                        if (searchValue) {
+                            window.location.href = "/Destination.aspx?search=" + encodeURIComponent(searchValue);
+                        }
+                    }
+                });
+            }
+
+            // Active Link Highlighting
+            const currentPath = window.location.pathname.toLowerCase();
+            const navLinks = document.querySelectorAll(".nav-link");
+
+            navLinks.forEach(function (link) {
+                const linkPath = link.getAttribute("href");
+                if (linkPath && linkPath !== "#") {
+                    const linkPathLower = linkPath.toLowerCase();
+                    if (currentPath === linkPathLower || 
+                        (linkPathLower !== "/home.aspx" && currentPath.includes(linkPathLower))) {
+                        link.classList.add("active");
+                    }
                 }
             });
+
+            // Keyboard Navigation Support
+            document.addEventListener("keydown", function(e) {
+                // ESC key closes mobile menu
+                if (e.key === "Escape") {
+                    if (mobileMenu && mobileMenu.classList.contains("active")) {
+                        toggleMobileMenu();
+                    }
+                }
+            });
+
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+                anchor.addEventListener("click", function (e) {
+                    const href = this.getAttribute("href");
+                    if (href !== "#" && document.querySelector(href)) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+            // Prevent body scroll when mobile menu is open
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.attributeName === "class") {
+                        if (mobileMenu.classList.contains("active")) {
+                            document.body.style.overflow = "hidden";
+                        } else {
+                            document.body.style.overflow = "";
+                        }
+                    }
+                });
+            });
+
+            if (mobileMenu) {
+                observer.observe(mobileMenu, { attributes: true });
+            }
         });
-
-
     </script>
 
 </body>

@@ -1,0 +1,539 @@
+/* ============================================
+   CONTACT.CSS - Contact & About Pages Styling
+   Pages: Contact.aspx, About.aspx
+   ============================================ */
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.hero-section {
+    position: relative;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 400px;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(7, 59, 58, 0.6);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   CONTACT INFORMATION CARDS
+   ============================================ */
+
+.contact-card {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1),
+        0 8px 10px -6px rgb(0 0 0 / 0.1);
+    border: 1px solid #e5e7eb;
+    padding: 2rem;
+    transition: all 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgb(0 0 0 / 0.15);
+}
+
+@media (max-width: 768px) {
+    .contact-card {
+        padding: 1.5rem;
+    }
+}
+
+.contact-info-icon {
+    background-color: var(--dartmouth-green);
+    color: white;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-bottom: 1rem;
+}
+
+.contact-info-title {
+    font-weight: 700;
+    color: var(--midnight-green);
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact-info-text {
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.contact-info-text a {
+    color: var(--dartmouth-green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.contact-info-text a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   CONTACT FORM
+   ============================================ */
+
+.contact-form-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+@media (max-width: 768px) {
+    .contact-form-container {
+        padding: 1.5rem;
+    }
+}
+
+.form-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--midnight-green);
+    margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+/* ============================================
+   FORM INPUTS WITH ICONS
+   ============================================ */
+
+.form-input-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-input-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 0.75rem;
+    color: #6b7280;
+    pointer-events: none;
+    font-size: 1.25rem;
+}
+
+.form-input,
+.form-textarea {
+    background-color: #f3f4f6;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-textarea {
+    padding: 0.75rem 1rem;
+    padding-left: 2.5rem;
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    background-color: white;
+    border-color: var(--dartmouth-green);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(11, 110, 79, 0.1);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* ============================================
+   FORM LABELS
+   ============================================ */
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ============================================
+   FORM GROUP LAYOUT
+   ============================================ */
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* ============================================
+   SUBMIT BUTTON
+   ============================================ */
+
+.submit-btn {
+    background-image: linear-gradient(
+        to right,
+        var(--pigment-green),
+        var(--dartmouth-green)
+    );
+    color: white;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .submit-btn {
+        width: auto;
+    }
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.submit-btn:focus {
+    outline: 2px solid var(--pigment-green);
+    outline-offset: 2px;
+}
+
+.submit-btn:active {
+    transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+    background-image: none;
+    background-color: #d1d5db;
+    color: #6b7280;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ============================================
+   ABOUT PAGE - TEAM & VALUES
+   ============================================ */
+
+.team-member {
+    text-align: center;
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+.team-member-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    border: 3px solid var(--dartmouth-green);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.team-member-name {
+    font-weight: 700;
+    color: var(--midnight-green);
+    font-size: 1.125rem;
+    margin-bottom: 0.25rem;
+}
+
+.team-member-title {
+    color: var(--dartmouth-green);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+.team-member-bio {
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ============================================
+   VALUES SECTION
+   ============================================ */
+
+.value-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.value-icon {
+    font-size: 3rem;
+    color: var(--pigment-green);
+    margin-bottom: 1rem;
+}
+
+.value-title {
+    font-weight: 700;
+    color: var(--midnight-green);
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
+
+.value-description {
+    color: #6b7280;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ============================================
+   SUCCESS MESSAGE
+   ============================================ */
+
+.success-message {
+    display: none;
+    background-color: #d1fae5;
+    border: 1px solid #6ee7b7;
+    color: #065f46;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.success-message.show {
+    display: block;
+}
+
+.success-icon {
+    display: inline-block;
+    margin-right: 0.75rem;
+    font-weight: 700;
+}
+
+/* ============================================
+   ERROR MESSAGE
+   ============================================ */
+
+.error-message {
+    display: none;
+    background-color: #fee2e2;
+    border: 1px solid #fca5a5;
+    color: #991b1b;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+.error-message.show {
+    display: block;
+}
+
+/* ============================================
+   MAP SECTION
+   ============================================ */
+
+.map-container {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1);
+    height: 400px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ============================================
+   SECTION SPACING
+   ============================================ */
+
+.section-padding {
+    padding: 4rem 1rem;
+}
+
+@media (max-width: 768px) {
+    .section-padding {
+        padding: 2rem 1rem;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 300px;
+    }
+
+    .form-input-container,
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .contact-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .map-container {
+        height: 300px;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .form-input,
+    .form-textarea {
+        font-size: 16px;
+    }
+
+    .submit-btn {
+        width: 100%;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+input:focus,
+textarea:focus,
+button:focus {
+    outline: 2px solid var(--dartmouth-green);
+    outline-offset: 2px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .contact-card,
+    .team-member,
+    .submit-btn,
+    .form-input,
+    .form-textarea {
+        transition: none;
+    }
+
+    .success-message,
+    .error-message {
+        animation: none;
+    }
+}

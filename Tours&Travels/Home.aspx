@@ -1,245 +1,140 @@
 ﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="Tours_Travels.Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<style>
-
-      /* Updated container max-width constraint for 90% desktop width */
-      .container {
-        max-width: 90%;
-        margin: 0 auto;
-      }
-
-      @media (max-width: 768px) {
-        .container {
-          max-width: 95%;
-        }
-      }
-
-      /* Enhanced hero section with new color overlay */
-      .hero-gradient {
-        background: rgba(7, 59, 58, 0.6); /* Midnight Green Overlay */
-      }
-
-      /* Enhanced card hover effects */
-      .card-hover {
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: hidden;
-        background-color: #ffffff;
-        border: 1px solid #e5e7eb;
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
-          0 2px 4px -2px rgb(0 0 0 / 0.1);
-      }
-
-      .card-hover:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
-          0 8px 10px -6px rgb(0 0 0 / 0.1);
-        border-color: var(--ecru);
-      }
-
-     
-
-      /* Added floating animation for icons */
-      .floating-icon {
-        animation: float 3s ease-in-out infinite;
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
-      /* Enhanced parallax effect */
-      .parallax-bg {
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-      }
-
-      .parallax-bg::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(7, 59, 58, 0.4);
-      }
-
-      /* Added pulse animation for CTA buttons */
-      .pulse-btn {
-        animation: pulse 2s infinite;
-        background-image: linear-gradient(
-          to right,
-          var(--pigment-green) 0%,
-          var(--dartmouth-green) 100%
-        );
-      }
-
-      @keyframes pulse {
-        0% {
-          box-shadow: 0 0 0 0 rgba(8, 160, 69, 0.7);
-        }
-        70% {
-          box-shadow: 0 0 0 10px rgba(8, 160, 69, 0);
-        }
-        100% {
-          box-shadow: 0 0 0 0 rgba(8, 160, 69, 0);
-        }
-      }
-
-      /* Enhanced section spacing and typography */
-      .section-padding {
-        padding: 5rem 0;
-      }
-
-      @media (max-width: 768px) {
-        .section-padding {
-          padding: 3rem 0;
-        }
-      }
-
-      /* Added gradient text effect using new color scheme */
-      .gradient-text {
-        background: linear-gradient(
-          135deg,
-          var(--dartmouth-green),
-          var(--pigment-green)
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      /* Added special styling for famous destinations section */
-      .famous-destinations {
-        background: linear-gradient(135deg, var(--ivory-bg), #ffffff);
-        border-top: 3px solid var(--mantis);
-        border-bottom: 3px solid var(--mantis);
-      }
-
-      .destination-badge {
-        background: var(--dartmouth-green);
-        color: white;
-        padding: 0.5rem 1rem;
-        border-radius: 2rem;
-        font-size: 0.875rem;
-        font-weight: 600;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-
-
-
-  
-      .why-us-card {
-        transition: all 0.3s ease-in-out;
-        padding: 1.5rem;
-        border-radius: 0.75rem;
-        background-color: white;
-        border: 1px solid #e5e7eb;
-      }
-      .why-us-card .icon-bg {
-        transition: all 0.3s ease-in-out;
-      }
-      .why-us-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
-      .why-us-card:hover .icon-bg {
-        background-color: var(--ecru) !important;
-      }
-      .why-us-card:hover .icon-bg i {
-        color: var(--midnight-green) !important;
-      }
-
-      .hero-title {
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-      }
-
-      .section-separator {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        overflow: hidden;
-        line-height: 0;
-        transform: rotate(180deg);
-      }
-
-      .section-separator svg {
-        position: relative;
-        display: block;
-        width: calc(100% + 1.3px);
-        height: 80px;
-      }
-
-      .section-separator .shape-fill {
-        fill: var(--ivory-bg);
-      }
-    </style>
+<link rel="stylesheet" href="~/css/Home.css" />
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    <section
       id="home"
-      class="relative h-screen flex items-center justify-center overflow-hidden"
+      class="hero-section relative overflow-hidden"
     >
-      <div
-        class="absolute inset-0 parallax-bg"
-        style="
-          background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-        "
-      ></div>
-      <div class="absolute inset-0 hero-gradient"></div>
+      <!-- Multi-layer Background System -->
+      <div class="hero-background-layer absolute inset-0 parallax-bg"
+        style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+      </div>
+      
+      <!-- Gradient Overlay with Pulse Animation -->
+      <div class="absolute inset-0 hero-gradient-overlay"></div>
+      <div class="absolute inset-0 hero-radial-gradient"></div>
 
-      <div
-        class="hero-content relative z-10 text-center text-white px-4 sm:px-6 max-w-5xl container"
-      >
-        <h1
-          class="hero-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight heading-font"
-          data-aos="fade-up"
-        >
-          Discover Your Next
-          <span class="block mt-2" style="color: var(--ecru)">Adventure</span>
+      <!-- Animated Floating Shapes -->
+      <div class="hero-floating-shapes">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+        <div class="floating-shape shape-4"></div>
+        <div class="floating-shape shape-5"></div>
+        <div class="floating-shape shape-6"></div>
+        <div class="floating-shape shape-7"></div>
+        <div class="floating-shape shape-8"></div>
+        <div class="floating-shape shape-9"></div>
+        <div class="floating-shape shape-10"></div>
+      </div>
+
+      <!-- Particle System -->
+      <div class="hero-particles" id="heroParticles"></div>
+
+      <!-- Decorative Corner Elements -->
+      <div class="hero-corner-decoration top-left"></div>
+      <div class="hero-corner-decoration bottom-right"></div>
+
+      <!-- Light Rays Effect -->
+      <div class="hero-light-rays"></div>
+
+      <!-- Hero Content -->
+      <div class="hero-content relative z-10 text-center text-white px-4 sm:px-6 container mx-auto">
+        
+        <!-- Trust Badge -->
+        <div class="trust-badge">
+          <i class="las la-star"></i>
+          <span>Trusted by 10,000+ Travelers</span>
+        </div>
+
+        <!-- Main Headline with Animation -->
+        <h1 class="hero-headline">
+          <span class="headline-line-1">Discover Your Next</span>
+          <span class="headline-line-2">
+            Adventure
+            <span class="headline-underline"></span>
+          </span>
         </h1>
-        <p
-          class="hero-subtitle text-lg sm:text-xl md:text-2xl mb-8 opacity-90 max-w-3xl mx-auto font-light"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
+
+        <!-- Subheading -->
+        <p class="hero-subtitle">
           Explore breathtaking destinations, create unforgettable memories, and
           embark on the journey of a lifetime with our expertly crafted tours
         </p>
-        <div
-          class="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          data-aos="fade-up"
-          data-aos-delay="400"
-        >
-          <button
-            class="w-full sm:w-auto px-8 py-4 text-lg font-semibold rounded-full transition-all transform hover:scale-105 pulse-btn"
-            style="color: white"
-          >
-            <i class="las la-compass mr-2"></i>
-            Explore Trips
+
+        <!-- Statistics Bar -->
+        <div class="hero-stats-bar">
+          <div class="hero-stat">
+            <div class="stat-number" data-target="50">0</div>
+            <div class="stat-label">Destinations</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="hero-stat">
+            <div class="stat-number" data-target="10000">0</div>
+            <div class="stat-label">Happy Travelers</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="hero-stat">
+            <div class="stat-number" data-target="4.9">0</div>
+            <div class="stat-label">Average Rating</div>
+          </div>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta-container">
+          <a href="Destination.aspx" class="hero-btn-primary">
+            <span>Explore Destinations</span>
+            <i class="las la-arrow-right"></i>
+          </a>
+          <button class="hero-btn-secondary" onclick="openVideoModal()">
+            <i class="las la-play-circle"></i>
+            <span>Watch Our Story</span>
           </button>
         </div>
       </div>
 
-      <div
-        class="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white animate-bounce"
-      >
-        <i class="las la-chevron-down text-3xl"></i>
+      <!-- Floating Search Bar -->
+      <div class="hero-search-bar">
+        <div class="search-segment">
+          <i class="las la-map-marker"></i>
+          <div class="search-input-wrapper">
+            <label>Where to?</label>
+            <input type="text" placeholder="Search destinations" id="searchDestination" />
+          </div>
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-segment">
+          <i class="las la-calendar"></i>
+          <div class="search-input-wrapper">
+            <label>When?</label>
+            <input type="text" placeholder="Select dates" id="searchDates" />
+          </div>
+        </div>
+        <div class="search-divider"></div>
+        <div class="search-segment">
+          <i class="las la-users"></i>
+          <div class="search-input-wrapper">
+            <label>Who?</label>
+            <input type="text" placeholder="1 Traveler" id="searchTravelers" readonly />
+          </div>
+        </div>
+        <button class="search-button">
+          <i class="las la-search"></i>
+          <span>Search</span>
+        </button>
       </div>
 
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-text">Scroll to Explore</div>
+        <i class="las la-chevron-down"></i>
+      </div>
+
+      <!-- Section Separator -->
       <div class="section-separator">
         <svg
           data-name="Layer 1"
@@ -254,6 +149,124 @@
         </svg>
       </div>
     </section>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
+      <div class="video-modal-content" onclick="event.stopPropagation()">
+        <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
+        <div class="video-wrapper">
+          <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Counter Animation
+      function animateCounter(element) {
+        const target = parseFloat(element.getAttribute('data-target'));
+        const duration = 2000;
+        const increment = target / (duration / 16);
+        let current = 0;
+        const isDecimal = target % 1 !== 0;
+
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            element.textContent = isDecimal ? target.toFixed(1) + '★' : target + '+';
+            clearInterval(timer);
+          } else {
+            element.textContent = isDecimal ? current.toFixed(1) : Math.floor(current) + '+';
+          }
+        }, 16);
+      }
+
+      // Initialize counters when hero is in view
+      const observerOptions = {
+        threshold: 0.5
+      };
+
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.querySelectorAll('.stat-number').forEach((stat, index) => {
+              setTimeout(() => animateCounter(stat), index * 200);
+            });
+            heroObserver.disconnect();
+          }
+        });
+      }, observerOptions);
+
+      heroObserver.observe(document.querySelector('.hero-stats-bar'));
+
+      // Parallax Effect
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallaxBg = document.querySelector('.parallax-bg');
+        if (parallaxBg) {
+          parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+
+        // Hide scroll indicator on scroll
+        const scrollIndicator = document.getElementById('scrollIndicator');
+        if (scrollIndicator) {
+          scrollIndicator.style.opacity = Math.max(0, 1 - scrolled / 100);
+        }
+      });
+
+      // Particle System
+      function createParticles() {
+        const container = document.getElementById('heroParticles');
+        if (!container || window.innerWidth < 768) return;
+
+        const particleCount = 50;
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle';
+          particle.style.left = Math.random() * 100 + '%';
+          particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+          particle.style.animationDelay = Math.random() * 5 + 's';
+          particle.style.width = particle.style.height = (2 + Math.random() * 4) + 'px';
+          container.appendChild(particle);
+        }
+      }
+
+      // Video Modal Functions
+      function openVideoModal() {
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('videoPlayer');
+        video.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeVideoModal(event) {
+        if (event && event.target !== event.currentTarget && !event.target.classList.contains('video-modal-close')) {
+          return;
+        }
+        const modal = document.getElementById('videoModal');
+        const video = document.getElementById('videoPlayer');
+        video.src = '';
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+
+      // Close modal with ESC key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeVideoModal();
+        }
+      });
+
+      // Smooth scroll for scroll indicator
+      document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
+        document.querySelector('#destinations').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      // Initialize
+      window.addEventListener('load', () => {
+        createParticles();
+      });
+    </script>
 
     <main>
       <!-- New Popular Destinations Section -->

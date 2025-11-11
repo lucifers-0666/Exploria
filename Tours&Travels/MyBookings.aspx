@@ -1,58 +1,7 @@
 ﻿<%@ Page Title="My Bookings" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="MyBookings.aspx.cs" Inherits="Tours_Travels.MyBookings" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-color: rgba(7, 59, 58, 0.6);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .booking-card {
-            transition: all 0.3s ease;
-            border: 1px solid #e5e7eb;
-        }
-
-            .booking-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-            }
-
-        .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-
-        .cancel-btn {
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            border: 1px solid transparent;
-            background-color: #fee2e2; /* red-100 */
-            color: #dc2626; /* red-600 */
-        }
-
-            .cancel-btn:hover {
-                background-color: #dc2626; /* red-600 */
-                color: white;
-                transform: scale(1.05);
-            }
-    </style>
+    <link rel="stylesheet" href="~/css/MyBookings.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

@@ -244,6 +244,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="css\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
