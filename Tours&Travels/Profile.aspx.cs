@@ -149,15 +149,6 @@ namespace Tours_Travels
             // 1. Update the Session variable
             Session["FirstName"] = txtFirstName.Text.Trim();
 
-            Site1 masterPage = (Site1)this.Master;
-
-            if (masterPage != null)
-            {
-                masterPage.UserFirstName = txtFirstName.Text.Trim();
-            }
-
-        
-
             // 3. Show success message and switch panels
             lblMessage.Text = "Profile updated successfully!";
             lblMessage.ForeColor = System.Drawing.Color.Green;

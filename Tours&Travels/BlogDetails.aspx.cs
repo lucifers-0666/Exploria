@@ -12,7 +12,7 @@ namespace Tours_Travels
 {
     public partial class BlogDetails : System.Web.UI.Page
     {
-        string cs = ConfigurationManager.ConnectionStrings["Exploria"].ConnectionString;
+        string cs = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {

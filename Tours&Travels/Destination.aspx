@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Destinations" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Destination.aspx.cs" Inherits="Tours_Travels.Destination" Async="true" %>
+<%@ Page Title="Destinations" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Destination.aspx.cs" Inherits="Tours_Travels.Destination" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Added AOS CSS and JS -->
@@ -8,8 +8,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-        <!-- ✅ Enable PageMethods -->
+    <!-- ? Enable PageMethods -->
         <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
 
         <main>
@@ -26,7 +25,7 @@
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
 
-                            <!-- ✅ Search bar with suggestions -->
+                            <!-- ? Search bar with suggestions -->
                             <div class="max-w-2xl mx-auto mb-12 relative" data-aos="fade-up" data-aos-delay="100">
                                 <div class="relative flex items-center w-full gap-2">
                                     <asp:TextBox ID="txtSearch" runat="server"
@@ -39,14 +38,14 @@
                                         CssClass="px-5 py-2 rounded-full font-semibold text-white transition-transform hover:scale-105"
                                         Style="background-color: var(--dartmouth-green);" />
 
-                                    <!-- 🔽 Suggestion Box -->
+                                    <!-- ?? Suggestion Box -->
                                     <div id="suggestionBox"
                                          class="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-50 hidden">
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- ✅ Filter Buttons -->
+                            <!-- ? Filter Buttons -->
                             <div class="flex flex-wrap justify-center gap-3 mb-12" data-aos="fade-up" data-aos-delay="200">
                                 <asp:Button ID="btnAll" runat="server" Text="All" OnClick="btnFilter_Click" CommandArgument="all" CssClass="filter-btn px-6 py-2 rounded-full font-semibold" />
                                 <asp:Button ID="btnAdventure" runat="server" Text="Adventure" OnClick="btnFilter_Click" CommandArgument="adventure" CssClass="filter-btn px-6 py-2 rounded-full font-semibold" />
@@ -55,7 +54,7 @@
                                 <asp:Button ID="btnCity" runat="server" Text="City Break" OnClick="btnFilter_Click" CommandArgument="city" CssClass="filter-btn px-6 py-2 rounded-full font-semibold" />
                             </div>
 
-                            <!-- ✅ Destination List -->
+                            <!-- ? Destination List -->
                             <asp:Repeater ID="rptDestinations" runat="server">
                                 <HeaderTemplate>
                                     <div id="destination-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -70,7 +69,7 @@
                                             <h3 class="text-2xl font-bold heading-font my-2"><%# Eval("Name") %></h3>
                                             <p class="text-text-light mb-4"><%# Eval("Tagline") %></p>
                                             <div class="mt-auto flex items-center justify-between">
-                                                <span class="text-xl font-bold" style="color: var(--midnight-green);">₹<%# Convert.ToDecimal(Eval("Price")).ToString("N0") %></span>
+                                                <span class="text-xl font-bold" style="color: var(--midnight-green);">?<%# Convert.ToDecimal(Eval("Price")).ToString("N0") %></span>
                                                 <asp:HyperLink ID="hlViewDetails" runat="server" NavigateUrl='<%# "ViewDetails.aspx?id=" + Eval("Id") %>'
                                                     Text="View Details"
                                                     CssClass="px-5 py-2 rounded-full font-semibold text-white transition-transform hover:scale-105"
@@ -98,9 +97,7 @@
                     </asp:UpdatePanel>
                 </div>
             </section>
-        </main>
-    </form>
-</asp:Content>
+        </main></asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
     <script>

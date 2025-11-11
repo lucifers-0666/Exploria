@@ -1,265 +1,581 @@
 ﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="Tours_Travels.Home" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<link rel="stylesheet" href="css/UltraModernHero.css?v=1.0" />
 <link rel="stylesheet" href="css/Home.css?v=3.0" />
 <style>
-/* Additional inline critical CSS for immediate rendering */
-@keyframes iconPulseCount {
-    0%, 100% { transform: scale(1); }
-    10%, 30%, 50%, 70%, 90% { transform: scale(1.15); }
-    20%, 40%, 60%, 80% { transform: scale(1); }
+/* Critical CSS for Ultra-Modern Hero */
+.ultra-modern-hero {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #164426 0%, #1d5e33 50%, #164426 100%);
 }
 </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   <section
-      id="home"
-      class="hero-section relative overflow-hidden"
-    >
-      <!-- Multi-layer Background System -->
-      <div class="hero-background-layer absolute inset-0 parallax-bg"
-        style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
-      </div>
+   <!-- ============================================
+        ULTRA-MODERN HERO SECTION 2025-2026
+        ============================================ -->
+   <section id="home" class="ultra-modern-hero">
       
-      <!-- Gradient Overlay with Pulse Animation -->
-      <div class="absolute inset-0 hero-gradient-overlay"></div>
-      <div class="absolute inset-0 hero-radial-gradient"></div>
-
-      <!-- Animated Floating Shapes (Optimized - Reduced from 10 to 4) -->
-      <div class="hero-floating-shapes">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-        <div class="floating-shape shape-4"></div>
+      <!-- Multi-Layer Animated Background System -->
+      <div class="hero-bg-gradient-mesh"></div>
+      
+      <!-- Floating Light Particles -->
+      <div class="hero-particle-layer" id="particleLayer"></div>
+      
+      <!-- Geometric Wireframe Pattern -->
+      <div class="hero-geometric-pattern"></div>
+      
+      <!-- Morphing Blob Backgrounds -->
+      <div class="hero-morphing-blobs">
+        <div class="morph-blob blob-1"></div>
+        <div class="morph-blob blob-2"></div>
+        <div class="morph-blob blob-3"></div>
       </div>
 
-      <!-- Hero Content -->
-      <div class="hero-content relative z-10 text-center text-white px-4 sm:px-6 container mx-auto">
+      <!-- Main Hero Container: Split Layout -->
+      <div class="hero-split-container">
         
-        <!-- Trust Badge -->
-        <div class="trust-badge">
-          <i class="las la-star"></i>
-          <span>Trusted by 10,000+ Travelers</span>
+        <!-- LEFT SIDE: Content (60%) -->
+        <div class="hero-left-content">
+          
+          <!-- Trust Badge with Glassmorphism -->
+          <div class="trust-badge-modern">
+            <i class="las la-star pulsing-star"></i>
+            <span>Trusted by 10,000+ Travelers Worldwide</span>
+          </div>
+
+          <!-- Main Headline (3 Lines) -->
+          <h1 class="ultra-headline">
+            <span class="headline-line line-1">Discover</span>
+            <span class="headline-line line-2 gradient-text-animated">Breathtaking Destinations</span>
+            <span class="headline-line line-3">Create Unforgettable Memories</span>
+          </h1>
+
+          <!-- Animated Decorative Underline -->
+          <div class="headline-decorative-underline">
+            <svg class="underline-svg" viewBox="0 0 200 20" xmlns="http://www.w3.org/2000/svg">
+              <path class="underline-path" d="M 10 10 Q 100 5 190 10" stroke="#E5CBAF" stroke-width="3" fill="none"/>
+              <circle class="sparkle sparkle-1" cx="10" cy="10" r="2" fill="#E5CBAF"/>
+              <circle class="sparkle sparkle-2" cx="100" cy="5" r="2" fill="#E5CBAF"/>
+              <circle class="sparkle sparkle-3" cx="190" cy="10" r="2" fill="#E5CBAF"/>
+            </svg>
+          </div>
+
+          <!-- Description Text -->
+          <p class="hero-description-modern">
+            Embark on extraordinary journeys to the world's most captivating destinations. 
+            Let us turn your travel dreams into reality.
+          </p>
+
+          <!-- CTA Buttons (Trending Design) -->
+          <div class="hero-cta-modern">
+            <a href="Destination.aspx" class="cta-primary-morphing">
+              <span class="cta-text">Explore Destinations</span>
+              <i class="las la-arrow-right cta-arrow"></i>
+              <div class="ripple-effect-overlay"></div>
+            </a>
+            <button class="cta-secondary-glass" onclick="openModernVideoModal()">
+              <i class="las la-play-circle cta-play-icon"></i>
+              <span class="cta-text">Watch Our Story</span>
+            </button>
+          </div>
+
+          <!-- Floating Stats Cards (Glassmorphism) -->
+          <div class="stats-cards-glassmorphism">
+            <div class="stat-card glass-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="stat-icon-wrapper">
+                <i class="las la-map-marked-alt"></i>
+              </div>
+              <div class="stat-number" data-count="50">0</div>
+              <div class="stat-plus">+</div>
+              <div class="stat-label">Destinations</div>
+            </div>
+
+            <div class="stat-card glass-card" data-aos="fade-up" data-aos-delay="250">
+              <div class="stat-icon-wrapper">
+                <i class="las la-users"></i>
+              </div>
+              <div class="stat-number" data-count="10000">0</div>
+              <div class="stat-plus">+</div>
+              <div class="stat-label">Happy Travelers</div>
+            </div>
+
+            <div class="stat-card glass-card" data-aos="fade-up" data-aos-delay="400">
+              <div class="stat-icon-wrapper">
+                <i class="las la-star"></i>
+              </div>
+              <div class="stat-number" data-count="4.9">0.0</div>
+              <div class="stat-plus">★</div>
+              <div class="stat-label">Average Rating</div>
+            </div>
+          </div>
+
         </div>
 
-        <!-- Main Headline with Animation - REDESIGNED -->
-        <h1 class="hero-headline">
-          <span class="headline-line-1">Explore breathtaking destinations,</span>
-          <span class="headline-line-2">create unforgettable memories</span>
-          <span class="headline-line-3">and embark on the journey of a lifetime</span>
-        </h1>
+        <!-- RIGHT SIDE: 3D Interactive Element (40%) -->
+        <div class="hero-right-interactive">
+          
+          <!-- Floating Destination Cards Carousel -->
+          <div class="floating-destinations-carousel">
+            <div class="floating-dest-card card-1">
+              <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400&h=300&fit=crop" alt="Paris">
+              <div class="dest-card-overlay"></div>
+              <div class="dest-card-content">
+                <span class="dest-name">Paris</span>
+                <span class="trending-badge">TRENDING</span>
+              </div>
+            </div>
 
-        <!-- Subheading -->
-        <p class="hero-subtitle">
-          with our expertly crafted tours that immerse you in local culture, 
-          connect you with nature, and create experiences you'll treasure forever
-        </p>
+            <div class="floating-dest-card card-2">
+              <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Switzerland">
+              <div class="dest-card-overlay"></div>
+              <div class="dest-card-content">
+                <span class="dest-name">Switzerland</span>
+              </div>
+            </div>
 
-        <!-- CTA Buttons -->
-        <div class="hero-cta-container">
-          <a href="Destination.aspx" class="hero-btn-primary">
-            <span>Explore Destinations</span>
-            <i class="las la-arrow-right"></i>
-          </a>
-          <button class="hero-btn-secondary" onclick="openVideoModal()">
-            <i class="las la-play-circle"></i>
-            <span>Watch Our Story</span>
-          </button>
+            <div class="floating-dest-card card-3">
+              <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400&h=300&fit=crop" alt="Santorini">
+              <div class="dest-card-overlay"></div>
+              <div class="dest-card-content">
+                <span class="dest-name">Santorini</span>
+              </div>
+            </div>
+
+            <div class="floating-dest-card card-4">
+              <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&h=300&fit=crop" alt="Iceland">
+              <div class="dest-card-overlay"></div>
+              <div class="dest-card-content">
+                <span class="dest-name">Iceland</span>
+                <span class="trending-badge">HOT</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3D Globe Element (Decorative) -->
+          <div class="globe-decoration">
+            <i class="las la-globe"></i>
+          </div>
+
         </div>
+
       </div>
 
-      <!-- Statistics Bar - REDESIGNED (Outside hero-content for absolute positioning) -->
-      <div class="hero-stats-bar">
-        <div class="hero-stat">
-          <i class="las la-map-marker"></i>
-          <div class="stat-number" data-target="50">0</div>
-          <div class="stat-label">Destinations</div>
-        </div>
-        <div class="hero-stat">
-          <i class="las la-users"></i>
-          <div class="stat-number" data-target="10000">0</div>
-          <div class="stat-label">Happy Travelers</div>
-        </div>
-        <div class="hero-stat">
-          <i class="las la-star"></i>
-          <div class="stat-number" data-target="4.9">0</div>
-          <div class="stat-label">Average Rating</div>
-        </div>
-      </div>
-
-      <!-- Floating Search Bar -->
+      <!-- Floating Search Bar (Bottom) - FIXED STRUCTURE -->
       <div class="hero-search-bar">
-        <div class="search-segment">
-          <i class="las la-map-marker"></i>
-          <div class="search-input-wrapper">
-            <label>Where to?</label>
-            <input type="text" placeholder="Search destinations" id="searchDestination" />
+        
+        <!-- Where Input -->
+        <div class="search-input-wrapper">
+          <label class="input-label">WHERE TO?</label>
+          <div class="input-container">
+            <i class="las la-map-marker-alt"></i>
+            <asp:TextBox ID="txtDestination" runat="server" placeholder="Search destinations..." CssClass="hero-search-input"></asp:TextBox>
           </div>
         </div>
-        <div class="search-divider"></div>
-        <div class="search-segment">
-          <i class="las la-calendar"></i>
-          <div class="search-input-wrapper">
-            <label>When?</label>
-            <input type="text" placeholder="Select dates" id="searchDates" />
+
+        <!-- When Input -->
+        <div class="search-input-wrapper">
+          <label class="input-label">WHEN?</label>
+          <div class="input-container">
+            <i class="las la-calendar-alt"></i>
+            <asp:TextBox ID="txtDate" runat="server" placeholder="Select dates" CssClass="hero-search-input" ReadOnly="true"></asp:TextBox>
           </div>
         </div>
-        <div class="search-divider"></div>
-        <div class="search-segment">
-          <i class="las la-users"></i>
-          <div class="search-input-wrapper">
-            <label>Who?</label>
-            <input type="text" placeholder="1 Traveler" id="searchTravelers" readonly />
+
+        <!-- Who Input -->
+        <div class="search-input-wrapper">
+          <label class="input-label">WHO?</label>
+          <div class="input-container">
+            <i class="las la-user-friends"></i>
+            <asp:TextBox ID="txtTravelers" runat="server" placeholder="Add travelers" CssClass="hero-search-input" ReadOnly="true"></asp:TextBox>
           </div>
         </div>
-        <button class="search-button">
-          <i class="las la-search"></i>
-          <span>Search</span>
-        </button>
+
+        <!-- Search Button -->
+        <asp:Button ID="btnHeroSearch" runat="server" Text="🔍 SEARCH" OnClick="btnHeroSearch_Click" OnClientClick="return validateHeroSearch();" CssClass="search-button" UseSubmitBehavior="false" />
+        
       </div>
 
-      <!-- Scroll Indicator -->
-      <div class="scroll-indicator" id="scrollIndicator">
-        <div class="scroll-text">Scroll to Explore</div>
-        <i class="las la-chevron-down"></i>
+      <!-- Modern Scroll Indicator -->
+      <div class="scroll-indicator-modern" id="modernScrollIndicator">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <span class="scroll-text">Scroll to Explore</span>
+        <i class="las la-chevron-down scroll-chevron"></i>
       </div>
 
-      <!-- Section Separator -->
-      <div class="section-separator">
-        <svg
-          data-name="Layer 1"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1200 120"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M1200 120L0 16.48 0 0 1200 0 1200 120z"
-            class="shape-fill"
-          ></path>
-        </svg>
-      </div>
     </section>
 
-    <!-- Video Modal -->
-    <div class="video-modal" id="videoModal" onclick="closeVideoModal(event)">
-      <div class="video-modal-content" onclick="event.stopPropagation()">
-        <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
-        <div class="video-wrapper">
-          <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
+    <!-- Modern Video Modal -->
+    <div class="video-modal-modern" id="videoModalModern" onclick="closeModernVideoModal(event)">
+      <div class="video-modal-content-modern" onclick="event.stopPropagation()">
+        <button class="video-modal-close-modern" onclick="closeModernVideoModal()">
+          <i class="las la-times"></i>
+        </button>
+        <div class="video-wrapper-modern">
+          <iframe id="modernVideoPlayer" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
       </div>
     </div>
 
+    <!-- Hero Section JavaScript -->
     <script>
-      // Counter Animation with easing
-      function animateCounter(element) {
-        const target = parseFloat(element.getAttribute('data-target'));
-        const duration = 2000;
-        const isDecimal = target % 1 !== 0;
-        const startTime = performance.now();
-        
-        function easeOutExpo(t) {
-          return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-        }
+      // ============================================
+      // ULTRA-MODERN HERO SECTION JAVASCRIPT
+      // ============================================
 
-        function updateCounter(currentTime) {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          const easedProgress = easeOutExpo(progress);
-          const current = easedProgress * target;
+      (function() {
+        'use strict';
+
+        // 1. PARTICLE SYSTEM
+        function initParticles() {
+          const particleLayer = document.getElementById('particleLayer');
+          if (!particleLayer) return;
+
+          const particleCount = window.innerWidth < 768 ? 20 : 45;
           
-          if (progress < 1) {
-            element.textContent = isDecimal ? current.toFixed(1) : Math.floor(current) + '+';
-            requestAnimationFrame(updateCounter);
-          } else {
-            element.textContent = isDecimal ? target.toFixed(1) + '★' : target + '+';
+          for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'light-particle';
+            
+            const size = Math.random() * 6 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particle.style.opacity = Math.random() * 0.6 + 0.3;
+            
+            particleLayer.appendChild(particle);
           }
         }
-        
-        requestAnimationFrame(updateCounter);
-      }
 
-      // Initialize counters when hero is in view with pulse effect on icons
-      const observerOptions = {
-        threshold: 0.3
-      };
-
-      const heroObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const stats = document.querySelectorAll('.hero-stat');
-            stats.forEach((stat, index) => {
-              setTimeout(() => {
-                const number = stat.querySelector('.stat-number');
-                const icon = stat.querySelector('i');
-                animateCounter(number);
-                // Pulse icon during counting
-                icon.style.animation = 'iconPulseCount 2s ease-in-out';
-              }, index * 200);
+        // 2. STATS COUNTER ANIMATION
+        function animateStatsCounter() {
+          const statNumbers = document.querySelectorAll('.stat-number');
+          
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                entry.target.classList.add('counted');
+                const target = parseFloat(entry.target.getAttribute('data-count'));
+                const isDecimal = target % 1 !== 0;
+                const duration = 2000;
+                const startTime = performance.now();
+                
+                function updateCounter(currentTime) {
+                  const elapsed = currentTime - startTime;
+                  const progress = Math.min(elapsed / duration, 1);
+                  const eased = 1 - Math.pow(1 - progress, 3);
+                  const current = eased * target;
+                  
+                  if (progress < 1) {
+                    entry.target.textContent = isDecimal ? current.toFixed(1) : Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                  } else {
+                    entry.target.textContent = isDecimal ? target.toFixed(1) : target;
+                  }
+                }
+                
+                requestAnimationFrame(updateCounter);
+                
+                // Icon bounce animation
+                const icon = entry.target.closest('.stat-card').querySelector('.stat-icon-wrapper i');
+                if (icon) {
+                  icon.style.animation = 'iconBouncePulse 0.6s ease';
+                }
+              }
             });
-            heroObserver.disconnect();
+          }, { threshold: 0.5 });
+          
+          statNumbers.forEach(stat => observer.observe(stat));
+        }
+
+        // 3. SCROLL INDICATOR BEHAVIOR
+        function initScrollIndicator() {
+          const indicator = document.getElementById('modernScrollIndicator');
+          if (!indicator) return;
+          
+          indicator.addEventListener('click', () => {
+            document.querySelector('#destinations')?.scrollIntoView({ behavior: 'smooth' });
+          });
+          
+          window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            if (scrolled > 100) {
+              indicator.style.opacity = '0';
+              indicator.style.pointerEvents = 'none';
+            } else {
+              indicator.style.opacity = '1';
+              indicator.style.pointerEvents = 'auto';
+            }
+          });
+        }
+
+        // 4. VIDEO MODAL FUNCTIONS
+        window.openModernVideoModal = function() {
+          const modal = document.getElementById('videoModalModern');
+          const video = document.getElementById('modernVideoPlayer');
+          video.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        };
+
+        window.closeModernVideoModal = function(event) {
+          if (event && event.target !== event.currentTarget && !event.target.closest('.video-modal-close-modern')) {
+            return;
+          }
+          const modal = document.getElementById('videoModalModern');
+          const video = document.getElementById('modernVideoPlayer');
+          video.src = '';
+          modal.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        };
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            closeModernVideoModal();
           }
         });
-      }, observerOptions);
 
-      const statsBar = document.querySelector('.hero-stats-bar');
-      if (statsBar) {
-        heroObserver.observe(statsBar);
-      }
-
-      // Parallax Effect - Background scroll
-      window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallaxBg = document.querySelector('.parallax-bg');
-        if (parallaxBg) {
-          parallaxBg.style.transform = `translateY(${scrolled * 0.5}px)`;
+        // 5. FLOATING CARDS PARALLAX
+        function initFloatingCardsParallax() {
+          const cards = document.querySelectorAll('.floating-dest-card');
+          const hero = document.querySelector('.ultra-modern-hero');
+          
+          if (window.innerWidth < 1024) return; // Disable on mobile/tablet
+          
+          hero.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const { innerWidth, innerHeight } = window;
+            
+            const moveX = (clientX / innerWidth - 0.5) * 30;
+            const moveY = (clientY / innerHeight - 0.5) * 30;
+            
+            cards.forEach((card, index) => {
+              const speed = (index + 1) * 0.3;
+              card.style.transform = `translate(${-moveX * speed}px, ${-moveY * speed}px) rotate(${card.dataset.rotate || '0deg'})`;
+            });
+          });
         }
 
-        // Hide scroll indicator after scrolling 100px
-        const scrollIndicator = document.getElementById('scrollIndicator');
-        if (scrollIndicator && scrolled > 100) {
-          scrollIndicator.style.opacity = '0';
-          scrollIndicator.style.pointerEvents = 'none';
-        } else if (scrollIndicator && scrolled <= 100) {
-          scrollIndicator.style.opacity = '0.8';
-          scrollIndicator.style.pointerEvents = 'auto';
+        // 6. SEARCH BAR INTERACTIONS - FIXED
+        function initSearchBar() {
+          const searchWrappers = document.querySelectorAll('.search-input-wrapper');
+          
+          searchWrappers.forEach(wrapper => {
+            const input = wrapper.querySelector('input');
+            
+            if (input) {
+              input.addEventListener('focus', () => {
+                wrapper.classList.add('focused');
+              });
+              
+              input.addEventListener('blur', () => {
+                wrapper.classList.remove('focused');
+              });
+            }
+          });
+
+          // Enhanced Search Input Functionality
+          initSearchInputs();
+          
+          // Date Picker Initialization
+          const dateInput = document.getElementById('<%= txtDate.ClientID %>');
+          if (dateInput) {
+            // Simple date picker (you can integrate a library like flatpickr for better UX)
+            dateInput.addEventListener('click', function() {
+              this.type = 'date';
+              this.showPicker();
+            });
+            
+            dateInput.addEventListener('blur', function() {
+              if (!this.value) {
+                this.type = 'text';
+              }
+            });
+          }
+          
+          // Traveler Counter
+          const travelersInput = document.getElementById('<%= txtTravelers.ClientID %>');
+          if (travelersInput) {
+            let travelerCount = 1;
+            
+            travelersInput.addEventListener('click', function(e) {
+              e.preventDefault();
+              showTravelerPicker(this, travelerCount);
+            });
+          }
+          
+          function showTravelerPicker(input, currentCount) {
+            // Remove existing picker if any
+            const existingPicker = document.querySelector('.traveler-picker');
+            if (existingPicker) {
+              existingPicker.remove();
+              return;
+            }
+            
+            const picker = document.createElement('div');
+            picker.className = 'traveler-picker';
+            picker.style.cssText = `
+              position: absolute;
+              background: white;
+              border: 2px solid #1d5e33;
+              border-radius: 12px;
+              padding: 20px;
+              box-shadow: 0 8px 24px rgba(29, 94, 51, 0.2);
+              z-index: 1000;
+              min-width: 200px;
+              margin-top: 8px;
+            `;
+            
+            picker.innerHTML = `
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+                <button type="button" class="traveler-btn traveler-minus" style="
+                  width: 36px; height: 36px; border-radius: 50%;
+                  background: #f0f0f0; border: none; cursor: pointer;
+                  font-size: 20px; font-weight: bold; color: #1d5e33;
+                  transition: all 200ms ease;
+                ">−</button>
+                <span class="traveler-count" style="
+                  font-size: 24px; font-weight: bold; color: #164426;
+                  min-width: 40px; text-align: center;
+                ">${currentCount}</span>
+                <button type="button" class="traveler-btn traveler-plus" style="
+                  width: 36px; height: 36px; border-radius: 50%;
+                  background: #1d5e33; border: none; cursor: pointer;
+                  font-size: 20px; font-weight: bold; color: white;
+                  transition: all 200ms ease;
+                ">+</button>
+              </div>
+            `;
+            
+            input.parentElement.parentElement.style.position = 'relative';
+            input.parentElement.parentElement.appendChild(picker);
+            
+            let count = currentCount;
+            const countDisplay = picker.querySelector('.traveler-count');
+            const minusBtn = picker.querySelector('.traveler-minus');
+            const plusBtn = picker.querySelector('.traveler-plus');
+            
+            minusBtn.addEventListener('click', () => {
+              if (count > 1) {
+                count--;
+                countDisplay.textContent = count;
+                input.value = count + ' ' + (count === 1 ? 'Traveler' : 'Travelers');
+              }
+            });
+            
+            plusBtn.addEventListener('click', () => {
+              if (count < 20) {
+                count++;
+                countDisplay.textContent = count;
+                input.value = count + ' ' + (count === 1 ? 'Traveler' : 'Travelers');
+              }
+            });
+            
+            // Close picker when clicking outside
+            setTimeout(() => {
+              document.addEventListener('click', function closePickerHandler(e) {
+                if (!picker.contains(e.target) && e.target !== input) {
+                  picker.remove();
+                  document.removeEventListener('click', closePickerHandler);
+                }
+              });
+            }, 10);
+          }
+          
+          function initSearchInputs() {
+            const searchInputs = document.querySelectorAll('.hero-search-input, .input-container input');
+            searchInputs.forEach(input => {
+              input.addEventListener('focus', function() {
+                this.closest('.search-input-wrapper')?.classList.add('focused');
+              });
+              
+              input.addEventListener('blur', function() {
+                this.closest('.search-input-wrapper')?.classList.remove('focused');
+              });
+            });
+          }
+        
+        // Search Validation
+        function validateHeroSearch() {
+          const destinationInput = document.getElementById('<%= txtDestination.ClientID %>');
+          const destination = destinationInput?.value.trim();
+          
+          if (!destination || destination.length === 0) {
+            // Show visual feedback
+            const wrapper = destinationInput.closest('.search-input-wrapper');
+            if (wrapper) {
+              wrapper.style.animation = 'shake 0.5s ease';
+              wrapper.style.borderColor = '#dc2626';
+              
+              setTimeout(() => {
+                wrapper.style.animation = '';
+                wrapper.style.borderColor = '';
+              }, 500);
+            }
+            
+            // Optional: Show alert
+            alert('Please enter a destination to search for.');
+            return false;
+          }
+          
+          return true;
         }
-      });
-
-
-
-      // Video Modal Functions
-      function openVideoModal() {
-        const modal = document.getElementById('videoModal');
-        const video = document.getElementById('videoPlayer');
-        video.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1';
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeVideoModal(event) {
-        if (event && event.target !== event.currentTarget && !event.target.classList.contains('video-modal-close')) {
-          return;
+        
+        // Add shake animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+          @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+          }
+        `;
+        document.head.appendChild(style);
         }
-        const modal = document.getElementById('videoModal');
-        const video = document.getElementById('videoPlayer');
-        video.src = '';
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      }
 
-      // Close modal with ESC key
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeVideoModal();
+        // 7. MAGNETIC CURSOR EFFECT (Desktop only)
+        function initMagneticButtons() {
+          if (window.innerWidth < 1024) return;
+          
+          const buttons = document.querySelectorAll('.cta-primary-morphing, .cta-secondary-glass');
+          
+          buttons.forEach(button => {
+            button.addEventListener('mousemove', (e) => {
+              const rect = button.getBoundingClientRect();
+              const x = e.clientX - rect.left - rect.width / 2;
+              const y = e.clientY - rect.top - rect.height / 2;
+              
+              const maxMove = 8;
+              const moveX = (x / rect.width) * maxMove;
+              const moveY = (y / rect.height) * maxMove;
+              
+              button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            });
+            
+            button.addEventListener('mouseleave', () => {
+              button.style.transform = 'translate(0, 0)';
+            });
+          });
         }
-      });
 
-      // Smooth scroll for scroll indicator
-      document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
-        document.querySelector('#destinations').scrollIntoView({ behavior: 'smooth' });
-      });
+        // INITIALIZE ALL
+        document.addEventListener('DOMContentLoaded', () => {
+          initParticles();
+          animateStatsCounter();
+          initScrollIndicator();
+          initFloatingCardsParallax();
+          initSearchBar();
+          initMagneticButtons();
+        });
+
+      })();
 
       // Destinations Filter Chips
       document.querySelectorAll('.filter-chip').forEach(chip => {

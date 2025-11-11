@@ -41,7 +41,7 @@
 
         <div class="deals-grid">
             <asp:Repeater ID="rptDeals" runat="server">
-                <ItemTemplate">
+                <ItemTemplate>
                     <div class="deal-card">
                         <span class="deal-badge"><%# Eval("Discount") %>% OFF</span>
                         <img src='<%# Eval("MainImage") %>' alt='<%# Eval("Name") %>' class="deal-image" />

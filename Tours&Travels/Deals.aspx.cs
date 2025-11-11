@@ -7,7 +7,7 @@ namespace Tours_Travels
 {
     public partial class Deals : System.Web.UI.Page
     {
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["con"].ConnectionString);
+        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
 
         protected void Page_Load(object sender, EventArgs e)
         {

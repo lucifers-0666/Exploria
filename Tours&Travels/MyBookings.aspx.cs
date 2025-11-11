@@ -26,15 +26,9 @@ namespace Tours_Travels
         {
             if (Session["UserId"] == null)
             {
-                try
-                {
-                    Session["LoginMessage"] = "Please Login to See Your Bookings";
-                    Response.Redirect("Login.aspx");
-                }
-                catch (System.Threading.ThreadAbortException)
-                {
-                    // safe to ignore
-                }
+                Session["LoginMessage"] = "Please Login to See Your Bookings";
+                Response.Redirect("Login.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
                 return;
             }
 

@@ -1,12 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Tours_Travels.Profile" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Profile.aspx.cs" Inherits="Tours_Travels.Profile" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="~/css/Profile.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-        <main class="bg-gray-50">
+    <main class="bg-gray-50">
             <!-- Profile Header -->
             <section class="profile-header text-white pt-32 pb-16" data-aos="fade-in">
                 <div class="container mx-auto px-4 text-center">
@@ -213,9 +212,7 @@
                     </div>
                 </div>
             </section>
-        </main>
-    </form>
-</asp:Content>
+        </main></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
     <script>
         document.addEventListener('DOMContentLoaded', () => {

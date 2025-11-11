@@ -9,7 +9,7 @@ namespace Tours_Travels
 {
     public partial class AdminBlog : System.Web.UI.Page
     {
-        string cs = ConfigurationManager.ConnectionStrings["Exploria"].ConnectionString;
+        string cs = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {

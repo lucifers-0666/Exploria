@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="Tours_Travels.About" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="Tours_Travels.About" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -6,7 +6,6 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
     <main>
         <!-- Hero Section -->
         <section class="hero-section relative h-80 md:h-96 w-full bg-cover bg-center flex items-center justify-center text-white" data-aos="fade-in" style="background-image: url('https://images.unsplash.com/photo-1523908511403-7fc7b25592f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
@@ -136,9 +135,7 @@
                 </a>
             </div>
         </section>
-    </main>
-    </form>
-</asp:Content>
+    </main></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
     <script>
         // AOS initialization is handled globally in Site1.Master, so no specific script is needed here unless for custom functionality.

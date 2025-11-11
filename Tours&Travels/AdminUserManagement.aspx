@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdminUserManagement.aspx.cs" Inherits="Tours_Travels.AdminUserManagement" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdminUserManagement.aspx.cs" Inherits="Tours_Travels.AdminUserManagement" %>
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -132,8 +132,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-        <main class="bg-gray-50">
+    <main class="bg-gray-50">
             <section class="header-section text-white py-20" data-aos="fade-in">
                 <div class="container mx-auto px-4 text-center">
                     <h1 class="text-4xl md:text-5xl font-bold heading-font">User Dashboard</h1>
@@ -220,9 +219,7 @@
                     </div>
                 </div>
             </section>
-        </main>
-    </form>
-</asp:Content>
+        </main></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
     <script>
         AOS.init({

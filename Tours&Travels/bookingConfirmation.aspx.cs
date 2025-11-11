@@ -3,11 +3,6 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.UI.WebControls;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-// TODO: Uncomment after installing Crystal Reports NuGet packages
-// using CrystalDecisions.CrystalReports.Engine;
-// using CrystalDecisions.Shared;
-// using Tours_Travels.Models;
 
 
 namespace Tours_Travels
@@ -32,12 +27,6 @@ namespace Tours_Travels
             set => ViewState["MaxGroupSize"] = value;
         }
 
-        private int LastBookingId
-        {
-            get => ViewState["LastBookingId"] != null ? (int)ViewState["LastBookingId"] : 0;
-            set => ViewState["LastBookingId"] = value;
-        }
-
         protected async void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -45,16 +34,9 @@ namespace Tours_Travels
 
                 if (Session["UserId"] == null)
                 {
-                    try
-                    {
-                        Session["LoginMessage"] = "Please Login to Book Your Destinations";
-                        Response.Redirect("Login.aspx");
-                    }
-                    catch (System.Threading.ThreadAbortException)
-                    {
-                        // This exception is automatically thrown by Response.Redirect
-                        // We can safely ignore it because redirection has already occurred
-                    }
+                    Session["LoginMessage"] = "Please Login to Book Your Destinations";
+                    Response.Redirect("Login.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
                     return;
                 }
 
@@ -68,7 +50,8 @@ namespace Tours_Travels
                 }
                 else
                 {
-                    Response.Redirect("Destination.aspx");
+                    Response.Redirect("Destination.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
             }
         }
@@ -103,12 +86,14 @@ namespace Tours_Travels
                 }
                 else
                 {
-                    Response.Redirect("Destination.aspx");
+                    Response.Redirect("Destination.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
             }
             catch (Exception)
             {
-                Response.Redirect("Destination.aspx");
+                Response.Redirect("Destination.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
         }
 
@@ -190,7 +175,6 @@ namespace Tours_Travels
 
             GetCon();
             string query = "INSERT INTO Bookings (UserId, DestinationId, TravelerFirstName, TravelerLastName, TravelerEmail, TravelerPhone, TravelDate, NumberOfAdults, NumberOfChildren, TotalAmount) " +
-                           "OUTPUT INSERTED.Id " +
                            "VALUES (@UserId, @DestinationId, @FName, @LName, @Email, @Phone, @Date, @Adults, @Children, @Amount)";
 
             cmd = new SqlCommand(query, con);
@@ -205,22 +189,16 @@ namespace Tours_Travels
             cmd.Parameters.AddWithValue("@Children", children);
             cmd.Parameters.AddWithValue("@Amount", totalAmount);
 
-            object result = cmd.ExecuteScalar();
+            int rows = cmd.ExecuteNonQuery();
             con.Close();
 
-            if (result != null && int.TryParse(result.ToString(), out int bookingId))
+            if (rows > 0)
             {
-                LastBookingId = bookingId; // Store booking ID for invoice generation
                 SendBookingEmails(firstName, lastName, email, travelDate, adults, children, totalAmount);
                 lblMessage.Text = "Booking confirmed! A confirmation email has been sent.";
                 lblMessage.ForeColor = System.Drawing.Color.Green;
-                
-                // TODO: Uncomment when Crystal Reports is installed
-                // btnDownloadInvoice.Visible = true;
-                // btnConfirmBooking.Visible = false;
-                
-                // Redirect to thank you page
-                Response.Redirect("ThankYou.aspx");
+                Response.Redirect("ThankYou.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
             else
             {
@@ -335,158 +313,5 @@ namespace Tours_Travels
                 </div>";
             return GetBaseEmailTemplate("Booking Receipt", content);
         }
-
-        // ========== CRYSTAL REPORT IMPLEMENTATION ==========
-        // TODO: Uncomment after installing Crystal Reports NuGet packages:
-        // Install-Package CrystalReports.Engine -Version 13.0.4000
-        // Install-Package CrystalReports.Shared -Version 13.0.4000
-        
-        /* COMMENTED OUT UNTIL CRYSTAL REPORTS IS INSTALLED
-        protected void btnDownloadInvoice_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (LastBookingId == 0)
-                {
-                    lblMessage.Text = "No booking found to generate invoice.";
-                    lblMessage.ForeColor = System.Drawing.Color.Red;
-                    return;
-                }
-
-                // Get booking details from database
-                BookingInvoiceModel invoiceData = GetBookingDataForReport(LastBookingId);
-
-                if (invoiceData != null)
-                {
-                    // Generate Crystal Report
-                    GenerateCrystalReport(invoiceData);
-                }
-                else
-                {
-                    lblMessage.Text = "Unable to retrieve booking details.";
-                    lblMessage.ForeColor = System.Drawing.Color.Red;
-                }
-            }
-            catch (Exception ex)
-            {
-                lblMessage.Text = $"Error generating invoice: {ex.Message}";
-                lblMessage.ForeColor = System.Drawing.Color.Red;
-            }
-        }
-
-        private BookingInvoiceModel GetBookingDataForReport(int bookingId)
-        {
-            BookingInvoiceModel model = null;
-
-            try
-            {
-                GetCon();
-                string query = @"
-                    SELECT 
-                        b.Id, b.BookingDate, b.TravelerFirstName, b.TravelerLastName, 
-                        b.TravelerEmail, b.TravelerPhone, b.TravelDate,
-                        b.NumberOfAdults, b.NumberOfChildren, b.TotalAmount,
-                        d.Name as DestinationName, d.Duration, d.Price as PricePerPerson
-                    FROM Bookings b
-                    INNER JOIN Destinations d ON b.DestinationId = d.Id
-                    WHERE b.Id = @BookingId";
-
-                cmd = new SqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@BookingId", bookingId);
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                if (reader.Read())
-                {
-                    int days = int.TryParse(reader["Duration"].ToString(), out int d) ? d : 0;
-
-                    model = new BookingInvoiceModel
-                    {
-                        BookingId = Convert.ToInt32(reader["Id"]),
-                        BookingDate = Convert.ToDateTime(reader["BookingDate"]),
-                        TravelerFirstName = reader["TravelerFirstName"].ToString(),
-                        TravelerLastName = reader["TravelerLastName"].ToString(),
-                        TravelerEmail = reader["TravelerEmail"].ToString(),
-                        TravelerPhone = reader["TravelerPhone"].ToString(),
-                        TravelDate = Convert.ToDateTime(reader["TravelDate"]),
-                        DestinationName = reader["DestinationName"].ToString(),
-                        Duration = $"{days} Days / {days - 1} Nights",
-                        PricePerPerson = Convert.ToDecimal(reader["PricePerPerson"]),
-                        NumberOfAdults = Convert.ToInt32(reader["NumberOfAdults"]),
-                        NumberOfChildren = Convert.ToInt32(reader["NumberOfChildren"]),
-                        TotalAmount = Convert.ToDecimal(reader["TotalAmount"]),
-                        BookingStatus = "Confirmed",
-                        PaymentStatus = "Completed",
-                        PaymentMethod = "Online Payment"
-                    };
-                }
-
-                reader.Close();
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                if (con != null && con.State == System.Data.ConnectionState.Open)
-                    con.Close();
-                throw new Exception("Error retrieving booking data: " + ex.Message);
-            }
-
-            return model;
-        }
-
-        private void GenerateCrystalReport(BookingInvoiceModel invoiceData)
-        {
-            ReportDocument reportDocument = new ReportDocument();
-
-            try
-            {
-                // Load the Crystal Report file
-                string reportPath = Server.MapPath("~/Reports/BookingInvoice.rpt");
-                reportDocument.Load(reportPath);
-
-                // Create a list with single booking data
-                List<BookingInvoiceModel> dataList = new List<BookingInvoiceModel> { invoiceData };
-
-                // Set the report data source
-                reportDocument.SetDataSource(dataList);
-
-                // Export to PDF
-                string fileName = $"Exploria_Invoice_{invoiceData.InvoiceNumber}_{DateTime.Now:yyyyMMddHHmmss}.pdf";
-
-                Response.Buffer = false;
-                Response.ClearContent();
-                Response.ClearHeaders();
-                Response.ContentType = "application/pdf";
-                Response.AddHeader("Content-Disposition", $"attachment; filename={fileName}");
-
-                // Export the report to response stream
-                System.IO.Stream stream = reportDocument.ExportToStream(ExportFormatType.PortableDocFormat);
-                stream.Seek(0, System.IO.SeekOrigin.Begin);
-
-                byte[] buffer = new byte[stream.Length];
-                stream.Read(buffer, 0, buffer.Length);
-                Response.BinaryWrite(buffer);
-                Response.Flush();
-                Response.End();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error generating Crystal Report: " + ex.Message);
-            }
-            finally
-            {
-                reportDocument.Close();
-                reportDocument.Dispose();
-            }
-        }
-        END OF COMMENTED SECTION */
-        
-        // TEMPORARY METHOD - Remove when Crystal Reports is installed
-        protected void btnDownloadInvoice_Click(object sender, EventArgs e)
-        {
-            lblMessage.Text = "Invoice download feature requires Crystal Reports installation. See CRYSTAL_REPORTS_GUIDE.md for instructions.";
-            lblMessage.ForeColor = System.Drawing.Color.Orange;
-        }
-        // ========== END CRYSTAL REPORT ==========
     }
 }

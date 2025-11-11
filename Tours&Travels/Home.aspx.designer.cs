@@ -9,9 +9,42 @@
 
 namespace Tours_Travels
 {
-
-
     public partial class Home
     {
+        /// <summary>
+        /// txtDestination control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// Field type: System.Web.UI.WebControls.TextBox
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDestination;
+
+        /// <summary>
+        /// txtDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// Field type: System.Web.UI.WebControls.TextBox
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDate;
+
+        /// <summary>
+        /// txtTravelers control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// Field type: System.Web.UI.WebControls.TextBox
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTravelers;
+
+        /// <summary>
+        /// btnHeroSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// Field type: System.Web.UI.WebControls.Button
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnHeroSearch;
     }
 }

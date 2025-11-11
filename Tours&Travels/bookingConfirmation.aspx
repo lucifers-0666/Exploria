@@ -4,9 +4,8 @@
     <link rel="stylesheet" href="~/css/Booking.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-        <main>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <main>
             <asp:Panel ID="pnlHero" runat="server" CssClass="hero-section h-80 md:h-96 w-full bg-cover bg-center" data-aos="fade-in"
                 Style="background-image: url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
                 <div class="hero-content container mx-auto px-4" data-aos="fade-up">
@@ -108,9 +107,6 @@
                                             <div class="mt-6">
                                                 <asp:Button ID="btnConfirmBooking" runat="server" Text="Confirm Booking" OnClick="btnConfirmBooking_Click" CssClass="w-full py-4 rounded-full text-white text-xl font-bold confirm-btn" />
                                             </div>
-                                            <div class="mt-4">
-                                                <asp:Button ID="btnDownloadInvoice" runat="server" Text="📄 Download Invoice (PDF)" OnClick="btnDownloadInvoice_Click" CssClass="w-full py-3 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:shadow-lg transition-all duration-300" Visible="false" />
-                                            </div>
                                             <p class="text-xs text-center mt-4 text-text-light">By proceeding, you agree to our Terms and Conditions.</p>
                                         </div>
                                     </div>
@@ -122,7 +118,6 @@
                 </div>
             </section>
         </main>
-    </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
     <script type="text/javascript">

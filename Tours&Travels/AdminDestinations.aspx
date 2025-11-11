@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Admin - Manage Destinations" Language="C#" MasterPageFile="~/Site1.Master"
+<%@ Page Title="Admin - Manage Destinations" Language="C#" MasterPageFile="~/Site1.Master"
     AutoEventWireup="true" CodeBehind="AdminDestinations.aspx.cs"
     Inherits="Tours_Travels.AdminDestinations" Async="true" %>
 
@@ -8,8 +8,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-        <main class="bg-gray-50 min-h-screen">
+    <main class="bg-gray-50 min-h-screen">
             <section class="header-section text-white py-20">
                 <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h1 class="text-4xl md:text-5xl font-bold">Manage Destinations</h1>
@@ -108,9 +107,7 @@
                     </button>
                 </div>
             </div>
-        </div>
-    </form>
-</asp:Content>
+        </div></asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
 <script>

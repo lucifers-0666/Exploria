@@ -6,8 +6,7 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-        <main>
+    <main>
             <section class="hero-section relative h-80 md:h-96 w-full bg-cover bg-center flex items-center justify-center text-white" data-aos="fade-in" style="background-image: url('https://images.unsplash.com/photo-1534536281715-e28d76689b4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
                 <div class="hero-content text-center container mx-auto px-4" data-aos="fade-up">
                     <h1 class="text-4xl md:text-6xl font-bold heading-font mb-4">Get In Touch</h1>
@@ -123,7 +122,6 @@
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </section>
         </main>
-    </form>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
     <script>

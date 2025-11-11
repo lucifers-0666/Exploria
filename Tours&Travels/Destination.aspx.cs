@@ -20,6 +20,32 @@ namespace Tours_Travels
                 ViewState["CurrentPage"] = 0;
                 ViewState["ActiveFilter"] = "all";
                 ViewState["SearchTerm"] = "";
+
+                // Check if coming from hero search
+                if (Request.QueryString["search"] == "true")
+                {
+                    string destination = Request.QueryString["destination"];
+                    string date = Request.QueryString["date"];
+                    string travelers = Request.QueryString["travelers"];
+
+                    // Store search parameters in ViewState
+                    if (!string.IsNullOrEmpty(destination))
+                    {
+                        ViewState["SearchTerm"] = destination;
+                        txtSearch.Text = destination;
+                    }
+
+                    if (!string.IsNullOrEmpty(date))
+                    {
+                        ViewState["SearchDate"] = date;
+                    }
+
+                    if (!string.IsNullOrEmpty(travelers))
+                    {
+                        ViewState["SearchTravelers"] = travelers;
+                    }
+                }
+
                 await GetDestinationsAsync();
             }
         }

@@ -2281,6 +2281,10 @@
                             <i class="las la-clipboard-list"></i>
                             Manage Bookings
                         </a>
+                        <a href="/AdminBookingReports.aspx">
+                            <i class="las la-chart-bar"></i>
+                            Booking Reports
+                        </a>
                         <a href="/AdminDestinations.aspx">
                             <i class="las la-map-marked-alt"></i>
                             Manage Destinations
@@ -2371,12 +2375,6 @@
 
             <!-- Right: Search, User, CTA -->
             <div class="right-actions">
-                
-                <!-- Search Bar -->
-                <div class="search-bar">
-                    <input type="text" class="search-input" placeholder="Search destinations..." id="searchInput" aria-label="Search destinations">
-                    <i class="las la-search search-icon"></i>
-                </div>
 
                 <!-- User Account -->
                 <div class="user-account">
@@ -2386,7 +2384,7 @@
                     <div class="user-dropdown">
                         <% if (Session["Role"] != null) { %>
                             <div class="dropdown-header">
-                                <span>Welcome, <asp:Label ID="isAuth" runat="server" Text="User"></asp:Label></span>
+                                <span>Welcome, <%= Session["FirstName"] != null ? Session["FirstName"].ToString() : "User" %></span>
                             </div>
                             <% if (Session["Role"].ToString() == "users") { %>
                             <a href="/Dashboard.aspx">
@@ -2497,6 +2495,10 @@
             <i class="las la-clipboard-list"></i>
             <span>Manage Bookings</span>
         </a>
+        <a href="/AdminBookingReports.aspx" class="mobile-nav-link">
+            <i class="las la-chart-bar"></i>
+            <span>Booking Reports</span>
+        </a>
         <a href="/AdminDestinations.aspx" class="mobile-nav-link">
             <i class="las la-tasks"></i>
             <span>Manage Destinations</span>
@@ -2566,10 +2568,9 @@
         <% } %>
     </div>
 
-    <div>
+    <form id="form1" runat="server">
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
-    </div>
 
     <!-- Modern Footer -->
     <footer id="footer" class="modern-footer">
@@ -2647,7 +2648,7 @@
                 <p class="footer-newsletter-text">Subscribe for travel deals and inspiration</p>
                 
                 <!-- Inline Newsletter Form -->
-                <form class="footer-newsletter-form" id="footerNewsletterForm">
+                <div class="footer-newsletter-form" id="footerNewsletterForm">
                   <div class="footer-newsletter-input-group">
                     <input 
                       type="email" 
@@ -2656,7 +2657,7 @@
                       required
                       aria-label="Email for newsletter"
                     />
-                    <button type="submit" class="footer-newsletter-btn" aria-label="Subscribe">
+                    <button type="button" class="footer-newsletter-btn" aria-label="Subscribe" onclick="subscribeNewsletter()">
                       <i class="las la-paper-plane"></i>
                     </button>
                   </div>
@@ -2664,7 +2665,7 @@
                     <i class="las la-lock"></i>
                     <span>We respect your privacy</span>
                   </p>
-                </form>
+                </div>
 
                 <!-- Contact Info -->
                 <div class="footer-contact-items">
@@ -3184,6 +3185,8 @@
             }
         });
     </script>
+
+    </form>
 
 </body>
 </html>

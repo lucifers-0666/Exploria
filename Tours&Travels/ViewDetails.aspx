@@ -1,12 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ViewDetails.aspx.cs" Inherits="Tours_Travels.ViewDetails" Async="true" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="ViewDetails.aspx.cs" Inherits="Tours_Travels.ViewDetails" Async="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="~/css/ViewDetails.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
         <!-- Destination Details -->
         <div id="divDetails" runat="server" visible="false">
@@ -131,9 +130,7 @@
             <h2 class="text-3xl font-bold text-red-600">Destination Not Found</h2>
             <p class="text-text-light mt-4 text-lg">The trip you are looking for does not exist or has been removed.</p>
             <a href="Destination.aspx" class="inline-block mt-6 px-8 py-3 rounded-full font-semibold text-white" style="background-color: var(--dartmouth-green);">View All Destinations</a>
-        </div>
-    </form>
-</asp:Content>
+        </div></asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
     <div id="lightbox">
         <span class="close-lightbox">&times;</span>

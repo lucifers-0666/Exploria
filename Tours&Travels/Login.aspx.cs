@@ -45,25 +45,91 @@ namespace Tours_Travels
                 lblMessage.ForeColor = System.Drawing.Color.Red;
                 return;
             }
-            GetCon();
-            string query = "select * from users where Email='" + txtEmail.Text + "' and Password='" + txtPassword.Text + "'";
-            cmd = new SqlCommand(query, con);
-            SqlDataReader dr = cmd.ExecuteReader();
-            if (dr.Read())
+            
+            try
             {
-                Session["UserID"] = dr["Id"].ToString();
-                Session["FirstName"] = dr["FirstName"].ToString();
-                Session["LastName"] = dr["LastName"].ToString();
-                Session["Email"] = dr["Email"].ToString();
-                Session["Role"] = dr["Role"].ToString();
-                Response.Redirect("Home.aspx");
-
+                GetCon();
+                // Use parameterized query to prevent SQL injection - using lowercase 'users' table
+                string query = "SELECT * FROM users WHERE Email = @Email AND Password = @Password";
+                cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@Email", txtEmail.Text.Trim());
+                cmd.Parameters.AddWithValue("@Password", txtPassword.Text.Trim());
+                
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    // Try to get the ID column - it might be named differently
+                    // Common variations: Id, ID, UserId, UserID, User_Id
+                    string userId = "";
+                    try
+                    {
+                        if (dr.GetOrdinal("Id") >= 0)
+                            userId = dr["Id"].ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            if (dr.GetOrdinal("ID") >= 0)
+                                userId = dr["ID"].ToString();
+                        }
+                        catch
+                        {
+                            try
+                            {
+                                if (dr.GetOrdinal("UserID") >= 0)
+                                    userId = dr["UserID"].ToString();
+                            }
+                            catch
+                            {
+                                // If no ID column found, use Email as identifier
+                                userId = dr["Email"].ToString();
+                            }
+                        }
+                    }
+                    
+                    Session["UserID"] = userId;
+                    Session["FirstName"] = dr["FirstName"].ToString();
+                    Session["LastName"] = dr["LastName"].ToString();
+                    Session["Email"] = dr["Email"].ToString();
+                    
+                    // Handle Role column - check if it exists
+                    try
+                    {
+                        if (dr.GetOrdinal("Role") >= 0 && dr["Role"] != DBNull.Value)
+                        {
+                            Session["Role"] = dr["Role"].ToString();
+                        }
+                        else
+                        {
+                            Session["Role"] = "users"; // Default role
+                        }
+                    }
+                    catch
+                    {
+                        Session["Role"] = "users"; // Default role if column doesn't exist
+                    }
+                    
+                    dr.Close();
+                    con.Close();
+                    Response.Redirect("Home.aspx");
+                }
+                else
+                {
+                    lblMessage.Text = "Invalid Email or Password.";
+                    lblMessage.ForeColor = System.Drawing.Color.Red;
+                    dr.Close();
+                    con.Close();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblMessage.Text = "Invalid Email or Password.";
+                lblMessage.Text = "An error occurred: " + ex.Message;
                 lblMessage.ForeColor = System.Drawing.Color.Red;
-
+                if (con != null && con.State == System.Data.ConnectionState.Open)
+                {
+                    con.Close();
+                }
             }
         }
     }

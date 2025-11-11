@@ -1,12 +1,11 @@
-﻿<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Tours_Travels.Login" %>
+<%@ Page Title="Login" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="Tours_Travels.Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="~/css/Auth.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-        <section class="relative min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <section class="relative min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
             <!-- Background Image and Overlay -->
             <div class="absolute inset-0 h-full w-full">
                 <div
@@ -80,6 +79,4 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </form>
-</asp:Content>
+        </section></asp:Content>

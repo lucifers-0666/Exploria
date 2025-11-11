@@ -11,21 +11,7 @@ namespace Tours_Travels
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserId"] != null && Session["Email"] != null)
-            {
-                isAuth.Text = Session["FirstName"].ToString();
-            }
-        }
-
-        public string UserFirstName
-        {
-            set
-            {
-                if (isAuth != null)
-                {
-                    isAuth.Text = value;
-                }
-            }
+            // Session handling is now done directly in the .Master file using inline code
         }
     }
 }
