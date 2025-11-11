@@ -4,9 +4,10 @@ using System.Data.SqlClient;
 using System.Web.UI.WebControls;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using CrystalDecisions.CrystalReports.Engine;
-using CrystalDecisions.Shared;
-using Tours_Travels.Models;
+// TODO: Uncomment after installing Crystal Reports NuGet packages
+// using CrystalDecisions.CrystalReports.Engine;
+// using CrystalDecisions.Shared;
+// using Tours_Travels.Models;
 
 
 namespace Tours_Travels
@@ -214,9 +215,12 @@ namespace Tours_Travels
                 lblMessage.Text = "Booking confirmed! A confirmation email has been sent.";
                 lblMessage.ForeColor = System.Drawing.Color.Green;
                 
-                // Show download invoice button
-                btnDownloadInvoice.Visible = true;
-                btnConfirmBooking.Visible = false;
+                // TODO: Uncomment when Crystal Reports is installed
+                // btnDownloadInvoice.Visible = true;
+                // btnConfirmBooking.Visible = false;
+                
+                // Redirect to thank you page
+                Response.Redirect("ThankYou.aspx");
             }
             else
             {
@@ -333,6 +337,11 @@ namespace Tours_Travels
         }
 
         // ========== CRYSTAL REPORT IMPLEMENTATION ==========
+        // TODO: Uncomment after installing Crystal Reports NuGet packages:
+        // Install-Package CrystalReports.Engine -Version 13.0.4000
+        // Install-Package CrystalReports.Shared -Version 13.0.4000
+        
+        /* COMMENTED OUT UNTIL CRYSTAL REPORTS IS INSTALLED
         protected void btnDownloadInvoice_Click(object sender, EventArgs e)
         {
             try
@@ -469,6 +478,14 @@ namespace Tours_Travels
                 reportDocument.Close();
                 reportDocument.Dispose();
             }
+        }
+        END OF COMMENTED SECTION */
+        
+        // TEMPORARY METHOD - Remove when Crystal Reports is installed
+        protected void btnDownloadInvoice_Click(object sender, EventArgs e)
+        {
+            lblMessage.Text = "Invoice download feature requires Crystal Reports installation. See CRYSTAL_REPORTS_GUIDE.md for instructions.";
+            lblMessage.ForeColor = System.Drawing.Color.Orange;
         }
         // ========== END CRYSTAL REPORT ==========
     }
