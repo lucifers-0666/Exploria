@@ -108,6 +108,9 @@
                                             <div class="mt-6">
                                                 <asp:Button ID="btnConfirmBooking" runat="server" Text="Confirm Booking" OnClick="btnConfirmBooking_Click" CssClass="w-full py-4 rounded-full text-white text-xl font-bold confirm-btn" />
                                             </div>
+                                            <div class="mt-4">
+                                                <asp:Button ID="btnDownloadInvoice" runat="server" Text="📄 Download Invoice (PDF)" OnClick="btnDownloadInvoice_Click" CssClass="w-full py-3 rounded-full bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:shadow-lg transition-all duration-300" Visible="false" />
+                                            </div>
                                             <p class="text-xs text-center mt-4 text-text-light">By proceeding, you agree to our Terms and Conditions.</p>
                                         </div>
                                     </div>

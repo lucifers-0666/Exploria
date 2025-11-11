@@ -1,0 +1,11 @@
+using System;
+
+namespace Tours_Travels
+{
+    public partial class Terms : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}

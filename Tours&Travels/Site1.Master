@@ -3,9 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title>Tours & Travels</title>
+    <title>Exploria - Tours & Travels</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✈️</text></svg>">
 
     <!-- CDNs and Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -1221,6 +1225,731 @@
             }
         }
 
+        /* ============================================
+           MODERN FOOTER
+           ============================================ */
+        .modern-footer {
+          background: var(--emerald-dark);
+          color: var(--emerald-pale);
+          padding-top: 64px;
+        }
+
+        /* Main Footer Content */
+        .footer-main-content {
+          padding: 0 24px 48px;
+          border-bottom: 1px solid rgba(42, 125, 74, 0.3);
+        }
+
+        .footer-container {
+          max-width: 1400px;
+          margin: 0 auto;
+        }
+
+        .footer-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 48px;
+        }
+
+        /* Footer Column */
+        .footer-column {
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* Column 1: About - Logo */
+        .footer-logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 20px;
+        }
+
+        .footer-logo-icon {
+          font-size: 28px;
+          color: var(--champagne-gold);
+        }
+
+        .footer-logo-text {
+          font-family: "Playfair Display", serif;
+          font-size: 26px;
+          font-weight: 600;
+          color: white;
+        }
+
+        /* Footer Description */
+        .footer-description {
+          font-size: 14px;
+          color: var(--emerald-pale);
+          line-height: 1.6;
+          max-width: 280px;
+          margin-bottom: 24px;
+        }
+
+        /* Social Icons */
+        .footer-social-icons {
+          display: flex;
+          gap: 12px;
+        }
+
+        .footer-social-icon {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background: rgba(42, 125, 74, 0.2);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--champagne-gold);
+          text-decoration: none;
+          transition: all 300ms ease;
+        }
+
+        .footer-social-icon i {
+          font-size: 18px;
+        }
+
+        .footer-social-icon:hover {
+          background: var(--champagne-gold);
+          color: var(--primary-emerald);
+          transform: translateY(-3px);
+        }
+
+        /* Column Titles - ENHANCED with decorative line */
+        .footer-column-title {
+          font-size: 18px;
+          font-weight: 600;
+          color: white;
+          margin-bottom: 20px;
+          position: relative;
+          padding-top: 16px;
+        }
+
+        .footer-column-title::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 40px;
+          height: 2px;
+          background: var(--champagne-gold);
+          border-radius: 2px;
+        }
+
+        /* Footer Links - ENHANCED with underline animation */
+        .footer-links {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .footer-links li {
+          margin-bottom: 0;
+        }
+
+        .footer-link {
+          display: inline-block;
+          font-size: 14px;
+          color: var(--emerald-pale);
+          padding: 8px 0;
+          text-decoration: none;
+          transition: all 300ms ease;
+          position: relative;
+        }
+
+        /* Underline animation on hover */
+        .footer-link::after {
+          content: '';
+          position: absolute;
+          bottom: 6px;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background: var(--champagne-gold);
+          transition: width 300ms ease;
+        }
+
+        .footer-link:hover {
+          color: var(--champagne-gold);
+        }
+
+        .footer-link:hover::after {
+          width: 100%;
+        }
+
+        /* Footer Newsletter - NEW */
+        .footer-newsletter-text {
+          font-size: 13px;
+          color: var(--emerald-pale);
+          opacity: 0.8;
+          margin-bottom: 16px;
+          line-height: 1.5;
+        }
+
+        .footer-newsletter-form {
+          margin-bottom: 24px;
+        }
+
+        .footer-newsletter-input-group {
+          display: flex;
+          gap: 8px;
+          margin-bottom: 8px;
+        }
+
+        .footer-newsletter-input {
+          flex: 1;
+          padding: 10px 14px;
+          border: 1px solid rgba(42, 125, 74, 0.3);
+          border-radius: 6px;
+          background: rgba(42, 125, 74, 0.1);
+          color: white;
+          font-size: 13px;
+          outline: none;
+          transition: all 300ms ease;
+        }
+
+        .footer-newsletter-input::placeholder {
+          color: rgba(232, 244, 237, 0.5);
+        }
+
+        .footer-newsletter-input:focus {
+          border-color: var(--champagne-gold);
+          background: rgba(42, 125, 74, 0.15);
+          box-shadow: 0 0 0 3px rgba(229, 203, 175, 0.1);
+        }
+
+        .footer-newsletter-input:invalid:not(:placeholder-shown) {
+          border-color: rgba(231, 76, 60, 0.5);
+        }
+
+        .footer-newsletter-input:valid:not(:placeholder-shown) {
+          border-color: rgba(46, 204, 113, 0.5);
+        }
+
+        .footer-newsletter-btn {
+          width: 40px;
+          height: 40px;
+          border: none;
+          border-radius: 6px;
+          background: var(--champagne-gold);
+          color: var(--primary-emerald);
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 300ms ease;
+        }
+
+        .footer-newsletter-btn i {
+          font-size: 18px;
+        }
+
+        .footer-newsletter-btn:hover:not(:disabled) {
+          background: var(--gold-rich);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(229, 203, 175, 0.3);
+        }
+
+        .footer-newsletter-btn:active:not(:disabled) {
+          transform: translateY(0);
+        }
+
+        .footer-newsletter-btn:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        .footer-newsletter-btn .la-spin {
+          animation: footerSpinner 1s linear infinite;
+        }
+
+        @keyframes footerSpinner {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        .footer-newsletter-btn:hover {
+          background: var(--gold-rich);
+          transform: translateY(-2px);
+        }
+
+        .footer-newsletter-privacy {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 11px;
+          color: var(--emerald-pale);
+          opacity: 0.6;
+          margin: 0;
+        }
+
+        .footer-newsletter-privacy i {
+          font-size: 12px;
+        }
+
+        /* Contact Items */
+        .footer-contact-items {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+
+        .footer-contact-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          margin-bottom: 16px;
+          font-size: 14px;
+          color: var(--emerald-pale);
+          transition: color 300ms ease;
+        }
+
+        .footer-contact-item i {
+          font-size: 16px;
+          color: var(--champagne-gold);
+          margin-top: 2px;
+          flex-shrink: 0;
+        }
+
+        .footer-contact-link {
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        .footer-contact-link:hover {
+          color: white;
+        }
+
+        /* Bottom Bar - ENHANCED */
+        .footer-bottom-bar {
+          background: var(--emerald-dark);
+          padding: 24px;
+          border-top: 1px solid rgba(42, 125, 74, 0.3);
+        }
+
+        .footer-bottom-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+
+        /* Bottom Left - Copyright & Links */
+        .footer-bottom-left {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
+        .footer-copyright {
+          font-size: 14px;
+          color: var(--emerald-pale);
+          opacity: 0.7;
+        }
+
+        .footer-bottom-links {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
+        .footer-bottom-link {
+          font-size: 13px;
+          color: var(--emerald-pale);
+          text-decoration: none;
+          opacity: 0.7;
+          transition: all 300ms ease;
+          position: relative;
+        }
+
+        .footer-bottom-link::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background: var(--champagne-gold);
+          transition: width 300ms ease;
+        }
+
+        .footer-bottom-link:hover {
+          color: var(--champagne-gold);
+          opacity: 1;
+        }
+
+        .footer-bottom-link:hover::after {
+          width: 100%;
+        }
+
+        .footer-link-separator {
+          color: rgba(232, 244, 237, 0.3);
+          font-size: 12px;
+        }
+
+        /* Language & Currency Switchers - NEW */
+        .footer-switchers {
+          display: flex;
+          gap: 16px;
+          align-items: center;
+        }
+
+        .footer-switcher {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .footer-switcher i {
+          font-size: 16px;
+          color: var(--champagne-gold);
+        }
+
+        .footer-select {
+          background: rgba(42, 125, 74, 0.2);
+          border: 1px solid rgba(42, 125, 74, 0.3);
+          border-radius: 6px;
+          padding: 6px 12px;
+          color: var(--emerald-pale);
+          font-size: 13px;
+          cursor: pointer;
+          outline: none;
+          transition: all 300ms ease;
+        }
+
+        .footer-select:hover {
+          border-color: var(--champagne-gold);
+          background: rgba(42, 125, 74, 0.3);
+        }
+
+        .footer-select:focus {
+          border-color: var(--champagne-gold);
+        }
+
+        .footer-select option {
+          background: var(--emerald-dark);
+          color: white;
+        }
+
+        /* Payment & Security */
+        .footer-payment-security {
+          display: flex;
+          align-items: center;
+          gap: 24px;
+        }
+
+        .payment-icons {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+        }
+
+        .payment-icon {
+          height: 24px;
+          width: auto;
+          opacity: 0.6;
+          filter: grayscale(100%);
+          transition: all 300ms ease;
+        }
+
+        .payment-icon:hover {
+          opacity: 0.9;
+          filter: grayscale(0%);
+        }
+
+        .security-badges {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+        }
+
+        .security-badge {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          font-size: 13px;
+          color: var(--emerald-pale);
+          opacity: 0.6;
+        }
+
+        .security-badge i {
+          font-size: 16px;
+        }
+
+        /* ============================================
+           BACK TO TOP BUTTON
+           ============================================ */
+
+        .back-to-top-btn {
+          position: fixed;
+          bottom: 32px;
+          right: 32px;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          background: var(--champagne-gold);
+          border: none;
+          color: var(--primary-emerald);
+          font-size: 20px;
+          cursor: pointer;
+          box-shadow: 0 4px 16px rgba(229, 203, 175, 0.4);
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(20px);
+          transition: all 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+          z-index: 999;
+        }
+
+        .back-to-top-btn.show {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+
+        .back-to-top-btn:hover {
+          background: var(--gold-rich);
+          transform: translateY(-4px);
+          box-shadow: 0 8px 24px rgba(229, 203, 175, 0.6);
+        }
+
+        .back-to-top-btn:active {
+          transform: translateY(-2px);
+        }
+
+        .back-to-top-btn i {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Pulse animation */
+        @keyframes backToTopPulse {
+          0%, 100% {
+            box-shadow: 0 4px 16px rgba(229, 203, 175, 0.4);
+          }
+          50% {
+            box-shadow: 0 4px 16px rgba(229, 203, 175, 0.4), 0 0 0 8px rgba(229, 203, 175, 0.2);
+          }
+        }
+
+        .back-to-top-btn.show {
+          animation: backToTopPulse 2s ease infinite;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN - Footer
+           ============================================ */
+
+        /* Tablet (768-1023px) */
+        @media (max-width: 1023px) {
+          .footer-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+          }
+
+          .footer-main-content {
+            padding: 0 20px 40px;
+          }
+        }
+
+        /* Mobile (767px and below) */
+        @media (max-width: 767px) {
+          .modern-footer {
+            padding-top: 48px;
+          }
+
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 32px;
+          }
+
+          .footer-main-content {
+            padding: 0 16px 32px;
+          }
+
+          .footer-description {
+            max-width: 100%;
+          }
+
+          .footer-bottom-content {
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+          }
+
+          .footer-bottom-left {
+            align-items: center;
+          }
+
+          .footer-bottom-links {
+            justify-content: center;
+          }
+
+          .footer-switchers {
+            justify-content: center;
+          }
+
+          .footer-payment-security {
+            flex-direction: column;
+            gap: 16px;
+          }
+
+          .payment-icons,
+          .security-badges {
+            justify-content: center;
+          }
+
+          /* Back to Top - Mobile */
+          .back-to-top-btn {
+            bottom: 20px;
+            right: 20px;
+            width: 44px;
+            height: 44px;
+            font-size: 18px;
+          }
+        }
+
+        /* Extra Small (480px and below) */
+        @media (max-width: 480px) {
+          .footer-logo-text {
+            font-size: 22px;
+          }
+
+          .footer-logo-icon {
+            font-size: 24px;
+          }
+
+          .footer-column-title {
+            font-size: 16px;
+          }
+
+          .footer-link,
+          .footer-contact-item,
+          .footer-description {
+            font-size: 13px;
+          }
+
+          .footer-copyright {
+            font-size: 12px;
+          }
+
+          .payment-icon {
+            height: 20px;
+          }
+
+          .security-badge {
+            font-size: 12px;
+          }
+        }
+
+        /* ============================================
+           GLOBAL ANIMATIONS & INTERACTIONS
+           ============================================ */
+
+        /* Hover Effects Library */
+        .card-hover-effect {
+          transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover-effect:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .button-hover-effect {
+          transition: all 300ms ease;
+        }
+
+        .button-hover-effect:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon-hover-effect {
+          transition: all 300ms ease;
+        }
+
+        .icon-hover-effect:hover {
+          transform: rotate(15deg) scale(1.15);
+        }
+
+        .link-hover-effect {
+          position: relative;
+          transition: color 300ms ease;
+        }
+
+        .link-hover-effect::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: currentColor;
+          transition: width 300ms ease;
+        }
+
+        .link-hover-effect:hover::after {
+          width: 100%;
+        }
+
+        .image-hover-zoom {
+          overflow: hidden;
+        }
+
+        .image-hover-zoom img {
+          transition: transform 500ms ease;
+        }
+
+        .image-hover-zoom:hover img {
+          transform: scale(1.1);
+        }
+
+        /* Loading States */
+        .button-loading {
+          position: relative;
+          opacity: 0.7;
+          cursor: not-allowed;
+          pointer-events: none;
+        }
+
+        .button-loading::after {
+          content: '';
+          position: absolute;
+          width: 16px;
+          height: 16px;
+          top: 50%;
+          left: 50%;
+          margin-left: -8px;
+          margin-top: -8px;
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          border-top-color: white;
+          border-radius: 50%;
+          animation: spinner 0.6s linear infinite;
+        }
+
+        @keyframes spinner {
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        /* Parallax Effects (Desktop Only) */
+        @media (min-width: 1024px) {
+          .parallax-slow {
+            transition: transform 0.5s ease-out;
+          }
+        }
+
+        /* Disable parallax on mobile */
+        @media (max-width: 1023px) {
+          .parallax-slow {
+            transform: none !important;
+          }
+        }
+
         /* Common Utility Styles */
         .hero-gradient {
             background: rgba(7, 59, 58, 0.6);
@@ -1548,14 +2277,49 @@
                         <i class="las la-angle-down chevron-icon"></i>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="/AdminDestinations.aspx">Manage Destinations</a>
-                        <a href="/AddDest.aspx">Add Single Destination</a>
-                        <a href="/AddDestinations.aspx">Bulk Add Destinations</a>
-                        <a href="/AdminUserManagement.aspx">User Management</a>
-                        <a href="/AdminUserView.aspx">View Users</a>
+                        <a href="/AdminBookings.aspx">
+                            <i class="las la-clipboard-list"></i>
+                            Manage Bookings
+                        </a>
+                        <a href="/AdminDestinations.aspx">
+                            <i class="las la-map-marked-alt"></i>
+                            Manage Destinations
+                        </a>
+                        <a href="/AddDest.aspx">
+                            <i class="las la-plus-circle"></i>
+                            Add Single Destination
+                        </a>
+                        <a href="/AddDestinations.aspx">
+                            <i class="las la-plus-square"></i>
+                            Bulk Add Destinations
+                        </a>
+                        <a href="/AdminUserManagement.aspx">
+                            <i class="las la-users-cog"></i>
+                            User Management
+                        </a>
+                        <a href="/AdminUserView.aspx">
+                            <i class="las la-users"></i>
+                            View Users
+                        </a>
+                        <a href="/AdminBlog.aspx">
+                            <i class="las la-pen-fancy"></i>
+                            Manage Blog
+                        </a>
+                        <a href="/AdminReviews.aspx">
+                            <i class="las la-star-half-alt"></i>
+                            Moderate Reviews
+                        </a>
                     </div>
                 </li>
                 <% } %>
+
+                <!-- Special Offers -->
+                <li class="nav-item">
+                    <a href="/Deals.aspx" class="nav-link">
+                        <i class="las la-tags"></i>
+                        Deals
+                    </a>
+                </li>
 
                 <!-- More Dropdown -->
                 <li class="nav-item">
@@ -1565,6 +2329,26 @@
                         <i class="las la-angle-down chevron-icon"></i>
                     </a>
                     <div class="dropdown-menu">
+                        <a href="/Blog.aspx">
+                            <i class="las la-book-open"></i>
+                            Travel Blog
+                        </a>
+                        <a href="/Gallery.aspx">
+                            <i class="las la-images"></i>
+                            Gallery
+                        </a>
+                        <a href="/Testimonials.aspx">
+                            <i class="las la-quote-left"></i>
+                            Testimonials
+                        </a>
+                        <a href="/Reviews.aspx">
+                            <i class="las la-star"></i>
+                            Reviews
+                        </a>
+                        <a href="/FAQ.aspx">
+                            <i class="las la-question-circle"></i>
+                            FAQ
+                        </a>
                         <a href="/About.aspx">
                             <i class="las la-info-circle"></i>
                             About Us
@@ -1573,16 +2357,12 @@
                             <i class="las la-envelope"></i>
                             Contact Us
                         </a>
-                        <a href="#faq">
-                            <i class="las la-question-circle"></i>
-                            FAQ
-                        </a>
-                        <a href="#privacy">
+                        <a href="/Privacy.aspx">
                             <i class="las la-shield-alt"></i>
                             Privacy Policy
                         </a>
-                        <a href="#terms">
-                            <i class="las la-file-alt"></i>
+                        <a href="/Terms.aspx">
+                            <i class="las la-file-contract"></i>
                             Terms & Conditions
                         </a>
                     </div>
@@ -1608,6 +2388,12 @@
                             <div class="dropdown-header">
                                 <span>Welcome, <asp:Label ID="isAuth" runat="server" Text="User"></asp:Label></span>
                             </div>
+                            <% if (Session["Role"].ToString() == "users") { %>
+                            <a href="/Dashboard.aspx">
+                                <i class="las la-tachometer-alt"></i>
+                                Dashboard
+                            </a>
+                            <% } %>
                             <a href="/Profile.aspx">
                                 <i class="las la-user-circle"></i>
                                 My Profile
@@ -1616,6 +2402,10 @@
                             <a href="/MyBookings.aspx">
                                 <i class="las la-ticket-alt"></i>
                                 My Bookings
+                            </a>
+                            <a href="/Wishlist.aspx">
+                                <i class="las la-heart"></i>
+                                My Wishlist
                             </a>
                             <a href="/MyBookings.aspx?history=true">
                                 <i class="las la-history"></i>
@@ -1648,6 +2438,11 @@
                     </div>
                 </div>
 
+                <!-- Search Button -->
+                <a href="/SearchResults.aspx" class="cta-book-now" style="background: transparent; color: inherit; border: 2px solid #c9a877; margin-right: 12px; min-width: auto; padding: 12px 20px;" title="Search Destinations">
+                    <i class="las la-search" style="margin: 0; font-size: 20px;"></i>
+                </a>
+
                 <!-- CTA Button -->
                 <a href="/Destination.aspx" class="cta-book-now">
                     <span>Book Now</span>
@@ -1677,8 +2472,35 @@
             <i class="las la-map-marked-alt"></i>
             <span>Destinations</span>
         </a>
+        <a href="/Deals.aspx" class="mobile-nav-link">
+            <i class="las la-tags"></i>
+            <span>Special Deals</span>
+        </a>
+
+        <% if (Session["Role"] != null && Session["Role"].ToString() == "users") { %>
+        <a href="/Dashboard.aspx" class="mobile-nav-link">
+            <i class="las la-tachometer-alt"></i>
+            <span>My Dashboard</span>
+        </a>
+        <a href="/MyBookings.aspx" class="mobile-nav-link">
+            <i class="las la-suitcase-rolling"></i>
+            <span>My Bookings</span>
+        </a>
+        <a href="/Wishlist.aspx" class="mobile-nav-link">
+            <i class="las la-heart"></i>
+            <span>My Wishlist</span>
+        </a>
+        <% } %>
 
         <% if (Session["Role"] != null && Session["Role"].ToString() == "admin") { %>
+        <a href="/AdminBookings.aspx" class="mobile-nav-link">
+            <i class="las la-clipboard-list"></i>
+            <span>Manage Bookings</span>
+        </a>
+        <a href="/AdminDestinations.aspx" class="mobile-nav-link">
+            <i class="las la-tasks"></i>
+            <span>Manage Destinations</span>
+        </a>
         <a href="/AddDestinations.aspx" class="mobile-nav-link">
             <i class="las la-plus-circle"></i>
             <span>Add Destination</span>
@@ -1687,18 +2509,36 @@
             <i class="las la-users-cog"></i>
             <span>User Management</span>
         </a>
-        <a href="/AdminDestinations.aspx" class="mobile-nav-link">
-            <i class="las la-tasks"></i>
-            <span>Manage Destinations</span>
+        <a href="/AdminBlog.aspx" class="mobile-nav-link">
+            <i class="las la-pen-fancy"></i>
+            <span>Manage Blog</span>
+        </a>
+        <a href="/AdminReviews.aspx" class="mobile-nav-link">
+            <i class="las la-star-half-alt"></i>
+            <span>Moderate Reviews</span>
         </a>
         <% } %>
 
-        <% if (Session["Role"] != null && Session["Role"].ToString() == "users") { %>
-        <a href="/MyBookings.aspx" class="mobile-nav-link">
-            <i class="las la-suitcase-rolling"></i>
-            <span>My Bookings</span>
+        <a href="/Blog.aspx" class="mobile-nav-link">
+            <i class="las la-book-open"></i>
+            <span>Travel Blog</span>
         </a>
-        <% } %>
+        <a href="/Gallery.aspx" class="mobile-nav-link">
+            <i class="las la-images"></i>
+            <span>Gallery</span>
+        </a>
+        <a href="/Testimonials.aspx" class="mobile-nav-link">
+            <i class="las la-quote-left"></i>
+            <span>Testimonials</span>
+        </a>
+        <a href="/Reviews.aspx" class="mobile-nav-link">
+            <i class="las la-star"></i>
+            <span>Reviews</span>
+        </a>
+        <a href="/FAQ.aspx" class="mobile-nav-link">
+            <i class="las la-question-circle"></i>
+            <span>FAQ</span>
+        </a>
 
         <a href="/About.aspx" class="mobile-nav-link">
             <i class="las la-info-circle"></i>
@@ -1731,62 +2571,192 @@
         </asp:ContentPlaceHolder>
     </div>
 
-    <footer id="contact" class="py-12 sm:py-16 footer-bg">
-        <div class="container mx-auto px-4 sm:px-6 footer-content">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Footer Column 1: Brand -->
-                <div class="md:col-span-2 lg:col-span-1">
-                    <div class="flex items-center space-x-2 mb-6">
-                        <i class="bi bi-airplane text-2xl" style="color: var(--ecru)"></i>
-                        <span class="text-xl sm:text-2xl font-bold heading-font" style="color: white">Wanderlust Tours</span>
-                    </div>
-                    <p class="mb-6 text-sm sm:text-base font-light" style="color: #cbd5e1">
-                        Creating unforgettable travel experiences since 2010. Your adventure starts here.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-xl sm:text-2xl hover:opacity-80 transition-opacity" style="color: var(--ecru)"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-xl sm:text-2xl hover:opacity-80 transition-opacity" style="color: var(--ecru)"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="text-xl sm:text-2xl hover:opacity-80 transition-opacity" style="color: var(--ecru)"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-xl sm:text-2xl hover:opacity-80 transition-opacity" style="color: var(--ecru)"><i class="bi bi-youtube"></i></a>
-                    </div>
+    <!-- Modern Footer -->
+    <footer id="footer" class="modern-footer">
+        
+        <!-- Main Footer Content -->
+        <div class="footer-main-content">
+          <div class="footer-container">
+            <div class="footer-grid">
+              
+              <!-- Column 1: About -->
+              <div class="footer-column" data-aos="fade-up" data-aos-delay="100">
+                <!-- Logo -->
+                <div class="footer-logo">
+                  <i class="las la-paper-plane footer-logo-icon"></i>
+                  <span class="footer-logo-text">Exploria</span>
                 </div>
-                <!-- Footer Column 2: Quick Links -->
-                <div>
-                    <h3 class="text-lg sm:text-xl font-bold mb-6 heading-font" style="color: var(--ecru)">Quick Links</h3>
-                    <ul class="space-y-3">
-                        <li><a href="/About.aspx" class="text-sm sm:text-base font-light hover:text-white transition-colors" style="color: #cbd5e1">About Us</a></li>
-                        <li><a href="/Destinations.aspx" class="text-sm sm:text-base font-light hover:text-white transition-colors" style="color: #cbd5e1">Destinations</a></li>
-                        <li><a href="/Packages.aspx" class="text-sm sm:text-base font-light hover:text-white transition-colors" style="color: #cbd5e1">Tour Packages</a></li>
-                        <li><a href="/Contact.aspx" class="text-sm sm:text-base font-light hover:text-white transition-colors" style="color: #cbd5e1">Contact</a></li>
-                    </ul>
-                </div>
-                <!-- Footer Column 3: Support -->
-                <div>
-                    <h3 class="text-lg sm:text-xl font-bold mb-6 heading-font" style="color: var(--ecru)">Support</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-sm sm:text-base font-light hover:text-white transition-colors" style="color: #cbd5e1">Help Center</a></li>
-                        <li><a href="#" class="text-sm sm:text-base font-light hover:text-white transition-colors" style="color: #cbd5e1">Travel Insurance</a></li>
-                        <li><a href="#" class="text-sm sm:text-base font-light hover:text-white transition-colors" style="color: #cbd5e1">Booking Terms</a></li>
-                        <li><a href="#" class="text-sm sm:text-base font-light hover:text-white transition-colors" style="color: #cbd5e1">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <!-- Footer Column 4: Contact Info -->
-                <div>
-                    <h3 class="text-lg sm:text-xl font-bold mb-6 heading-font" style="color: var(--ecru)">Contact Info</h3>
-                    <div class="space-y-4">
-                        <div class="flex items-start"><i class="bi bi-geo-alt mr-3 mt-1" style="color: var(--ecru)"></i><span class="text-sm sm:text-base font-light" style="color: #cbd5e1">123 Travel Street, Adventure City</span></div>
-                        <div class="flex items-center"><i class="bi bi-telephone mr-3" style="color: var(--ecru)"></i><span class="text-sm sm:text-base font-light" style="color: #cbd5e1">+1 (555) 123-4567</span></div>
-                        <div class="flex items-center"><i class="bi bi-envelope mr-3" style="color: var(--ecru)"></i><span class="text-sm sm:text-base font-light" style="color: #cbd5e1">info@wanderlusttours.com</span></div>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-8 sm:mt-12 pt-6 sm:pt-8 text-center" style="border-top: 1px solid var(--dartmouth-green)">
-                <p class="text-sm sm:text-base font-light" style="color: #94a3b8">
-                    © 2025 Wanderlust Tours. All rights reserved. | Designed with ❤️ for adventurers
+                
+                <!-- Description -->
+                <p class="footer-description">
+                  Creating unforgettable travel experiences since 2010. Your adventure starts here with personalized itineraries and expert guidance.
                 </p>
+                
+                <!-- Social Icons -->
+                <div class="footer-social-icons">
+                  <a href="#" class="footer-social-icon" aria-label="Facebook">
+                    <i class="lab la-facebook-f"></i>
+                  </a>
+                  <a href="#" class="footer-social-icon" aria-label="Instagram">
+                    <i class="lab la-instagram"></i>
+                  </a>
+                  <a href="#" class="footer-social-icon" aria-label="Twitter">
+                    <i class="lab la-twitter"></i>
+                  </a>
+                  <a href="#" class="footer-social-icon" aria-label="LinkedIn">
+                    <i class="lab la-linkedin-in"></i>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Column 2: Quick Links -->
+              <div class="footer-column" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="footer-column-title">Quick Links</h3>
+                <ul class="footer-links">
+                  <li><a href="/Home.aspx" class="footer-link">Home</a></li>
+                  <li><a href="/Destination.aspx" class="footer-link">Destinations</a></li>
+                  <li><a href="/Deals.aspx" class="footer-link">Special Deals</a></li>
+                  <li><a href="/Gallery.aspx" class="footer-link">Gallery</a></li>
+                  <li><a href="/Testimonials.aspx" class="footer-link">Testimonials</a></li>
+                  <li><a href="/About.aspx" class="footer-link">About Us</a></li>
+                  <li><a href="/Contact.aspx" class="footer-link">Contact</a></li>
+                </ul>
+              </div>
+
+              <!-- Column 3: Support -->
+              <div class="footer-column" data-aos="fade-up" data-aos-delay="300">
+                <h3 class="footer-column-title">Support</h3>
+                <ul class="footer-links">
+                  <li><a href="/Blog.aspx" class="footer-link">Travel Blog</a></li>
+                  <li><a href="/Reviews.aspx" class="footer-link">Customer Reviews</a></li>
+                  <li><a href="/FAQ.aspx" class="footer-link">FAQ</a></li>
+                  <li><a href="/Terms.aspx" class="footer-link">Terms & Conditions</a></li>
+                  <li><a href="/Privacy.aspx" class="footer-link">Privacy Policy</a></li>
+                  <li><a href="/Sitemap.aspx" class="footer-link">Sitemap</a></li>
+                  <li><a href="/Newsletter.aspx" class="footer-link">Newsletter</a></li>
+                  <% if (Session["Role"] != null && Session["Role"].ToString() == "users") { %>
+                  <li><a href="/Dashboard.aspx" class="footer-link">My Dashboard</a></li>
+                  <li><a href="/Wishlist.aspx" class="footer-link">My Wishlist</a></li>
+                  <% } %>
+                </ul>
+              </div>
+
+              <!-- Column 4: Newsletter Signup -->
+              <div class="footer-column" data-aos="fade-up" data-aos-delay="400">
+                <h3 class="footer-column-title">Stay Updated</h3>
+                <p class="footer-newsletter-text">Subscribe for travel deals and inspiration</p>
+                
+                <!-- Inline Newsletter Form -->
+                <form class="footer-newsletter-form" id="footerNewsletterForm">
+                  <div class="footer-newsletter-input-group">
+                    <input 
+                      type="email" 
+                      class="footer-newsletter-input" 
+                      placeholder="Your email"
+                      required
+                      aria-label="Email for newsletter"
+                    />
+                    <button type="submit" class="footer-newsletter-btn" aria-label="Subscribe">
+                      <i class="las la-paper-plane"></i>
+                    </button>
+                  </div>
+                  <p class="footer-newsletter-privacy">
+                    <i class="las la-lock"></i>
+                    <span>We respect your privacy</span>
+                  </p>
+                </form>
+
+                <!-- Contact Info -->
+                <div class="footer-contact-items">
+                  <a href="tel:+911234567890" class="footer-contact-item footer-contact-link">
+                    <i class="las la-phone"></i>
+                    <span>+91-1234567890</span>
+                  </a>
+                  <a href="mailto:info@exploria.com" class="footer-contact-item footer-contact-link">
+                    <i class="las la-envelope"></i>
+                    <span>info@exploria.com</span>
+                  </a>
+                </div>
+              </div>
+
             </div>
+          </div>
         </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom-bar">
+          <div class="footer-container">
+            <div class="footer-bottom-content">
+              
+              <!-- Left: Copyright & Links -->
+              <div class="footer-bottom-left">
+                <div class="footer-copyright">
+                  © 2024 Exploria. All rights reserved.
+                </div>
+                <div class="footer-bottom-links">
+                  <a href="#" class="footer-bottom-link">Sitemap</a>
+                  <span class="footer-link-separator">•</span>
+                  <a href="#" class="footer-bottom-link">Accessibility</a>
+                  <span class="footer-link-separator">•</span>
+                  <a href="#" class="footer-bottom-link">Privacy Policy</a>
+                </div>
+              </div>
+
+              <!-- Center: Language & Currency Switcher -->
+              <div class="footer-switchers">
+                <div class="footer-switcher">
+                  <i class="las la-globe"></i>
+                  <select class="footer-select" aria-label="Select language">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                  </select>
+                </div>
+                <div class="footer-switcher">
+                  <i class="las la-dollar-sign"></i>
+                  <select class="footer-select" aria-label="Select currency">
+                    <option value="usd">USD</option>
+                    <option value="eur">EUR</option>
+                    <option value="gbp">GBP</option>
+                    <option value="inr">INR</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Right: Payment Icons & Security Badges -->
+              <div class="footer-payment-security">
+                <!-- Payment Icons -->
+                <div class="payment-icons">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa" class="payment-icon" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" class="payment-icon" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="payment-icon" />
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg" alt="Amex" class="payment-icon" />
+                </div>
+                
+                <!-- Security Badges -->
+                <div class="security-badges">
+                  <div class="security-badge">
+                    <i class="las la-lock"></i>
+                    <span>SSL Secure</span>
+                  </div>
+                  <div class="security-badge">
+                    <i class="las la-shield-alt"></i>
+                    <span>Verified</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
     </footer>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top-btn" aria-label="Back to top">
+      <i class="las la-arrow-up"></i>
+    </button>
 
     <asp:ContentPlaceHolder ID="script" runat="server"></asp:ContentPlaceHolder>
 
@@ -1918,6 +2888,129 @@
                 }
             });
 
+            // ============================
+            // FOOTER: Back to Top Button
+            // ============================
+            const backToTopBtn = document.getElementById("backToTop");
+            const backToTopThreshold = 500; // Show button after 500px scroll
+
+            // Show/hide back to top button
+            function toggleBackToTop() {
+                if (window.pageYOffset > backToTopThreshold) {
+                    if (backToTopBtn && !backToTopBtn.classList.contains("show")) {
+                        backToTopBtn.classList.add("show");
+                    }
+                } else {
+                    if (backToTopBtn) {
+                        backToTopBtn.classList.remove("show");
+                    }
+                }
+            }
+
+            // Add to existing scroll handler
+            if (backToTopBtn) {
+                window.addEventListener("scroll", function() {
+                    requestAnimationFrame(toggleBackToTop);
+                }, { passive: true });
+
+                // Smooth scroll to top on click
+                backToTopBtn.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                });
+
+                // Initial check
+                toggleBackToTop();
+            }
+
+            // ============================
+            // FOOTER: Newsletter Form
+            // ============================
+            const footerNewsletterForm = document.querySelector(".footer-newsletter-form");
+            const footerNewsletterInput = footerNewsletterForm ? footerNewsletterForm.querySelector(".footer-newsletter-input") : null;
+            const footerNewsletterBtn = footerNewsletterForm ? footerNewsletterForm.querySelector(".footer-newsletter-btn") : null;
+
+            if (footerNewsletterForm && footerNewsletterInput && footerNewsletterBtn) {
+                footerNewsletterForm.addEventListener("submit", function(e) {
+                    e.preventDefault();
+
+                    const email = footerNewsletterInput.value.trim();
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                    // Validate email
+                    if (!email) {
+                        alert("Please enter your email address.");
+                        footerNewsletterInput.focus();
+                        return;
+                    }
+
+                    if (!emailRegex.test(email)) {
+                        alert("Please enter a valid email address.");
+                        footerNewsletterInput.focus();
+                        return;
+                    }
+
+                    // Show loading state
+                    footerNewsletterBtn.disabled = true;
+                    footerNewsletterBtn.innerHTML = '<i class="las la-spinner la-spin"></i>';
+
+                    // Simulate API call (replace with actual endpoint)
+                    setTimeout(function() {
+                        // Success
+                        footerNewsletterBtn.disabled = false;
+                        footerNewsletterBtn.innerHTML = '<i class="las la-check"></i>';
+                        footerNewsletterInput.value = "";
+
+                        // Show success message
+                        alert("✓ You've been subscribed! Check your email for confirmation.");
+
+                        // Reset button after 3 seconds
+                        setTimeout(function() {
+                            footerNewsletterBtn.innerHTML = '<i class="las la-paper-plane"></i>';
+                        }, 3000);
+                    }, 1500);
+                });
+            }
+
+            // ============================
+            // Language & Currency Switchers
+            // ============================
+            const languageSelect = document.getElementById("languageSelect");
+            const currencySelect = document.getElementById("currencySelect");
+
+            if (languageSelect) {
+                languageSelect.addEventListener("change", function() {
+                    // Store preference in localStorage
+                    localStorage.setItem("preferredLanguage", this.value);
+                    // You can implement actual language switching logic here
+                    console.log("Language switched to:", this.value);
+                });
+
+                // Load saved preference
+                const savedLanguage = localStorage.getItem("preferredLanguage");
+                if (savedLanguage) {
+                    languageSelect.value = savedLanguage;
+                }
+            }
+
+            if (currencySelect) {
+                currencySelect.addEventListener("change", function() {
+                    // Store preference in localStorage
+                    localStorage.setItem("preferredCurrency", this.value);
+                    // You can implement actual currency conversion logic here
+                    console.log("Currency switched to:", this.value);
+                });
+
+                // Load saved preference
+                const savedCurrency = localStorage.getItem("preferredCurrency");
+                if (savedCurrency) {
+                    currencySelect.value = savedCurrency;
+                }
+            }
+
             // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
                 anchor.addEventListener("click", function (e) {
@@ -1951,6 +3044,143 @@
 
             if (mobileMenu) {
                 observer.observe(mobileMenu, { attributes: true });
+            }
+
+            // ============================================
+            // GLOBAL ANIMATIONS & INTERACTIONS
+            // ============================================
+
+            // Scroll Animations - Intersection Observer
+            const observerOptions = {
+                threshold: 0.6,
+                rootMargin: '0px'
+            };
+
+            const scrollObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry, index) {
+                    if (entry.isIntersecting) {
+                        // Add stagger delay for grid items
+                        const delay = entry.target.dataset.aosDelay || (index * 80);
+                        setTimeout(function() {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, delay);
+                        scrollObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements with scroll animation class
+            document.querySelectorAll('[data-aos]').forEach(function(el) {
+                if (!el.style.opacity) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(30px)';
+                    el.style.transition = 'opacity 600ms ease-out, transform 600ms ease-out';
+                }
+                scrollObserver.observe(el);
+            });
+
+            // Parallax Effects (Desktop Only)
+            if (window.innerWidth >= 1024) {
+                let parallaxTicking = false;
+                
+                function updateParallax() {
+                    const scrolled = window.pageYOffset;
+                    
+                    // Hero background parallax (0.5x speed)
+                    const heroSection = document.querySelector('.hero-section, .parallax-bg');
+                    if (heroSection) {
+                        heroSection.style.transform = 'translateY(' + (scrolled * 0.5) + 'px)';
+                    }
+                    
+                    // Decorative elements parallax (0.7x speed)
+                    document.querySelectorAll('.parallax-slow').forEach(function(el) {
+                        el.style.transform = 'translateY(' + (scrolled * 0.7) + 'px)';
+                    });
+                    
+                    parallaxTicking = false;
+                }
+                
+                function requestParallaxTick() {
+                    if (!parallaxTicking) {
+                        window.requestAnimationFrame(updateParallax);
+                        parallaxTicking = true;
+                    }
+                }
+                
+                window.addEventListener('scroll', requestParallaxTick, { passive: true });
+            }
+
+            // Button Loading State Helper
+            window.setButtonLoading = function(button, loading) {
+                if (loading) {
+                    button.classList.add('button-loading');
+                    button.dataset.originalText = button.innerHTML;
+                    button.innerHTML = 'Loading...';
+                    button.disabled = true;
+                } else {
+                    button.classList.remove('button-loading');
+                    button.innerHTML = button.dataset.originalText || button.innerHTML;
+                    button.disabled = false;
+                }
+            };
+
+            // Image Lazy Loading Enhancement
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            if (img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                            }
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('img[data-src]').forEach(function(img) {
+                    imageObserver.observe(img);
+                });
+            }
+
+            // Add hover effect classes dynamically
+            document.querySelectorAll('.card, .testimonial-card, .destination-card').forEach(function(card) {
+                if (!card.classList.contains('card-hover-effect')) {
+                    card.classList.add('card-hover-effect');
+                }
+            });
+
+            document.querySelectorAll('button:not(.no-hover), .btn, .cta-button').forEach(function(btn) {
+                if (!btn.classList.contains('button-loading') && !btn.classList.contains('button-hover-effect')) {
+                    btn.classList.add('button-hover-effect');
+                }
+            });
+
+            // Footer Animation on Scroll Into View
+            const footerObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.querySelectorAll('.footer-column').forEach(function(col, index) {
+                            setTimeout(function() {
+                                col.style.opacity = '1';
+                                col.style.transform = 'translateY(0)';
+                            }, index * 100);
+                        });
+                        footerObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            const footer = document.querySelector('.modern-footer');
+            if (footer) {
+                footer.querySelectorAll('.footer-column').forEach(function(col) {
+                    col.style.opacity = '0';
+                    col.style.transform = 'translateY(20px)';
+                    col.style.transition = 'opacity 500ms ease-out, transform 500ms ease-out';
+                });
+                footerObserver.observe(footer);
             }
         });
     </script>
