@@ -2,8 +2,10 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 
@@ -36,11 +38,24 @@ namespace Tours_Travels
             }
         }
 
+        protected void Page_Unload(object sender, EventArgs e)
+        {
+            // Dispose Crystal Reports resources properly
+            if (CrystalReportViewer1.ReportSource != null)
+            {
+                ReportDocument report = (ReportDocument)CrystalReportViewer1.ReportSource;
+                report.Close();
+                report.Dispose();
+                CrystalReportViewer1.ReportSource = null;
+            }
+        }
+
         protected void btnGenerateReport_Click(object sender, EventArgs e)
         {
             try
             {
-                // Get the data based on filters
+                // Step 1: Fetch data into ReportsDataSet
+                ReportsDataSet ds = new ReportsDataSet();
                 DataTable bookingsData = GetBookingsData();
 
                 if (bookingsData.Rows.Count == 0)
@@ -49,36 +64,66 @@ namespace Tours_Travels
                     return;
                 }
 
-                // Load the appropriate Crystal Report
+                // Step 2: Fill the Bookings table in the dataset
+                foreach (DataRow row in bookingsData.Rows)
+                {
+                    ds.Bookings.AddBookingsRow(
+                        Convert.ToInt32(row["BookingId"]),
+                        Convert.ToInt32(row["UserId"]),
+                        row["DestinationId"].ToString(),
+                        Convert.ToDateTime(row["TravelDate"]),
+                        Convert.ToInt32(row["NumberOfAdults"]),
+                        row["NumberOfChildren"] != DBNull.Value ? Convert.ToInt32(row["NumberOfChildren"]) : 0,
+                        Convert.ToDecimal(row["TotalAmount"]),
+                        row["BookingStatus"]?.ToString(),
+                        row["TravelerFirstName"]?.ToString(),
+                        row["TravelerLastName"]?.ToString(),
+                        row["TravelerEmail"]?.ToString(),
+                        row["TravelerPhone"]?.ToString(),
+                        row["DateOfBooking"] != DBNull.Value ? Convert.ToDateTime(row["DateOfBooking"]) : DateTime.Now
+                    );
+                }
+
+                // Step 3: Load the Crystal Report
                 ReportDocument crystalReport = new ReportDocument();
                 string reportPath = Server.MapPath("~/Reports/BookingSummaryReport.rpt");
 
                 // Check if report file exists
                 if (!File.Exists(reportPath))
                 {
-                    ShowError("Report file not found. Please create the report file in Visual Studio first.");
+                    ShowError("Report file not found. Please create BookingSummaryReport.rpt in the Reports folder. " +
+                             "Use Visual Studio: Add → New Item → Crystal Report");
                     return;
                 }
 
                 crystalReport.Load(reportPath);
 
-                // Set the data source
-                crystalReport.SetDataSource(bookingsData);
+                // Step 4: Set the DataSet as the data source
+                crystalReport.SetDataSource(ds);
 
-                // Set parameters if needed
-                crystalReport.SetParameterValue("FromDate", txtFromDate.Text);
-                crystalReport.SetParameterValue("ToDate", txtToDate.Text);
-                crystalReport.SetParameterValue("Status", ddlStatusFilter.SelectedValue);
+                // Step 5: Set parameters if needed
+                if (crystalReport.ParameterFields.Count > 0)
+                {
+                    if (crystalReport.ParameterFields["FromDate"] != null)
+                        crystalReport.SetParameterValue("FromDate", txtFromDate.Text);
+                    
+                    if (crystalReport.ParameterFields["ToDate"] != null)
+                        crystalReport.SetParameterValue("ToDate", txtToDate.Text);
+                    
+                    if (crystalReport.ParameterFields["Status"] != null)
+                        crystalReport.SetParameterValue("Status", ddlStatusFilter.SelectedValue);
+                }
 
-                // Bind to viewer
+                // Step 6: Bind to viewer
                 CrystalReportViewer1.ReportSource = crystalReport;
                 CrystalReportViewer1.DataBind();
 
-                ShowInfo("Report generated successfully!");
+                ShowInfo($"Report generated successfully! Found {bookingsData.Rows.Count} booking(s).");
             }
             catch (Exception ex)
             {
-                ShowError("Error generating report: " + ex.Message);
+                ShowError("Error generating report: " + ex.Message + 
+                         (ex.InnerException != null ? " Inner: " + ex.InnerException.Message : ""));
             }
         }
 
@@ -86,6 +131,8 @@ namespace Tours_Travels
         {
             try
             {
+                // Get data and create dataset
+                ReportsDataSet ds = new ReportsDataSet();
                 DataTable bookingsData = GetBookingsData();
 
                 if (bookingsData.Rows.Count == 0)
@@ -94,6 +141,27 @@ namespace Tours_Travels
                     return;
                 }
 
+                // Fill the dataset
+                foreach (DataRow row in bookingsData.Rows)
+                {
+                    ds.Bookings.AddBookingsRow(
+                        Convert.ToInt32(row["BookingId"]),
+                        Convert.ToInt32(row["UserId"]),
+                        row["DestinationId"].ToString(),
+                        Convert.ToDateTime(row["TravelDate"]),
+                        Convert.ToInt32(row["NumberOfAdults"]),
+                        row["NumberOfChildren"] != DBNull.Value ? Convert.ToInt32(row["NumberOfChildren"]) : 0,
+                        Convert.ToDecimal(row["TotalAmount"]),
+                        row["BookingStatus"]?.ToString(),
+                        row["TravelerFirstName"]?.ToString(),
+                        row["TravelerLastName"]?.ToString(),
+                        row["TravelerEmail"]?.ToString(),
+                        row["TravelerPhone"]?.ToString(),
+                        row["DateOfBooking"] != DBNull.Value ? Convert.ToDateTime(row["DateOfBooking"]) : DateTime.Now
+                    );
+                }
+
+                // Load Crystal Report
                 ReportDocument crystalReport = new ReportDocument();
                 string reportPath = Server.MapPath("~/Reports/BookingSummaryReport.rpt");
 
@@ -104,15 +172,23 @@ namespace Tours_Travels
                 }
 
                 crystalReport.Load(reportPath);
-                crystalReport.SetDataSource(bookingsData);
+                crystalReport.SetDataSource(ds);
 
                 // Set parameters
-                crystalReport.SetParameterValue("FromDate", txtFromDate.Text);
-                crystalReport.SetParameterValue("ToDate", txtToDate.Text);
-                crystalReport.SetParameterValue("Status", ddlStatusFilter.SelectedValue);
+                if (crystalReport.ParameterFields.Count > 0)
+                {
+                    if (crystalReport.ParameterFields["FromDate"] != null)
+                        crystalReport.SetParameterValue("FromDate", txtFromDate.Text);
+                    
+                    if (crystalReport.ParameterFields["ToDate"] != null)
+                        crystalReport.SetParameterValue("ToDate", txtToDate.Text);
+                    
+                    if (crystalReport.ParameterFields["Status"] != null)
+                        crystalReport.SetParameterValue("Status", ddlStatusFilter.SelectedValue);
+                }
 
                 // Export to PDF
-                string fileName = $"BookingReport_{DateTime.Now:yyyyMMddHHmmss}.pdf";
+                string fileName = $"DestinovaBookingReport_{DateTime.Now:yyyyMMddHHmmss}.pdf";
                 
                 Response.Buffer = false;
                 Response.ClearContent();
@@ -141,6 +217,8 @@ namespace Tours_Travels
         {
             try
             {
+                // Get data and create dataset
+                ReportsDataSet ds = new ReportsDataSet();
                 DataTable bookingsData = GetBookingsData();
 
                 if (bookingsData.Rows.Count == 0)
@@ -149,6 +227,27 @@ namespace Tours_Travels
                     return;
                 }
 
+                // Fill the dataset
+                foreach (DataRow row in bookingsData.Rows)
+                {
+                    ds.Bookings.AddBookingsRow(
+                        Convert.ToInt32(row["BookingId"]),
+                        Convert.ToInt32(row["UserId"]),
+                        row["DestinationId"].ToString(),
+                        Convert.ToDateTime(row["TravelDate"]),
+                        Convert.ToInt32(row["NumberOfAdults"]),
+                        row["NumberOfChildren"] != DBNull.Value ? Convert.ToInt32(row["NumberOfChildren"]) : 0,
+                        Convert.ToDecimal(row["TotalAmount"]),
+                        row["BookingStatus"]?.ToString(),
+                        row["TravelerFirstName"]?.ToString(),
+                        row["TravelerLastName"]?.ToString(),
+                        row["TravelerEmail"]?.ToString(),
+                        row["TravelerPhone"]?.ToString(),
+                        row["DateOfBooking"] != DBNull.Value ? Convert.ToDateTime(row["DateOfBooking"]) : DateTime.Now
+                    );
+                }
+
+                // Load Crystal Report
                 ReportDocument crystalReport = new ReportDocument();
                 string reportPath = Server.MapPath("~/Reports/BookingSummaryReport.rpt");
 
@@ -159,23 +258,31 @@ namespace Tours_Travels
                 }
 
                 crystalReport.Load(reportPath);
-                crystalReport.SetDataSource(bookingsData);
+                crystalReport.SetDataSource(ds);
 
                 // Set parameters
-                crystalReport.SetParameterValue("FromDate", txtFromDate.Text);
-                crystalReport.SetParameterValue("ToDate", txtToDate.Text);
-                crystalReport.SetParameterValue("Status", ddlStatusFilter.SelectedValue);
+                if (crystalReport.ParameterFields.Count > 0)
+                {
+                    if (crystalReport.ParameterFields["FromDate"] != null)
+                        crystalReport.SetParameterValue("FromDate", txtFromDate.Text);
+                    
+                    if (crystalReport.ParameterFields["ToDate"] != null)
+                        crystalReport.SetParameterValue("ToDate", txtToDate.Text);
+                    
+                    if (crystalReport.ParameterFields["Status"] != null)
+                        crystalReport.SetParameterValue("Status", ddlStatusFilter.SelectedValue);
+                }
 
                 // Export to Excel
-                string fileName = $"BookingReport_{DateTime.Now:yyyyMMddHHmmss}.xlsx";
+                string fileName = $"DestinovaBookingReport_{DateTime.Now:yyyyMMddHHmmss}.xls";
                 
                 Response.Buffer = false;
                 Response.ClearContent();
                 Response.ClearHeaders();
-                Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+                Response.ContentType = "application/vnd.ms-excel";
                 Response.AddHeader("Content-Disposition", $"attachment; filename={fileName}");
 
-                Stream stream = crystalReport.ExportToStream(ExportFormatType.ExcelWorkbook);
+                Stream stream = crystalReport.ExportToStream(ExportFormatType.Excel);
                 byte[] buffer = new byte[stream.Length];
                 stream.Read(buffer, 0, buffer.Length);
                 
@@ -203,18 +310,19 @@ namespace Tours_Travels
                     string query = @"
                         SELECT 
                             b.BookingId,
-                            b.DateOfBooking,
-                            d.Name AS DestinationName,
-                            CONCAT(u.FirstName, ' ', u.LastName) AS CustomerName,
-                            b.TravelerEmail,
-                            b.TravelerPhone,
+                            b.UserId,
+                            CAST(b.DestinationId AS NVARCHAR(50)) AS DestinationId,
                             b.TravelDate,
                             b.NumberOfAdults,
-                            b.NumberOfChildren,
+                            ISNULL(b.NumberOfChildren, 0) AS NumberOfChildren,
                             b.TotalAmount,
-                            b.BookingStatus
+                            ISNULL(b.BookingStatus, 'Pending') AS BookingStatus,
+                            ISNULL(b.TravelerFirstName, u.FirstName) AS TravelerFirstName,
+                            ISNULL(b.TravelerLastName, u.LastName) AS TravelerLastName,
+                            ISNULL(b.TravelerEmail, u.Email) AS TravelerEmail,
+                            ISNULL(b.TravelerPhone, u.Phone) AS TravelerPhone,
+                            ISNULL(b.DateOfBooking, GETDATE()) AS DateOfBooking
                         FROM Bookings b
-                        INNER JOIN Destinations d ON b.DestinationId = d.Id
                         INNER JOIN Users u ON b.UserId = u.Id
                         WHERE 1=1";
 
@@ -234,7 +342,7 @@ namespace Tours_Travels
                         query += " AND b.BookingStatus = @Status";
                     }
 
-                    query += " ORDER BY b.DateOfBooking DESC";
+                    query += " ORDER BY b.DestinationId, b.TravelerLastName, b.DateOfBooking DESC, b.BookingStatus";
 
                     SqlCommand cmd = new SqlCommand(query, con);
 

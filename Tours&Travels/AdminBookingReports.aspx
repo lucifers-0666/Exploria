@@ -1,4 +1,4 @@
-<%@ Page Title="Booking Reports" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdminBookingReports.aspx.cs" Inherits="Tours_Travels.AdminBookingReports" %>
+<%@ Page Title="Booking Reports - Destinova" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="AdminBookingReports.aspx.cs" Inherits="Tours_Travels.AdminBookingReports" %>
 <%@ Register Assembly="CrystalDecisions.Web, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -210,10 +210,14 @@
                 EnableDatabaseLogonPrompt="False"
                 EnableParameterPrompt="False"
                 HasCrystalLogo="False"
-                HasToggleGroupTreeButton="False"
+                HasToggleGroupTreeButton="True"
+                HasToggleParameterPanelButton="False"
+                HasDrilldownTabs="True"
                 ToolPanelView="None"
                 Width="100%"
-                Height="800px" />
+                Height="1200px" 
+                BestFitPage="False"
+                DisplayToolbar="True" />
         </div>
     </div>
 </asp:Content>

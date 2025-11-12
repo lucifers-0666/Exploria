@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Tours&Travels",
+    "\\Tours&Travels\\Reports"
   ],
-  "SelectedNode": "\\Tours&Travels.sln",
+  "SelectedNode": "\\Tours&Travels\\Reports",
   "PreviewInSolutionExplorer": false
 }
