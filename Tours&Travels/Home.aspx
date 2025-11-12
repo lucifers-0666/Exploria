@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link rel="stylesheet" href="css/UltraModernHero.css?v=1.0" />
 <link rel="stylesheet" href="css/Home.css?v=3.0" />
+<link rel="stylesheet" href="css/DestinationsSection.css?v=1.0" />
 <style>
 /* Critical CSS for Ultra-Modern Hero */
 .ultra-modern-hero {
@@ -10,9 +11,516 @@
     min-height: 100vh;
     background: linear-gradient(135deg, #164426 0%, #1d5e33 50%, #164426 100%);
 }
+
+/* ============================================
+   PREMIUM DESTINATIONS SECTION - 2025 REDESIGN
+   Performance-optimized, responsive, accessible
+   ============================================ */
+
+/* Scroll Progress Bar */
+.destinations-scroll-progress {
+    position: sticky;
+    top: 72px;
+    height: 3px;
+    background: rgba(29, 94, 51, 0.1);
+    z-index: 100;
+    margin-bottom: -3px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #1d5e33 0%, #E5CBAF 100%);
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* Performance: Content Visibility for Rows */
+.destinations-grid {
+    contain: layout style paint;
+}
+
+.destinations-grid > .destination-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 420px;
+}
+
+/* Responsive Grid: 1→2→3→4 columns */
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 24px;
+    margin-bottom: 48px;
+}
+
+@media (min-width: 640px) {
+    .destinations-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .destinations-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .destinations-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Card Structure: Fixed Height & Stable Layout */
+.destination-card {
+    display: flex;
+    flex-direction: column;
+    height: 420px;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(29, 94, 51, 0.08);
+    transition: all 320ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    cursor: pointer;
+    /* Scroll-driven animation defaults */
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.destination-card:focus-within,
+.destination-card:focus {
+    outline: 2px solid #E5CBAF;
+    outline-offset: 2px;
+}
+
+.destination-card:hover,
+.destination-card:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(29, 94, 51, 0.16);
+}
+
+/* Skeleton Loading State */
+.destination-card.skeleton {
+    pointer-events: none;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.destination-card.skeleton * {
+    visibility: hidden;
+}
+
+/* Media Box: Fixed 16:10 ratio */
+.card-image-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #e8f4ed;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 420ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.destination-card:hover .card-image {
+    transform: scale(1.05);
+}
+
+/* Bottom Gradient Overlay for Text Contrast */
+.card-gradient-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to top, rgba(29, 94, 51, 0.65) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+/* Trending/Popular Badge (Top-Left) */
+.trending-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(231, 76, 60, 0.95);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    backdrop-filter: blur(8px);
+}
+
+.trending-badge.popular {
+    background: rgba(255, 193, 7, 0.95);
+    color: #1d5e33;
+}
+
+/* Wishlist Heart (Top-Right) - Hidden, shows on hover */
+.wishlist-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.destination-card:hover .wishlist-icon,
+.destination-card:focus-within .wishlist-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.wishlist-icon:hover {
+    background: #E5CBAF;
+}
+
+.wishlist-icon.active {
+    background: #e74c3c;
+}
+
+.wishlist-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    color: #1d5e33;
+}
+
+.wishlist-icon.active svg {
+    color: white;
+}
+
+/* Card Content Area */
+.card-content {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Destination Name - 2 lines max */
+.destination-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1d5e33;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
+
+/* Country/Region - 1 line */
+.destination-location {
+    font-size: 14px;
+    color: rgba(22, 68, 38, 0.7);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.destination-location svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+/* Badge Chips Container */
+.card-badge-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 4px 0;
+}
+
+.badge-chip {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: capitalize;
+    white-space: nowrap;
+}
+
+.badge-chip.popular {
+    background: rgba(255, 193, 7, 0.15);
+    color: #f39c12;
+}
+
+.badge-chip.adventure {
+    background: rgba(52, 152, 219, 0.15);
+    color: #2980b9;
+}
+
+.badge-chip.family {
+    background: rgba(46, 204, 113, 0.15);
+    color: #27ae60;
+}
+
+/* Rating & Price Row */
+.card-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid rgba(29, 94, 51, 0.1);
+}
+
+.card-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: #1d5e33;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.rating-stars svg {
+    width: 12px;
+    height: 12px;
+    fill: #f39c12;
+}
+
+.rating-count {
+    color: rgba(22, 68, 38, 0.6);
+    font-size: 12px;
+}
+
+.card-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: #E5CBAF;
+}
+
+.price-from {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(22, 68, 38, 0.6);
+}
+
+/* Primary CTA Button */
+.card-cta-button {
+    margin-top: 12px;
+    width: 100%;
+    padding: 12px;
+    background: #1d5e33;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 280ms ease;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+}
+
+.card-cta-button:hover,
+.card-cta-button:focus {
+    background: #2a7d4a;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(29, 94, 51, 0.3);
+}
+
+/* Filters: Keyboard Navigation */
+.filter-chip {
+    position: relative;
+}
+
+.filter-chip:focus-visible {
+    outline: 2px solid #E5CBAF;
+    outline-offset: 2px;
+}
+
+.filter-chip.selected {
+    background: #1d5e33;
+    color: white;
+    box-shadow: 0 2px 8px rgba(29, 94, 51, 0.3);
+}
+
+/* Map View Toggle */
+.view-toggle-container {
+    display: flex;
+    gap: 8px;
+    padding: 4px;
+    background: rgba(29, 94, 51, 0.08);
+    border-radius: 10px;
+}
+
+.view-toggle-btn {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    color: #1d5e33;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 250ms ease;
+}
+
+.view-toggle-btn.active {
+    background: white;
+    box-shadow: 0 2px 6px rgba(29, 94, 51, 0.12);
+}
+
+/* Quick Compare Tray */
+.quick-compare-tray {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    padding: 16px 24px;
+    transform: translateY(100%);
+    transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    max-height: 120px;
+}
+
+.quick-compare-tray.active {
+    transform: translateY(0);
+}
+
+.compare-items {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+}
+
+.compare-item {
+    min-width: 80px;
+    text-align: center;
+}
+
+.compare-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Reduced Motion Support - Enhanced for New Animations */
+@media (prefers-reduced-motion: reduce) {
+    .destination-card,
+    .card-image,
+    .wishlist-icon,
+    .filter-chip,
+    .card-cta-button,
+    .trending-badge,
+    .popular-badge,
+    .card-rating,
+    .rating-stars svg,
+    .card-price,
+    .view-all-destinations-button,
+    .destinations-section::before,
+    .destinations-section::after,
+    * {
+        animation: none !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .destination-card {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .destination-card:hover,
+    .card-cta-button:hover,
+    .filter-chip:hover,
+    .view-all-destinations-button:hover {
+        transform: none;
+    }
+    
+    .card-cta-button::before,
+    .card-cta-button::after,
+    .filter-chip::after,
+    .view-all-destinations-button::before {
+        display: none;
+    }
+}
+
+/* Zero State: Error/Empty */
+.destinations-zero-state {
+    text-align: center;
+    padding: 80px 24px;
+    min-height: 400px;
+}
+
+.zero-state-icon {
+    font-size: 64px;
+    color: rgba(29, 94, 51, 0.3);
+    margin-bottom: 24px;
+}
+
+.zero-state-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1d5e33;
+    margin-bottom: 12px;
+}
+
+.zero-state-message {
+    font-size: 16px;
+    color: rgba(22, 68, 38, 0.7);
+    margin-bottom: 24px;
+}
+
+.retry-button {
+    padding: 12px 32px;
+    background: #1d5e33;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 280ms ease;
+}
+
+.retry-button:hover {
+    background: #2a7d4a;
+    transform: translateY(-2px);
+}
 </style>
 </asp:Content>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
    <!-- ============================================
         ULTRA-MODERN HERO SECTION 2025-2026
@@ -162,41 +670,6 @@
 
         </div>
 
-      </div>
-
-      <!-- Floating Search Bar (Bottom) - FIXED STRUCTURE -->
-      <div class="hero-search-bar">
-        
-        <!-- Where Input -->
-        <div class="search-input-wrapper">
-          <label class="input-label">WHERE TO?</label>
-          <div class="input-container">
-            <i class="las la-map-marker-alt"></i>
-            <asp:TextBox ID="txtDestination" runat="server" placeholder="Search destinations..." CssClass="hero-search-input"></asp:TextBox>
-          </div>
-        </div>
-
-        <!-- When Input -->
-        <div class="search-input-wrapper">
-          <label class="input-label">WHEN?</label>
-          <div class="input-container">
-            <i class="las la-calendar-alt"></i>
-            <asp:TextBox ID="txtDate" runat="server" placeholder="Select dates" CssClass="hero-search-input" ReadOnly="true"></asp:TextBox>
-          </div>
-        </div>
-
-        <!-- Who Input -->
-        <div class="search-input-wrapper">
-          <label class="input-label">WHO?</label>
-          <div class="input-container">
-            <i class="las la-user-friends"></i>
-            <asp:TextBox ID="txtTravelers" runat="server" placeholder="Add travelers" CssClass="hero-search-input" ReadOnly="true"></asp:TextBox>
-          </div>
-        </div>
-
-        <!-- Search Button -->
-        <asp:Button ID="btnHeroSearch" runat="server" Text="🔍 SEARCH" OnClick="btnHeroSearch_Click" OnClientClick="return validateHeroSearch();" CssClass="search-button" UseSubmitBehavior="false" />
-        
       </div>
 
       <!-- Modern Scroll Indicator -->
@@ -363,183 +836,6 @@
           });
         }
 
-        // 6. SEARCH BAR INTERACTIONS - FIXED
-        function initSearchBar() {
-          const searchWrappers = document.querySelectorAll('.search-input-wrapper');
-          
-          searchWrappers.forEach(wrapper => {
-            const input = wrapper.querySelector('input');
-            
-            if (input) {
-              input.addEventListener('focus', () => {
-                wrapper.classList.add('focused');
-              });
-              
-              input.addEventListener('blur', () => {
-                wrapper.classList.remove('focused');
-              });
-            }
-          });
-
-          // Enhanced Search Input Functionality
-          initSearchInputs();
-          
-          // Date Picker Initialization
-          const dateInput = document.getElementById('<%= txtDate.ClientID %>');
-          if (dateInput) {
-            // Simple date picker (you can integrate a library like flatpickr for better UX)
-            dateInput.addEventListener('click', function() {
-              this.type = 'date';
-              this.showPicker();
-            });
-            
-            dateInput.addEventListener('blur', function() {
-              if (!this.value) {
-                this.type = 'text';
-              }
-            });
-          }
-          
-          // Traveler Counter
-          const travelersInput = document.getElementById('<%= txtTravelers.ClientID %>');
-          if (travelersInput) {
-            let travelerCount = 1;
-            
-            travelersInput.addEventListener('click', function(e) {
-              e.preventDefault();
-              showTravelerPicker(this, travelerCount);
-            });
-          }
-          
-          function showTravelerPicker(input, currentCount) {
-            // Remove existing picker if any
-            const existingPicker = document.querySelector('.traveler-picker');
-            if (existingPicker) {
-              existingPicker.remove();
-              return;
-            }
-            
-            const picker = document.createElement('div');
-            picker.className = 'traveler-picker';
-            picker.style.cssText = `
-              position: absolute;
-              background: white;
-              border: 2px solid #1d5e33;
-              border-radius: 12px;
-              padding: 20px;
-              box-shadow: 0 8px 24px rgba(29, 94, 51, 0.2);
-              z-index: 1000;
-              min-width: 200px;
-              margin-top: 8px;
-            `;
-            
-            picker.innerHTML = `
-              <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
-                <button type="button" class="traveler-btn traveler-minus" style="
-                  width: 36px; height: 36px; border-radius: 50%;
-                  background: #f0f0f0; border: none; cursor: pointer;
-                  font-size: 20px; font-weight: bold; color: #1d5e33;
-                  transition: all 200ms ease;
-                ">−</button>
-                <span class="traveler-count" style="
-                  font-size: 24px; font-weight: bold; color: #164426;
-                  min-width: 40px; text-align: center;
-                ">${currentCount}</span>
-                <button type="button" class="traveler-btn traveler-plus" style="
-                  width: 36px; height: 36px; border-radius: 50%;
-                  background: #1d5e33; border: none; cursor: pointer;
-                  font-size: 20px; font-weight: bold; color: white;
-                  transition: all 200ms ease;
-                ">+</button>
-              </div>
-            `;
-            
-            input.parentElement.parentElement.style.position = 'relative';
-            input.parentElement.parentElement.appendChild(picker);
-            
-            let count = currentCount;
-            const countDisplay = picker.querySelector('.traveler-count');
-            const minusBtn = picker.querySelector('.traveler-minus');
-            const plusBtn = picker.querySelector('.traveler-plus');
-            
-            minusBtn.addEventListener('click', () => {
-              if (count > 1) {
-                count--;
-                countDisplay.textContent = count;
-                input.value = count + ' ' + (count === 1 ? 'Traveler' : 'Travelers');
-              }
-            });
-            
-            plusBtn.addEventListener('click', () => {
-              if (count < 20) {
-                count++;
-                countDisplay.textContent = count;
-                input.value = count + ' ' + (count === 1 ? 'Traveler' : 'Travelers');
-              }
-            });
-            
-            // Close picker when clicking outside
-            setTimeout(() => {
-              document.addEventListener('click', function closePickerHandler(e) {
-                if (!picker.contains(e.target) && e.target !== input) {
-                  picker.remove();
-                  document.removeEventListener('click', closePickerHandler);
-                }
-              });
-            }, 10);
-          }
-          
-          function initSearchInputs() {
-            const searchInputs = document.querySelectorAll('.hero-search-input, .input-container input');
-            searchInputs.forEach(input => {
-              input.addEventListener('focus', function() {
-                this.closest('.search-input-wrapper')?.classList.add('focused');
-              });
-              
-              input.addEventListener('blur', function() {
-                this.closest('.search-input-wrapper')?.classList.remove('focused');
-              });
-            });
-          }
-        
-        // Search Validation
-        function validateHeroSearch() {
-          const destinationInput = document.getElementById('<%= txtDestination.ClientID %>');
-          const destination = destinationInput?.value.trim();
-          
-          if (!destination || destination.length === 0) {
-            // Show visual feedback
-            const wrapper = destinationInput.closest('.search-input-wrapper');
-            if (wrapper) {
-              wrapper.style.animation = 'shake 0.5s ease';
-              wrapper.style.borderColor = '#dc2626';
-              
-              setTimeout(() => {
-                wrapper.style.animation = '';
-                wrapper.style.borderColor = '';
-              }, 500);
-            }
-            
-            // Optional: Show alert
-            alert('Please enter a destination to search for.');
-            return false;
-          }
-          
-          return true;
-        }
-        
-        // Add shake animation CSS
-        const style = document.createElement('style');
-        style.textContent = `
-          @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-          }
-        `;
-        document.head.appendChild(style);
-        }
-
         // 7. MAGNETIC CURSOR EFFECT (Desktop only)
         function initMagneticButtons() {
           if (window.innerWidth < 1024) return;
@@ -571,7 +867,6 @@
           animateStatsCounter();
           initScrollIndicator();
           initFloatingCardsParallax();
-          initSearchBar();
           initMagneticButtons();
         });
 
@@ -677,6 +972,11 @@
     <main>
       <!-- Destinations Grid Section -->
       <section id="destinations" class="destinations-grid-section">
+        <!-- Scroll Progress Bar -->
+        <div class="destinations-scroll-progress">
+          <div class="progress-bar-fill"></div>
+        </div>
+
         <div class="destinations-container">
           <!-- Section Header -->
           <div class="destinations-header" data-aos="fade-up">
@@ -692,257 +992,417 @@
           <!-- Filter & Sort Bar -->
           <div class="filter-sort-bar" data-aos="fade-up" data-aos-delay="100">
             <div class="filter-chips">
-              <button class="filter-chip active">All</button>
-              <button class="filter-chip">Popular</button>
-              <button class="filter-chip">Adventure</button>
-              <button class="filter-chip">Cultural</button>
-              <button class="filter-chip">Beach</button>
+              <button class="filter-chip active" data-filter="all">All</button>
+              <button class="filter-chip" data-filter="popular">Popular</button>
+              <button class="filter-chip" data-filter="adventure">Adventure</button>
+              <button class="filter-chip" data-filter="cultural">Cultural</button>
+              <button class="filter-chip" data-filter="beach">Beach</button>
+              <button class="filter-chip" data-filter="mountain">Mountain</button>
+              <button class="filter-chip" data-filter="city">City</button>
             </div>
             <div class="sort-dropdown">
-              <button class="sort-button">
-                Sort by: Recommended
-                <i class="las la-chevron-down"></i>
-              </button>
+              <label for="sortSelect">Sort by:</label>
+              <select id="sortSelect" class="sort-select" aria-label="Sort destinations">
+                <option value="recommended">Recommended</option>
+                <option value="top-rated">Top Rated</option>
+                <option value="price-low">Price: Low → High</option>
+                <option value="price-high">Price: High → Low</option>
+                <option value="alphabetical">A → Z</option>
+              </select>
             </div>
           </div>
 
           <!-- Destinations Cards Grid -->
           <div class="destinations-grid">
             
-            <!-- Featured Card (Spans 2 columns) -->
-            <div class="destination-card featured" data-aos="zoom-in" data-aos-delay="200">
+            <!-- Card 1: Machu Picchu (Premium Design) -->
+            <article class="destination-card" data-id="dest-1" role="article" aria-labelledby="dest-1-name">
               <div class="card-image-container">
                 <img 
-                  src="https://images.unsplash.com/photo-1549144511-f099e773c147?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
-                  alt="Machu Picchu, Peru"
+                  data-src="https://images.unsplash.com/photo-1549144511-f099e773c147?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  data-srcset="https://images.unsplash.com/photo-1549144511-f099e773c147?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80 400w,
+                               https://images.unsplash.com/photo-1549144511-f099e773c147?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80 800w,
+                               https://images.unsplash.com/photo-1549144511-f099e773c147?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80 1200w"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  alt="Machu Picchu ancient Incan ruins with misty mountain backdrop at sunrise, Peru"
                   class="card-image"
+                  width="800"
+                  height="500"
+                  loading="lazy"
                 />
                 <div class="card-gradient-overlay"></div>
                 
-                <!-- Info Badges -->
-                <div class="info-badges">
-                  <span class="info-badge">7 Days</span>
-                  <span class="info-badge">Moderate</span>
-                  <span class="info-badge">Best: Apr-Oct</span>
+                <!-- Trending Badge -->
+                <span class="trending-badge">Trending</span>
+                
+                <!-- Wishlist Icon with Heroicon -->
+                <button class="wishlist-icon" aria-label="Add Machu Picchu to wishlist" aria-pressed="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
+                </button>
+              </div>
+              
+              <!-- Card Content -->
+              <div class="card-content">
+                <h3 id="dest-1-name" class="destination-name">Machu Picchu</h3>
+                <p class="destination-location">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
+                  </svg>
+                  Peru, South America
+                </p>
+                
+                <div class="card-badge-chips">
+                  <span class="badge-chip adventure">Adventure</span>
+                  <span class="badge-chip popular">7-Day Tour</span>
                 </div>
                 
-                <!-- Wishlist Icon -->
-                <button class="wishlist-icon">
-                  <i class="lar la-heart"></i>
-                </button>
-                
-                <!-- Card Content -->
-                <div class="card-content">
-                  <div class="card-header">
-                    <div>
-                      <h3 class="destination-name">Machu Picchu</h3>
-                      <p class="destination-location">
-                        <i class="las la-map-marker"></i> Peru
-                      </p>
+                <div class="card-meta-row">
+                  <div class="card-rating" aria-label="4.8 out of 5 stars, 1,234 reviews">
+                    <div class="rating-stars">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="rgba(243,156,18,0.3)"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     </div>
-                    <div class="price-tag">From $1,299</div>
+                    <span>4.8</span>
+                    <span class="rating-count">(1,234)</span>
+                  </div>
+                  
+                  <div class="card-price">
+                    <span class="price-from">from</span> $1,299
                   </div>
                 </div>
                 
-                <!-- Explore Button (appears on hover) -->
-                <a href="Destination.aspx" class="explore-button">
-                  View Details <i class="las la-arrow-right"></i>
+                <a href="Destination.aspx?id=machu-picchu" class="card-cta-button" aria-label="Explore Machu Picchu tours">
+                  Explore Tours
                 </a>
               </div>
-            </div>
+            </article>
 
-            <!-- Regular Cards -->
-            <div class="destination-card" data-aos="zoom-in" data-aos-delay="250">
+            <!-- Card 2: Kyoto -->
+            <article class="destination-card" data-id="dest-2" role="article" aria-labelledby="dest-2-name">
               <div class="card-image-container">
                 <img 
-                  src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Kyoto, Japan"
+                  data-src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  data-srcset="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80 400w,
+                               https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80 800w"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  alt="Kyoto traditional temples with vibrant autumn foliage and zen gardens, Japan"
                   class="card-image"
+                  width="800"
+                  height="500"
+                  loading="lazy"
                 />
                 <div class="card-gradient-overlay"></div>
                 
-                <div class="info-badges">
-                  <span class="info-badge">5 Days</span>
-                  <span class="info-badge">Easy</span>
-                  <span class="info-badge">Best: Spring</span>
+                <span class="trending-badge popular">Popular</span>
+                
+                <button class="wishlist-icon" aria-label="Add Kyoto to wishlist" aria-pressed="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
+                </button>
+              </div>
+              
+              <div class="card-content">
+                <h3 id="dest-2-name" class="destination-name">Kyoto</h3>
+                <p class="destination-location">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
+                  </svg>
+                  Japan, Asia
+                </p>
+                
+                <div class="card-badge-chips">
+                  <span class="badge-chip family">Cultural</span>
+                  <span class="badge-chip popular">5-Day Tour</span>
                 </div>
                 
-                <button class="wishlist-icon">
-                  <i class="lar la-heart"></i>
-                </button>
-                
-                <div class="card-content">
-                  <div class="card-header">
-                    <div>
-                      <h3 class="destination-name">Kyoto</h3>
-                      <p class="destination-location">
-                        <i class="las la-map-marker"></i> Japan
-                      </p>
+                <div class="card-meta-row">
+                  <div class="card-rating" aria-label="4.7 out of 5 stars, 892 reviews">
+                    <div class="rating-stars">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="rgba(243,156,18,0.3)"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     </div>
-                    <div class="price-tag">From $899</div>
+                    <span>4.7</span>
+                    <span class="rating-count">(892)</span>
+                  </div>
+                  
+                  <div class="card-price">
+                    <span class="price-from">from</span> $899
                   </div>
                 </div>
                 
-                <a href="Destination.aspx" class="explore-button">
-                  View Details <i class="las la-arrow-right"></i>
+                <a href="Destination.aspx?id=kyoto" class="card-cta-button" aria-label="Explore Kyoto tours">
+                  Explore Tours
                 </a>
               </div>
-            </div>
+            </article>
 
-            <div class="destination-card" data-aos="zoom-in" data-aos-delay="300">
+            <!-- Card 3: Paris -->
+            <article class="destination-card" data-id="dest-3" role="article" aria-labelledby="dest-3-name">
               <div class="card-image-container">
                 <img 
-                  src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Paris, France"
+                  data-src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  data-srcset="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80 400w,
+                               https://images.unsplash.com/photo-1499856871958-5b9627545d1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80 800w"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  alt="Paris Eiffel Tower at sunset with Seine River view, France"
                   class="card-image"
+                  width="800"
+                  height="500"
+                  loading="lazy"
                 />
                 <div class="card-gradient-overlay"></div>
                 
-                <div class="info-badges">
-                  <span class="info-badge">4 Days</span>
-                  <span class="info-badge">Easy</span>
-                  <span class="info-badge">Best: All Year</span>
+                <button class="wishlist-icon" aria-label="Add Paris to wishlist" aria-pressed="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
+                </button>
+              </div>
+              
+              <div class="card-content">
+                <h3 id="dest-3-name" class="destination-name">Paris</h3>
+                <p class="destination-location">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
+                  </svg>
+                  France, Europe
+                </p>
+                
+                <div class="card-badge-chips">
+                  <span class="badge-chip family">City</span>
+                  <span class="badge-chip popular">4-Day Tour</span>
                 </div>
                 
-                <button class="wishlist-icon">
-                  <i class="lar la-heart"></i>
-                </button>
-                
-                <div class="card-content">
-                  <div class="card-header">
-                    <div>
-                      <h3 class="destination-name">Paris</h3>
-                      <p class="destination-location">
-                        <i class="las la-map-marker"></i> France
-                      </p>
+                <div class="card-meta-row">
+                  <div class="card-rating" aria-label="4.9 out of 5 stars, 2,156 reviews">
+                    <div class="rating-stars">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     </div>
-                    <div class="price-tag">From $1,099</div>
+                    <span>4.9</span>
+                    <span class="rating-count">(2,156)</span>
+                  </div>
+                  
+                  <div class="card-price">
+                    <span class="price-from">from</span> $1,099
                   </div>
                 </div>
                 
-                <a href="Destination.aspx" class="explore-button">
-                  View Details <i class="las la-arrow-right"></i>
+                <a href="Destination.aspx?id=paris" class="card-cta-button" aria-label="Explore Paris tours">
+                  Explore Tours
                 </a>
               </div>
-            </div>
+            </article>
 
-            <div class="destination-card" data-aos="zoom-in" data-aos-delay="350">
+            <!-- Card 4: Bora Bora -->
+            <article class="destination-card" data-id="dest-4" role="article" aria-labelledby="dest-4-name">
               <div class="card-image-container">
                 <img 
-                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Bora Bora"
+                  data-src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  data-srcset="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80 400w,
+                               https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80 800w"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  alt="Bora Bora luxury overwater bungalows with crystal turquoise lagoon, French Polynesia"
                   class="card-image"
+                  width="800"
+                  height="500"
+                  loading="lazy"
                 />
                 <div class="card-gradient-overlay"></div>
                 
-                <div class="info-badges">
-                  <span class="info-badge">6 Days</span>
-                  <span class="info-badge">Luxury</span>
-                  <span class="info-badge">Best: May-Oct</span>
+                <button class="wishlist-icon" aria-label="Add Bora Bora to wishlist" aria-pressed="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
+                </button>
+              </div>
+              
+              <div class="card-content">
+                <h3 id="dest-4-name" class="destination-name">Bora Bora</h3>
+                <p class="destination-location">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
+                  </svg>
+                  French Polynesia
+                </p>
+                
+                <div class="card-badge-chips">
+                  <span class="badge-chip adventure">Beach</span>
+                  <span class="badge-chip popular">Luxury</span>
+                  <span class="badge-chip family">6-Day</span>
                 </div>
                 
-                <button class="wishlist-icon">
-                  <i class="lar la-heart"></i>
-                </button>
-                
-                <div class="card-content">
-                  <div class="card-header">
-                    <div>
-                      <h3 class="destination-name">Bora Bora</h3>
-                      <p class="destination-location">
-                        <i class="las la-map-marker"></i> French Polynesia
-                      </p>
+                <div class="card-meta-row">
+                  <div class="card-rating" aria-label="5.0 out of 5 stars, 543 reviews">
+                    <div class="rating-stars">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     </div>
-                    <div class="price-tag">From $2,499</div>
+                    <span>5.0</span>
+                    <span class="rating-count">(543)</span>
+                  </div>
+                  
+                  <div class="card-price">
+                    <span class="price-from">from</span> $2,499
                   </div>
                 </div>
                 
-                <a href="Destination.aspx" class="explore-button">
-                  View Details <i class="las la-arrow-right"></i>
+                <a href="Destination.aspx?id=bora-bora" class="card-cta-button" aria-label="Explore Bora Bora tours">
+                  Explore Tours
                 </a>
               </div>
-            </div>
+            </article>
 
-            <div class="destination-card" data-aos="zoom-in" data-aos-delay="400">
+            <!-- Card 5: Santorini -->
+            <article class="destination-card" data-id="dest-5" role="article" aria-labelledby="dest-5-name">
               <div class="card-image-container">
                 <img 
-                  src="https://images.unsplash.com/photo-1513415564515-763d91423bdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Santorini, Greece"
+                  data-src="https://images.unsplash.com/photo-1513415564515-763d91423bdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  data-srcset="https://images.unsplash.com/photo-1513415564515-763d91423bdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80 400w,
+                               https://images.unsplash.com/photo-1513415564515-763d91423bdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80 800w"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  alt="Santorini white-washed buildings with blue domes overlooking Aegean Sea, Greece"
                   class="card-image"
+                  width="800"
+                  height="500"
+                  loading="lazy"
                 />
                 <div class="card-gradient-overlay"></div>
                 
-                <div class="info-badges">
-                  <span class="info-badge">5 Days</span>
-                  <span class="info-badge">Easy</span>
-                  <span class="info-badge">Best: Summer</span>
+                <button class="wishlist-icon" aria-label="Add Santorini to wishlist" aria-pressed="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
+                </button>
+              </div>
+              
+              <div class="card-content">
+                <h3 id="dest-5-name" class="destination-name">Santorini</h3>
+                <p class="destination-location">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
+                  </svg>
+                  Greece, Europe
+                </p>
+                
+                <div class="card-badge-chips">
+                  <span class="badge-chip adventure">Beach</span>
+                  <span class="badge-chip family">Romantic</span>
+                  <span class="badge-chip popular">5-Day</span>
                 </div>
                 
-                <button class="wishlist-icon">
-                  <i class="lar la-heart"></i>
-                </button>
-                
-                <div class="card-content">
-                  <div class="card-header">
-                    <div>
-                      <h3 class="destination-name">Santorini</h3>
-                      <p class="destination-location">
-                        <i class="las la-map-marker"></i> Greece
-                      </p>
+                <div class="card-meta-row">
+                  <div class="card-rating" aria-label="4.8 out of 5 stars, 1,678 reviews">
+                    <div class="rating-stars">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="rgba(243,156,18,0.3)"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     </div>
-                    <div class="price-tag">From $1,399</div>
+                    <span>4.8</span>
+                    <span class="rating-count">(1,678)</span>
+                  </div>
+                  
+                  <div class="card-price">
+                    <span class="price-from">from</span> $1,399
                   </div>
                 </div>
                 
-                <a href="Destination.aspx" class="explore-button">
-                  View Details <i class="las la-arrow-right"></i>
+                <a href="Destination.aspx?id=santorini" class="card-cta-button" aria-label="Explore Santorini tours">
+                  Explore Tours
                 </a>
               </div>
-            </div>
+            </article>
 
-            <div class="destination-card" data-aos="zoom-in" data-aos-delay="450">
+            <!-- Card 6: Dubai -->
+            <article class="destination-card" data-id="dest-6" role="article" aria-labelledby="dest-6-name">
               <div class="card-image-container">
                 <img 
-                  src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Dubai, UAE"
+                  data-src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  data-srcset="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80 400w,
+                               https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80 800w"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  alt="Dubai skyline with Burj Khalifa and modern architecture at dusk, UAE"
                   class="card-image"
+                  width="800"
+                  height="500"
+                  loading="lazy"
                 />
                 <div class="card-gradient-overlay"></div>
                 
-                <div class="info-badges">
-                  <span class="info-badge">4 Days</span>
-                  <span class="info-badge">Luxury</span>
-                  <span class="info-badge">Best: Nov-Mar</span>
+                <span class="trending-badge popular">Popular</span>
+                
+                <button class="wishlist-icon" aria-label="Add Dubai to wishlist" aria-pressed="false">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                  </svg>
+                </button>
+              </div>
+              
+              <div class="card-content">
+                <h3 id="dest-6-name" class="destination-name">Dubai</h3>
+                <p class="destination-location">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
+                  </svg>
+                  United Arab Emirates
+                </p>
+                
+                <div class="card-badge-chips">
+                  <span class="badge-chip family">City</span>
+                  <span class="badge-chip popular">Luxury</span>
+                  <span class="badge-chip adventure">4-Day</span>
                 </div>
                 
-                <button class="wishlist-icon">
-                  <i class="lar la-heart"></i>
-                </button>
-                
-                <div class="card-content">
-                  <div class="card-header">
-                    <div>
-                      <h3 class="destination-name">Dubai</h3>
-                      <p class="destination-location">
-                        <i class="las la-map-marker"></i> UAE
-                      </p>
+                <div class="card-meta-row">
+                  <div class="card-rating" aria-label="4.6 out of 5 stars, 987 reviews">
+                    <div class="rating-stars">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="rgba(243,156,18,0.5)"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                     </div>
-                    <div class="price-tag">From $1,599</div>
+                    <span>4.6</span>
+                    <span class="rating-count">(987)</span>
+                  </div>
+                  
+                  <div class="card-price">
+                    <span class="price-from">from</span> $1,599
                   </div>
                 </div>
                 
-                <a href="Destination.aspx" class="explore-button">
-                  View Details <i class="las la-arrow-right"></i>
+                <a href="Destination.aspx?id=dubai" class="card-cta-button" aria-label="Explore Dubai tours">
+                  Explore Tours
                 </a>
               </div>
-            </div>
+            </article>
 
           </div>
 
-          <!-- Load More Button -->
-          <div class="load-more-container" data-aos="fade-up">
-            <a href="Destination.aspx" class="load-more-button">
-              View All Destinations <i class="las la-arrow-right"></i>
+          <!-- View All Destinations Button -->
+          <div class="load-more-container" data-aos="fade-up" style="text-align: center; margin-top: 48px;">
+            <a href="Destination.aspx" class="view-all-destinations-button">
+              View All Destinations
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
             </a>
           </div>
 
@@ -2546,6 +3006,433 @@
         }
       `;
       document.head.appendChild(style);
+
+      // ============================================
+      // PREMIUM DESTINATIONS: Scroll Animations, Lazy Loading, Accessibility
+      // Performance-optimized for budget devices
+      // ============================================
+
+      // Detect reduced motion preference
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // 1. Scroll Progress Bar
+      function initScrollProgress() {
+        const progressBar = document.querySelector('.progress-bar-fill');
+        const section = document.querySelector('.destinations-grid-section');
+        
+        if (!progressBar || !section) return;
+
+        window.addEventListener('scroll', () => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          const scrollY = window.scrollY;
+          const windowHeight = window.innerHeight;
+          
+          const scrollStart = sectionTop - windowHeight;
+          const scrollEnd = sectionTop + sectionHeight;
+          const totalScroll = scrollEnd - scrollStart;
+          const currentProgress = scrollY - scrollStart;
+          
+          const percentage = Math.min(Math.max((currentProgress / totalScroll) * 100, 0), 100);
+          progressBar.style.width = percentage + '%';
+        }, { passive: true });
+      }
+
+      // 2. Scroll-Driven Card Animations (Intersection Observer)
+      function initCardAnimations() {
+        if (prefersReducedMotion) return;
+
+        const cards = document.querySelectorAll('.destination-card:not(.skeleton)');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+              }, index * 80); // Stagger effect
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        });
+
+        cards.forEach(card => observer.observe(card));
+      }
+
+      // 3. Lazy Load Images with Skeleton State
+      function initLazyLoading() {
+        const imageContainers = document.querySelectorAll('.card-image-container');
+        
+        const imageObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target.querySelector('.card-image');
+              const card = entry.target.closest('.destination-card');
+              
+              if (img && img.dataset.src) {
+                // Show skeleton during load
+                card.classList.add('skeleton');
+                
+                img.src = img.dataset.src;
+                if (img.dataset.srcset) {
+                  img.srcset = img.dataset.srcset;
+                }
+                
+                img.onload = () => {
+                  card.classList.remove('skeleton');
+                  img.classList.add('loaded');
+                };
+                
+                img.onerror = () => {
+                  card.classList.remove('skeleton');
+                  img.alt = 'Image unavailable';
+                };
+                
+                imageObserver.unobserve(entry.target);
+              }
+            }
+          });
+        }, {
+          rootMargin: '200px' // Start loading 200px before entering viewport
+        });
+
+        imageContainers.forEach(container => imageObserver.observe(container));
+      }
+
+      // 4. Filter Keyboard Navigation & Accessibility
+      function initFilterAccessibility() {
+        const filterChips = document.querySelectorAll('.filter-chip');
+        
+        filterChips.forEach((chip, index) => {
+          chip.setAttribute('role', 'button');
+          chip.setAttribute('tabindex', '0');
+          chip.setAttribute('aria-label', 'Filter by ' + chip.textContent.trim());
+          
+          // Keyboard support: Enter/Space to activate
+          chip.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              chip.click();
+            }
+            // Arrow keys navigation
+            if (e.key === 'ArrowRight' && filterChips[index + 1]) {
+              filterChips[index + 1].focus();
+            }
+            if (e.key === 'ArrowLeft' && filterChips[index - 1]) {
+              filterChips[index - 1].focus();
+            }
+          });
+        });
+
+        // Sort dropdown accessibility
+        const sortSelect = document.querySelector('.sort-select');
+        if (sortSelect) {
+          sortSelect.setAttribute('aria-label', 'Sort destinations');
+        }
+      }
+
+      // 5. Wishlist Toggle with Animation
+      function initWishlistHandlers() {
+        const wishlistIcons = document.querySelectorAll('.wishlist-icon');
+        
+        wishlistIcons.forEach(icon => {
+          icon.setAttribute('role', 'button');
+          icon.setAttribute('tabindex', '0');
+          icon.setAttribute('aria-label', 'Add to wishlist');
+          
+          icon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            
+            icon.classList.toggle('active');
+            const isActive = icon.classList.contains('active');
+            icon.setAttribute('aria-label', isActive ? 'Remove from wishlist' : 'Add to wishlist');
+            
+            if (!prefersReducedMotion) {
+              // Pulse animation
+              icon.style.animation = 'none';
+              setTimeout(() => {
+                icon.style.animation = 'pulse 0.3s ease';
+              }, 10);
+            }
+          });
+
+          // Keyboard support
+          icon.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              icon.click();
+            }
+          });
+        });
+      }
+
+      // 6. Quick Compare Tray
+      let compareList = [];
+      
+      function initQuickCompare() {
+        const cards = document.querySelectorAll('.destination-card');
+        const tray = document.querySelector('.quick-compare-tray');
+        const compareBtn = document.querySelector('.compare-all-btn');
+        
+        if (!tray) return;
+
+        cards.forEach(card => {
+          const checkbox = card.querySelector('.compare-checkbox');
+          if (checkbox) {
+            checkbox.addEventListener('change', (e) => {
+              const destinationId = card.dataset.id;
+              const destinationName = card.querySelector('.destination-name')?.textContent;
+              const imageUrl = card.querySelector('.card-image')?.src;
+              
+              if (e.target.checked) {
+                compareList.push({ id: destinationId, name: destinationName, image: imageUrl });
+              } else {
+                compareList = compareList.filter(item => item.id !== destinationId);
+              }
+              
+              updateCompareTray();
+            });
+          }
+        });
+
+        function updateCompareTray() {
+          if (compareList.length > 0) {
+            tray.classList.add('active');
+            const itemsContainer = tray.querySelector('.compare-items');
+            itemsContainer.innerHTML = compareList.map(item => `
+              <div class="compare-item">
+                <img src="${item.image}" alt="${item.name}" />
+                <p style="font-size: 11px; margin-top: 4px;">${item.name}</p>
+              </div>
+            `).join('');
+          } else {
+            tray.classList.remove('active');
+          }
+        }
+      }
+
+      // 7. Error Handling & Zero State
+      function showZeroState(message = 'No destinations found') {
+        const grid = document.querySelector('.destinations-grid');
+        if (!grid) return;
+        
+        grid.innerHTML = `
+          <div class="destinations-zero-state" style="grid-column: 1/-1;">
+            <div class="zero-state-icon">🏝️</div>
+            <h3 class="zero-state-title">${message}</h3>
+            <p class="zero-state-message">Try adjusting your filters or check back later.</p>
+            <button class="retry-button" onclick="location.reload()">Refresh</button>
+          </div>
+        `;
+      }
+
+      // 8. Initialize All Features
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('🚀 Premium Destinations Section - Initializing...');
+        
+        // Check if section exists
+        const section = document.querySelector('.destinations-grid-section');
+        if (!section) {
+          console.warn('⚠️ Destinations section not found');
+          return;
+        }
+
+        // Initialize features
+        initScrollProgress();
+        initCardAnimations();
+        initLazyLoading();
+        initFilterAccessibility();
+        initWishlistHandlers();
+        initQuickCompare();
+
+        // Performance monitoring
+        if ('performance' in window && 'getEntriesByType' in performance) {
+          setTimeout(() => {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            if (perfData) {
+              console.log(`⚡ Page Load: ${Math.round(perfData.loadEventEnd - perfData.fetchStart)}ms`);
+            }
+          }, 1000);
+        }
+
+        console.log('✅ Premium Destinations initialized successfully');
+      });
+
+      // 9. Pulse animation for wishlist (if not defined)
+      const pulseKeyframes = `
+        @keyframes pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.15); }
+        }
+      `;
+      
+      if (!document.querySelector('#pulse-keyframes')) {
+        const pulseStyle = document.createElement('style');
+        pulseStyle.id = 'pulse-keyframes';
+        pulseStyle.textContent = pulseKeyframes;
+        document.head.appendChild(pulseStyle);
+      }
+
+      // 10. 3D Hover Parallax Tilt Effect
+      function init3DTiltEffect() {
+        if (prefersReducedMotion) return;
+
+        const cards = document.querySelectorAll('.destination-card');
+        
+        cards.forEach(card => {
+          card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / centerY) * 5; // Max 5 degrees
+            const rotateY = ((centerX - x) / centerX) * 5;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+          });
+          
+          card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+          });
+        });
+      }
+
+      // 11. Button Ripple Effect on Click
+      function initButtonRipples() {
+        const buttons = document.querySelectorAll('.card-cta-button, .filter-chip');
+        
+        buttons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+              ripple.remove();
+            }, 600);
+          });
+        });
+      }
+
+      // 12. Parallax Scrolling for Background Elements
+      function initParallaxScroll() {
+        if (prefersReducedMotion) return;
+
+        const section = document.querySelector('.destinations-grid-section');
+        if (!section) return;
+
+        let ticking = false;
+
+        function updateParallax() {
+          const scrolled = window.pageYOffset;
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
+          
+          // Only apply parallax when section is in view
+          if (scrolled + window.innerHeight > sectionTop && scrolled < sectionTop + sectionHeight) {
+            const offset = (scrolled - sectionTop) * 0.5;
+            
+            // Move background elements (if ::before/::after could be targeted, use data attributes)
+            const decorativeElements = section.querySelectorAll('.floating-shape, .destinations-section::before');
+            decorativeElements.forEach(el => {
+              el.style.transform = `translateY(${offset}px)`;
+            });
+          }
+          
+          ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(updateParallax);
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+
+      // 13. Enhanced Filter Chip Interactions
+      function initFilterChipEffects() {
+        const filterChips = document.querySelectorAll('.filter-chip');
+        
+        filterChips.forEach(chip => {
+          // Add click handler for active state
+          chip.addEventListener('click', function() {
+            // Remove active from all chips
+            filterChips.forEach(c => c.classList.remove('active', 'selected'));
+            
+            // Add active to clicked chip
+            this.classList.add('active');
+            
+            // Filter logic (if filter data attributes exist)
+            const filterValue = this.dataset.filter;
+            filterDestinations(filterValue);
+          });
+        });
+      }
+
+      // 14. Filter Destinations Function
+      function filterDestinations(filter) {
+        const cards = document.querySelectorAll('.destination-card');
+        let visibleCount = 0;
+        
+        cards.forEach(card => {
+          if (filter === 'all') {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            const badges = card.querySelectorAll('.badge-chip');
+            let hasMatch = false;
+            
+            badges.forEach(badge => {
+              if (badge.textContent.toLowerCase().includes(filter.toLowerCase()) ||
+                  badge.classList.contains(filter.toLowerCase())) {
+                hasMatch = true;
+              }
+            });
+            
+            if (hasMatch) {
+              card.style.display = 'flex';
+              visibleCount++;
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+        
+        // Show zero state if no results
+        if (visibleCount === 0) {
+          showZeroState(`No ${filter} destinations found`);
+        }
+      }
+
+      // 15. Initialize Advanced Features
+      document.addEventListener('DOMContentLoaded', () => {
+        // Wait a bit for initial animations to complete
+        setTimeout(() => {
+          init3DTiltEffect();
+          initButtonRipples();
+          initParallaxScroll();
+          initFilterChipEffects();
+          console.log('✨ Advanced interactions initialized');
+        }, 500);
+      });
     </script>
 </asp:Content>
 

@@ -1,5 +1,3 @@
-D:\Exploria\Tours&Travels\bin\Reports\BookingSummaryReport.rpt
-D:\Exploria\Tours&Travels\bin\Reports\BookingSummaryReport.cs
 D:\Exploria\Tours&Travels\bin\Tours&Travels.dll.config
 D:\Exploria\Tours&Travels\bin\Tours&Travels.dll
 D:\Exploria\Tours&Travels\bin\Tours&Travels.pdb
@@ -55,6 +53,7 @@ D:\Exploria\Tours&Travels\bin\roslyn\VBCSCompiler.exe.config
 D:\Exploria\Tours&Travels\bin\CrystalDecisions.CrystalReports.Engine.dll
 D:\Exploria\Tours&Travels\bin\CrystalDecisions.ReportSource.dll
 D:\Exploria\Tours&Travels\bin\CrystalDecisions.Shared.dll
+D:\Exploria\Tours&Travels\bin\CrystalDecisions.Web.dll
 D:\Exploria\Tours&Travels\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Exploria\Tours&Travels\bin\Newtonsoft.Json.dll
 D:\Exploria\Tours&Travels\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
@@ -72,9 +71,8 @@ D:\Exploria\Tours&Travels\bin\CrystalDecisions.ReportAppServer.CommonControls.dl
 D:\Exploria\Tours&Travels\bin\stdole.dll
 D:\Exploria\Tours&Travels\bin\Newtonsoft.Json.xml
 D:\Exploria\Tours&Travels\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.csproj.AssemblyReference.cache
 D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.csproj.CoreCompileInputs.cache
 D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.csproj.CopyComplete
 D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.dll
 D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.pdb
-D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.csproj.AssemblyReference.cache
-d:\Exploria\Tours&Travels\bin\CrystalDecisions.Web.dll

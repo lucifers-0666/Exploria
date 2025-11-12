@@ -760,126 +760,9 @@
 }
 
 /* ============================================
-   FLOATING SEARCH BAR
+   FLOATING SEARCH BAR - Styles in UltraModernHero.css
    ============================================ */
-
-.hero-search-bar {
-    position: absolute;
-    bottom: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(90% - 80px);
-    max-width: 900px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
-    z-index: 20;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 160px;
-    align-items: stretch;
-    overflow: hidden;
-    height: 72px;
-    animation: searchBarSlideUp 0.8s ease-out 2.2s both;
-}
-
-.search-segment {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 16px 24px;
-    border-right: 1px solid rgba(29, 94, 51, 0.1);
-}
-
-.search-segment:last-of-type {
-    border-right: none;
-}
-
-.search-segment i {
-    font-size: 20px;
-    color: #1d5e33;
-    flex-shrink: 0;
-}
-
-.search-input-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
-
-.search-input-wrapper label {
-    font-size: 12px;
-    font-weight: 500;
-    color: #1d5e33;
-    margin-bottom: 4px;
-    display: block;
-}
-
-.search-input-wrapper input {
-    border: none;
-    outline: none;
-    font-size: 15px;
-    color: #0b6e4f;
-    background: transparent;
-    font-weight: 400;
-    width: 100%;
-}
-
-.search-input-wrapper input::placeholder {
-    color: #9ca3af;
-}
-
-.search-input-wrapper input:focus {
-    outline: none;
-}
-
-.search-segment:focus-within {
-    background: rgba(221, 183, 113, 0.05);
-}
-
-.search-divider {
-    display: none;
-}
-
-.search-button {
-    padding: 0 32px;
-    background: #1d5e33;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border-radius: 0 12px 12px 0;
-    transition: all 0.3s ease-out;
-}
-
-.search-button:hover {
-    background: #0b6e4f;
-}
-
-.search-button:hover i {
-    transform: rotate(15deg) scale(1.1);
-}
-
-.search-button i {
-    font-size: 20px;
-    transition: transform 0.3s ease-out;
-}
-
-@keyframes searchBarSlideUp {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(100%);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-}
+/* Search bar styles moved to UltraModernHero.css for consistency */
 
 /* ============================================
    SCROLL INDICATOR
@@ -4278,31 +4161,7 @@ button:disabled,
         min-width: auto;
     }
 
-    /* Simplified Search Bar for Mobile */
-    .hero-search-bar {
-        grid-template-columns: 1fr !important;
-        width: 95%;
-        height: auto;
-        bottom: -120px;
-    }
-
-    .search-segment {
-        width: 100%;
-        padding: 1rem;
-        border-right: none;
-        border-bottom: 1px solid rgba(29, 94, 51, 0.1);
-    }
-
-    .search-segment:last-of-type {
-        border-bottom: none;
-    }
-
-    .search-button {
-        width: 100%;
-        justify-content: center;
-        padding: 1rem;
-        border-radius: 0 0 12px 12px;
-    }
+    /* Search Bar Mobile - See UltraModernHero.css */
 
     .scroll-indicator {
         bottom: 120px;

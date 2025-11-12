@@ -88,6 +88,8 @@ namespace Tours_Travels
                         }
                     }
                     
+                    // Set login session flag
+                    Session["isLogin"] = "true";
                     Session["UserID"] = userId;
                     Session["FirstName"] = dr["FirstName"].ToString();
                     Session["LastName"] = dr["LastName"].ToString();

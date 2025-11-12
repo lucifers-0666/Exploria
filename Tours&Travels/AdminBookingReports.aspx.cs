@@ -43,9 +43,12 @@ namespace Tours_Travels
             // Dispose Crystal Reports resources properly
             if (CrystalReportViewer1.ReportSource != null)
             {
-                ReportDocument report = (ReportDocument)CrystalReportViewer1.ReportSource;
-                report.Close();
-                report.Dispose();
+                if (CrystalReportViewer1.ReportSource is ReportDocument)
+                {
+                    ReportDocument report = (ReportDocument)CrystalReportViewer1.ReportSource;
+                    report.Close();
+                    report.Dispose();
+                }
                 CrystalReportViewer1.ReportSource = null;
             }
         }
@@ -64,24 +67,10 @@ namespace Tours_Travels
                     return;
                 }
 
-                // Step 2: Fill the Bookings table in the dataset
+                // Step 2: Fill the Bookings table in the dataset using ImportRow
                 foreach (DataRow row in bookingsData.Rows)
                 {
-                    ds.Bookings.AddBookingsRow(
-                        Convert.ToInt32(row["BookingId"]),
-                        Convert.ToInt32(row["UserId"]),
-                        row["DestinationId"].ToString(),
-                        Convert.ToDateTime(row["TravelDate"]),
-                        Convert.ToInt32(row["NumberOfAdults"]),
-                        row["NumberOfChildren"] != DBNull.Value ? Convert.ToInt32(row["NumberOfChildren"]) : 0,
-                        Convert.ToDecimal(row["TotalAmount"]),
-                        row["BookingStatus"]?.ToString(),
-                        row["TravelerFirstName"]?.ToString(),
-                        row["TravelerLastName"]?.ToString(),
-                        row["TravelerEmail"]?.ToString(),
-                        row["TravelerPhone"]?.ToString(),
-                        row["DateOfBooking"] != DBNull.Value ? Convert.ToDateTime(row["DateOfBooking"]) : DateTime.Now
-                    );
+                    ds.Bookings.ImportRow(row);
                 }
 
                 // Step 3: Load the Crystal Report
@@ -141,24 +130,10 @@ namespace Tours_Travels
                     return;
                 }
 
-                // Fill the dataset
+                // Fill the dataset using ImportRow
                 foreach (DataRow row in bookingsData.Rows)
                 {
-                    ds.Bookings.AddBookingsRow(
-                        Convert.ToInt32(row["BookingId"]),
-                        Convert.ToInt32(row["UserId"]),
-                        row["DestinationId"].ToString(),
-                        Convert.ToDateTime(row["TravelDate"]),
-                        Convert.ToInt32(row["NumberOfAdults"]),
-                        row["NumberOfChildren"] != DBNull.Value ? Convert.ToInt32(row["NumberOfChildren"]) : 0,
-                        Convert.ToDecimal(row["TotalAmount"]),
-                        row["BookingStatus"]?.ToString(),
-                        row["TravelerFirstName"]?.ToString(),
-                        row["TravelerLastName"]?.ToString(),
-                        row["TravelerEmail"]?.ToString(),
-                        row["TravelerPhone"]?.ToString(),
-                        row["DateOfBooking"] != DBNull.Value ? Convert.ToDateTime(row["DateOfBooking"]) : DateTime.Now
-                    );
+                    ds.Bookings.ImportRow(row);
                 }
 
                 // Load Crystal Report
@@ -227,24 +202,10 @@ namespace Tours_Travels
                     return;
                 }
 
-                // Fill the dataset
+                // Fill the dataset using ImportRow
                 foreach (DataRow row in bookingsData.Rows)
                 {
-                    ds.Bookings.AddBookingsRow(
-                        Convert.ToInt32(row["BookingId"]),
-                        Convert.ToInt32(row["UserId"]),
-                        row["DestinationId"].ToString(),
-                        Convert.ToDateTime(row["TravelDate"]),
-                        Convert.ToInt32(row["NumberOfAdults"]),
-                        row["NumberOfChildren"] != DBNull.Value ? Convert.ToInt32(row["NumberOfChildren"]) : 0,
-                        Convert.ToDecimal(row["TotalAmount"]),
-                        row["BookingStatus"]?.ToString(),
-                        row["TravelerFirstName"]?.ToString(),
-                        row["TravelerLastName"]?.ToString(),
-                        row["TravelerEmail"]?.ToString(),
-                        row["TravelerPhone"]?.ToString(),
-                        row["DateOfBooking"] != DBNull.Value ? Convert.ToDateTime(row["DateOfBooking"]) : DateTime.Now
-                    );
+                    ds.Bookings.ImportRow(row);
                 }
 
                 // Load Crystal Report
@@ -317,13 +278,12 @@ namespace Tours_Travels
                             ISNULL(b.NumberOfChildren, 0) AS NumberOfChildren,
                             b.TotalAmount,
                             ISNULL(b.BookingStatus, 'Pending') AS BookingStatus,
-                            ISNULL(b.TravelerFirstName, u.FirstName) AS TravelerFirstName,
-                            ISNULL(b.TravelerLastName, u.LastName) AS TravelerLastName,
-                            ISNULL(b.TravelerEmail, u.Email) AS TravelerEmail,
-                            ISNULL(b.TravelerPhone, u.Phone) AS TravelerPhone,
+                            ISNULL(b.TravelerFirstName, 'Unknown') AS TravelerFirstName,
+                            ISNULL(b.TravelerLastName, 'Traveler') AS TravelerLastName,
+                            ISNULL(b.TravelerEmail, 'N/A') AS TravelerEmail,
+                            ISNULL(b.TravelerPhone, 'N/A') AS TravelerPhone,
                             ISNULL(b.DateOfBooking, GETDATE()) AS DateOfBooking
                         FROM Bookings b
-                        INNER JOIN Users u ON b.UserId = u.Id
                         WHERE 1=1";
 
                     // Apply filters
