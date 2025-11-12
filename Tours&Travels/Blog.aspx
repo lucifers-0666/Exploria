@@ -1,541 +1,82 @@
 <%@ Page Title="Travel Guide & Blog - Exploria Tours" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="Blog.aspx.cs" Inherits="Tours_Travels.Blog" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .blog-hero {
-            background: linear-gradient(135deg, rgba(29, 94, 51, 0.95), rgba(45, 122, 74, 0.95)), 
-                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=1920') center/cover;
-            padding: 120px 0 80px;
-            color: white;
-            text-align: center;
-        }
-
-        .blog-hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .hero-title {
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .hero-subtitle {
-            font-size: 22px;
-            opacity: 0.95;
-            margin-bottom: 32px;
-        }
-
-        .blog-search {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 60px;
-            padding: 8px;
-            display: flex;
-            gap: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-        }
-
-        .blog-search-input {
-            flex: 1;
-            border: none;
-            padding: 16px 24px;
-            font-size: 16px;
-            border-radius: 50px;
-            background: transparent;
-        }
-
-        .blog-search-input:focus {
-            outline: none;
-        }
-
-        .blog-search-btn {
-            background: linear-gradient(135deg, #c9a877 0%, #d4b889 100%);
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 300ms ease;
-        }
-
-        .blog-search-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(201, 168, 119, 0.4);
-        }
-
-        .blog-categories {
-            background: white;
-            padding: 32px 0;
-            border-bottom: 1px solid #e5e7eb;
-            position: sticky;
-            top: 80px;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .categories-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-
-        .categories-container::-webkit-scrollbar {
-            display: none;
-        }
-
-        .category-btn {
-            padding: 12px 28px;
-            background: #f3f4f6;
-            border: 2px solid transparent;
-            border-radius: 50px;
-            font-size: 15px;
-            font-weight: 600;
-            color: #374151;
-            cursor: pointer;
-            transition: all 300ms ease;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .category-btn:hover {
-            background: #e5e7eb;
-            transform: translateY(-2px);
-        }
-
-        .category-btn.active {
-            background: linear-gradient(135deg, #1d5e33 0%, #2d7a4a 100%);
-            color: white;
-            border-color: #1d5e33;
-        }
-
-        .blog-container {
-            max-width: 1400px;
-            margin: 60px auto;
-            padding: 0 24px;
-        }
-
-        .featured-section {
-            margin-bottom: 80px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-size: 36px;
-            font-weight: 700;
-            color: #111827;
-        }
-
-        .view-all-link {
-            color: #1d5e33;
-            font-weight: 600;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: gap 300ms;
-        }
-
-        .view-all-link:hover {
-            gap: 12px;
-        }
-
-        .featured-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 32px;
-        }
-
-        .featured-main {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            height: 500px;
-            cursor: pointer;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-        }
-
-        .featured-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 500ms ease;
-        }
-
-        .featured-main:hover .featured-image {
-            transform: scale(1.05);
-        }
-
-        .featured-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 48px;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            color: white;
-        }
-
-        .featured-category {
-            display: inline-block;
-            padding: 6px 16px;
-            background: #c9a877;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .featured-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-
-        .featured-meta {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .featured-sidebar {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .sidebar-post {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: all 300ms ease;
-            cursor: pointer;
-            display: flex;
-            gap: 16px;
-        }
-
-        .sidebar-post:hover {
-            transform: translateX(4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-        }
-
-        .sidebar-image {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .sidebar-content {
-            padding: 16px 16px 16px 0;
-            flex: 1;
-        }
-
-        .sidebar-category {
-            font-size: 12px;
-            color: #c9a877;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .sidebar-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .sidebar-date {
-            font-size: 13px;
-            color: #6b7280;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            gap: 32px;
-            margin-bottom: 80px;
-        }
-
-        .blog-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: all 300ms ease;
-            cursor: pointer;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-        }
-
-        .blog-image {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            transition: transform 500ms ease;
-        }
-
-        .blog-card:hover .blog-image {
-            transform: scale(1.1);
-        }
-
-        .blog-content {
-            padding: 28px;
-        }
-
-        .blog-category {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            background: #e8f4ed;
-            color: #1d5e33;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .blog-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-
-        .blog-excerpt {
-            font-size: 15px;
-            color: #6b7280;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .blog-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding-top: 20px;
-            border-top: 1px solid #e5e7eb;
-        }
-
-        .blog-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .author-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #1d5e33 0%, #2d7a4a 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 14px;
-        }
-
-        .author-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .author-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: #111827;
-        }
-
-        .blog-date {
-            font-size: 13px;
-            color: #6b7280;
-        }
-
-        .blog-stats {
-            display: flex;
-            gap: 16px;
-            font-size: 14px;
-            color: #6b7280;
-        }
-
-        .stat {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .newsletter-section {
-            background: linear-gradient(135deg, #e8f4ed 0%, #f8f9fa 100%);
-            border-radius: 24px;
-            padding: 60px 48px;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .newsletter-icon {
-            font-size: 64px;
-            margin-bottom: 24px;
-        }
-
-        .newsletter-title {
-            font-size: 32px;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 12px;
-        }
-
-        .newsletter-text {
-            font-size: 18px;
-            color: #6b7280;
-            margin-bottom: 32px;
-        }
-
-        .newsletter-form {
-            max-width: 500px;
-            margin: 0 auto;
-            display: flex;
-            gap: 12px;
-        }
-
-        .newsletter-input {
-            flex: 1;
-            padding: 16px 24px;
-            border: 2px solid #e5e7eb;
-            border-radius: 12px;
-            font-size: 15px;
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: #1d5e33;
-        }
-
-        .newsletter-btn {
-            padding: 16px 32px;
-            background: linear-gradient(135deg, #1d5e33 0%, #2d7a4a 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 300ms ease;
-        }
-
-        .newsletter-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(29, 94, 51, 0.4);
-        }
-
-        @media (max-width: 1024px) {
-            .featured-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-sidebar {
-                flex-direction: row;
-                overflow-x: auto;
-            }
-
-            .sidebar-post {
-                min-width: 300px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 36px;
-            }
-
-            .blog-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .blog-search {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/Blog.css" />
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Hero Section -->
-    <div class="blog-hero">
+    <section class="blog-hero">
+        <div class="hero-animated-bg">
+            <div class="floating-shape shape-1"></div>
+            <div class="floating-shape shape-2"></div>
+            <div class="floating-shape shape-3"></div>
+            <div class="floating-shape shape-4"></div>
+        </div>
+        
         <div class="blog-hero-content">
-            <h1 class="hero-title" data-aos="fade-up">Travel Guide & Blog</h1>
-            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
-                Discover travel tips, destination guides, and insider stories
+            <div class="hero-badge slide-in-top">
+                <i class="bi bi-journal-bookmark"></i>
+                <span>Travel Insights</span>
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="title-word word-1">Travel</span>
+                <span class="title-word word-2">Guide</span>
+                <span class="title-word word-3">&</span>
+                <span class="title-word word-4">Blog</span>
+            </h1>
+            
+            <p class="hero-subtitle fade-in-up">
+                Discover travel tips, destination guides, and insider stories from around the world
             </p>
             
-            <div class="blog-search" data-aos="fade-up" data-aos-delay="200">
+            <div class="blog-search scale-in">
+                <div class="search-icon-wrapper">
+                    <i class="bi bi-search"></i>
+                </div>
                 <asp:TextBox ID="txtBlogSearch" runat="server" CssClass="blog-search-input" placeholder="Search articles, destinations, tips..."></asp:TextBox>
                 <asp:Button ID="btnBlogSearch" runat="server" Text="Search" CssClass="blog-search-btn" OnClick="btnBlogSearch_Click" />
             </div>
         </div>
-    </div>
-
-    <!-- Categories Navigation -->
-    <div class="blog-categories">
-        <div class="categories-container">
-            <asp:Button ID="btnCatAll" runat="server" Text="All Posts" CssClass="category-btn active" OnClick="btnCategory_Click" CommandArgument="All" />
-            <asp:Button ID="btnCatAdventure" runat="server" Text="🏔️ Adventure" CssClass="category-btn" OnClick="btnCategory_Click" CommandArgument="Adventure" />
-            <asp:Button ID="btnCatBeach" runat="server" Text="🏖️ Beach & Islands" CssClass="category-btn" OnClick="btnCategory_Click" CommandArgument="Beach" />
-            <asp:Button ID="btnCatCulture" runat="server" Text="🎭 Culture & Heritage" CssClass="category-btn" OnClick="btnCategory_Click" CommandArgument="Culture" />
-            <asp:Button ID="btnCatFood" runat="server" Text="🍽️ Food & Cuisine" CssClass="category-btn" OnClick="btnCategory_Click" CommandArgument="Food" />
-            <asp:Button ID="btnCatTips" runat="server" Text="💡 Travel Tips" CssClass="category-btn" OnClick="btnCategory_Click" CommandArgument="Tips" />
-            <asp:Button ID="btnCatGuides" runat="server" Text="📚 Destination Guides" CssClass="category-btn" OnClick="btnCategory_Click" CommandArgument="Guides" />
+        
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+            <span class="scroll-text">Scroll to explore</span>
         </div>
-    </div>
+    </section>
+
+    <!-- Categories Navigation - FIXED: Using CSS for icons -->
+    <section class="blog-categories">
+        <div class="categories-container">
+            <asp:Button ID="btnCatAll" runat="server" Text="All Posts" CssClass="category-btn active cat-all" OnClick="btnCategory_Click" CommandArgument="All" />
+            <asp:Button ID="btnCatAdventure" runat="server" Text="Adventure" CssClass="category-btn cat-adventure" OnClick="btnCategory_Click" CommandArgument="Adventure" />
+            <asp:Button ID="btnCatBeach" runat="server" Text="Beach & Islands" CssClass="category-btn cat-beach" OnClick="btnCategory_Click" CommandArgument="Beach" />
+            <asp:Button ID="btnCatCulture" runat="server" Text="Culture & Heritage" CssClass="category-btn cat-culture" OnClick="btnCategory_Click" CommandArgument="Culture" />
+            <asp:Button ID="btnCatFood" runat="server" Text="Food & Cuisine" CssClass="category-btn cat-food" OnClick="btnCategory_Click" CommandArgument="Food" />
+            <asp:Button ID="btnCatTips" runat="server" Text="Travel Tips" CssClass="category-btn cat-tips" OnClick="btnCategory_Click" CommandArgument="Tips" />
+            <asp:Button ID="btnCatGuides" runat="server" Text="Destination Guides" CssClass="category-btn cat-guides" OnClick="btnCategory_Click" CommandArgument="Guides" />
+        </div>
+    </section>
 
     <!-- Blog Container -->
     <div class="blog-container">
         <!-- Featured Section -->
         <section class="featured-section">
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">Featured Stories</h2>
+            <div class="section-header">
+                <div class="section-title-wrapper">
+                    <span class="section-label">
+                        <i class="bi bi-star-fill"></i>
+                        Editor's Pick
+                    </span>
+                    <h2 class="section-title">Featured Stories</h2>
+                    <div class="title-decoration">
+                        <span class="deco-line"></span>
+                        <span class="deco-dot"></span>
+                    </div>
+                </div>
             </div>
 
             <asp:Repeater ID="rptFeatured" runat="server">
@@ -543,14 +84,14 @@
                     <div class="featured-grid">
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <%# Container.ItemIndex == 0 ? "<div class='featured-main' onclick=\"location.href='BlogDetails.aspx?id=" + Eval("Id") + "'\">" : "" %>
-                    <%# Container.ItemIndex == 0 ? "<img src='" + Eval("ImageUrl") + "' alt='" + Eval("Title") + "' class='featured-image' />" : "" %>
-                    <%# Container.ItemIndex == 0 ? "<div class='featured-overlay'><span class='featured-category'>" + Eval("Category") + "</span><h3 class='featured-title'>" + Eval("Title") + "</h3><div class='featured-meta'><span class='meta-item'><i class='las la-user'></i>" + Eval("Author") + "</span><span class='meta-item'><i class='las la-calendar'></i>" + Convert.ToDateTime(Eval("PublishedDate")).ToString("MMM dd, yyyy") + "</span><span class='meta-item'><i class='las la-eye'></i>" + Eval("ViewCount") + " views</span></div></div></div>" : "" %>
+                    <%# Container.ItemIndex == 0 ? "<div class='featured-main' data-animate='slide-right' onclick=\"location.href='BlogDetails.aspx?id=" + Eval("Id") + "'\">" : "" %>
+                    <%# Container.ItemIndex == 0 ? "<div class='featured-image-wrapper'><img src='" + Eval("ImageUrl") + "' alt='" + Eval("Title") + "' class='featured-image' /><div class='image-overlay-effect'></div></div>" : "" %>
+                    <%# Container.ItemIndex == 0 ? "<div class='featured-overlay'><div class='featured-content-wrapper'><span class='featured-category'><i class='bi bi-tag-fill'></i>" + Eval("Category") + "</span><h3 class='featured-title'>" + Eval("Title") + "</h3><p class='featured-excerpt'>" + Eval("Excerpt") + "</p><div class='featured-meta'><span class='meta-item'><i class='bi bi-person-circle'></i>" + Eval("Author") + "</span><span class='meta-item'><i class='bi bi-calendar-event'></i>" + Convert.ToDateTime(Eval("PublishedDate")).ToString("MMM dd, yyyy") + "</span><span class='meta-item'><i class='bi bi-eye'></i>" + Eval("ViewCount") + " views</span></div><div class='read-more-link'><span>Read Full Story</span><i class='bi bi-arrow-right'></i></div></div></div></div>" : "" %>
                     
                     <%# Container.ItemIndex == 1 ? "<div class='featured-sidebar'>" : "" %>
-                    <%# Container.ItemIndex > 0 ? "<div class='sidebar-post' onclick=\"location.href='BlogDetails.aspx?id=" + Eval("Id") + "'\">" : "" %>
-                    <%# Container.ItemIndex > 0 ? "<img src='" + Eval("ImageUrl") + "' alt='" + Eval("Title") + "' class='sidebar-image' />" : "" %>
-                    <%# Container.ItemIndex > 0 ? "<div class='sidebar-content'><div class='sidebar-category'>" + Eval("Category") + "</div><h4 class='sidebar-title'>" + Eval("Title") + "</h4><div class='sidebar-date'>" + Convert.ToDateTime(Eval("PublishedDate")).ToString("MMM dd, yyyy") + "</div></div></div>" : "" %>
+                    <%# Container.ItemIndex > 0 ? "<div class='sidebar-post' data-animate='slide-left' data-delay='" + ((Container.ItemIndex - 1) * 100) + "' onclick=\"location.href='BlogDetails.aspx?id=" + Eval("Id") + "'\">" : "" %>
+                    <%# Container.ItemIndex > 0 ? "<div class='sidebar-image-wrapper'><img src='" + Eval("ImageUrl") + "' alt='" + Eval("Title") + "' class='sidebar-image' /><div class='sidebar-overlay'></div></div>" : "" %>
+                    <%# Container.ItemIndex > 0 ? "<div class='sidebar-content'><span class='sidebar-category'><i class='bi bi-bookmark'></i>" + Eval("Category") + "</span><h4 class='sidebar-title'>" + Eval("Title") + "</h4><div class='sidebar-meta'><span class='sidebar-date'><i class='bi bi-clock'></i>" + Convert.ToDateTime(Eval("PublishedDate")).ToString("MMM dd") + "</span><span class='sidebar-views'><i class='bi bi-eye'></i>" + Eval("ViewCount") + "</span></div></div></div>" : "" %>
                 </ItemTemplate>
                 <FooterTemplate>
                     </div></div>
@@ -558,13 +99,28 @@
             </asp:Repeater>
         </section>
 
-        <!-- All Posts Grid -->
-        <section>
-            <div class="section-header" data-aos="fade-up">
-                <h2 class="section-title">
-                    <asp:Label ID="lblSectionTitle" runat="server" Text="Latest Articles"></asp:Label>
-                </h2>
-                <asp:Label ID="lblPostCount" runat="server" CssClass="view-all-link" Text="0 articles"></asp:Label>
+        <!-- Latest Articles Section -->
+        <section class="articles-section">
+            <div class="section-header">
+                <div class="section-title-wrapper">
+                    <span class="section-label">
+                        <i class="bi bi-newspaper"></i>
+                        Fresh Content
+                    </span>
+                    <h2 class="section-title">
+                        <asp:Label ID="lblSectionTitle" runat="server" Text="Latest Articles"></asp:Label>
+                    </h2>
+                    <div class="title-decoration">
+                        <span class="deco-line"></span>
+                        <span class="deco-dot"></span>
+                    </div>
+                </div>
+                <div class="article-count">
+                    <div class="count-badge">
+                        <asp:Label ID="lblPostCount" runat="server" Text="0"></asp:Label>
+                    </div>
+                    <span class="count-label">Articles</span>
+                </div>
             </div>
 
             <asp:Repeater ID="rptBlogPosts" runat="server">
@@ -572,34 +128,53 @@
                     <div class="blog-grid">
                 </HeaderTemplate>
                 <ItemTemplate>
-                    <div class="blog-card" data-aos="fade-up" onclick="location.href='BlogDetails.aspx?id=<%# Eval("Id") %>'">
-                        <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("Title") %>' class="blog-image" />
-                        <div class="blog-content">
-                            <span class="blog-category">
-                                <i class="las la-tag"></i>
+                    <article class="blog-card" data-animate="fade-scale" onclick="location.href='BlogDetails.aspx?id=<%# Eval("Id") %>'">
+                        <div class="card-image-wrapper">
+                            <img src='<%# Eval("ImageUrl") %>' alt='<%# Eval("Title") %>' class="blog-image" loading="lazy" />
+                            <div class="card-overlay"></div>
+                            <div class="card-hover-effect"></div>
+                            <span class="blog-category-badge">
+                                <i class="bi bi-tag"></i>
                                 <%# Eval("Category") %>
                             </span>
-                            <h3 class="blog-title"><%# Eval("Title") %></h3>
+                        </div>
+                        
+                        <div class="blog-content">
+                            <div class="content-header">
+                                <h3 class="blog-title"><%# Eval("Title") %></h3>
+                            </div>
+                            
                             <p class="blog-excerpt"><%# Eval("Excerpt") %></p>
+                            
                             <div class="blog-footer">
                                 <div class="blog-author">
                                     <div class="author-avatar">
-                                        <%# Eval("Author").ToString().Substring(0, 1).ToUpper() %>
+                                        <span class="avatar-text"><%# Eval("Author").ToString().Substring(0, 1).ToUpper() %></span>
+                                        <div class="avatar-ring"></div>
                                     </div>
                                     <div class="author-info">
                                         <div class="author-name"><%# Eval("Author") %></div>
-                                        <div class="blog-date"><%# Convert.ToDateTime(Eval("PublishedDate")).ToString("MMM dd, yyyy") %></div>
+                                        <div class="blog-date">
+                                            <i class="bi bi-calendar3"></i>
+                                            <%# Convert.ToDateTime(Eval("PublishedDate")).ToString("MMM dd, yyyy") %>
+                                        </div>
                                     </div>
                                 </div>
+                                
                                 <div class="blog-stats">
-                                    <span class="stat">
-                                        <i class="las la-eye"></i>
+                                    <span class="stat-item">
+                                        <i class="bi bi-eye"></i>
                                         <%# Eval("ViewCount") %>
                                     </span>
                                 </div>
                             </div>
+                            
+                            <div class="read-more-wrapper">
+                                <span class="read-more-text">Read More</span>
+                                <i class="bi bi-arrow-right-circle"></i>
+                            </div>
                         </div>
-                    </div>
+                    </article>
                 </ItemTemplate>
                 <FooterTemplate>
                     </div>
@@ -608,14 +183,138 @@
         </section>
 
         <!-- Newsletter Section -->
-        <section class="newsletter-section" data-aos="fade-up">
-            <div class="newsletter-icon">📬</div>
-            <h2 class="newsletter-title">Get Travel Inspiration in Your Inbox</h2>
-            <p class="newsletter-text">Subscribe to receive the latest travel tips, destination guides, and exclusive deals.</p>
-            <div class="newsletter-form">
-                <asp:TextBox ID="txtNewsletterEmail" runat="server" CssClass="newsletter-input" placeholder="Enter your email address" TextMode="Email"></asp:TextBox>
-                <asp:Button ID="btnSubscribe" runat="server" Text="Subscribe" CssClass="newsletter-btn" OnClick="btnSubscribe_Click" />
+        <section class="newsletter-section">
+            <div class="newsletter-bg-pattern">
+                <div class="pattern-dot"></div>
+                <div class="pattern-dot"></div>
+                <div class="pattern-dot"></div>
+                <div class="pattern-dot"></div>
+            </div>
+            
+            <div class="newsletter-content">
+                <div class="newsletter-icon-wrapper">
+                    <div class="icon-circle">
+                        <i class="bi bi-envelope-heart"></i>
+                    </div>
+                    <div class="icon-pulse"></div>
+                </div>
+                
+                <h2 class="newsletter-title">
+                    <span class="title-highlight">Travel Inspiration</span>
+                    <span class="title-main">in Your Inbox</span>
+                </h2>
+                
+                <p class="newsletter-text">
+                    Subscribe to receive the latest travel tips, destination guides, and exclusive deals.
+                </p>
+                
+                <div class="newsletter-form">
+                    <div class="form-input-wrapper">
+                        <i class="bi bi-envelope"></i>
+                        <asp:TextBox ID="txtNewsletterEmail" runat="server" CssClass="newsletter-input" placeholder="Enter your email address" TextMode="Email"></asp:TextBox>
+                    </div>
+                    <asp:Button ID="btnSubscribe" runat="server" Text="Subscribe" CssClass="newsletter-btn" OnClick="btnSubscribe_Click" />
+                </div>
+                
+                <div class="newsletter-privacy">
+                    <i class="bi bi-shield-check"></i>
+                    <span>We respect your privacy. Unsubscribe anytime.</span>
+                </div>
             </div>
         </section>
     </div>
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Staggered Animation on Scroll
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('[data-animate]');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const delay = entry.target.dataset.delay || 0;
+                            setTimeout(() => {
+                                entry.target.classList.add('animated');
+                            }, delay);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                });
+                
+                elements.forEach(el => observer.observe(el));
+            };
+            
+            animateOnScroll();
+            
+            // Category Button Animations
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            categoryBtns.forEach((btn, index) => {
+                btn.style.animationDelay = `${index * 0.05}s`;
+            });
+            
+            // Blog Cards Hover Effect
+            const blogCards = document.querySelectorAll('.blog-card');
+            blogCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.setProperty('--hover-scale', '1.05');
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.setProperty('--hover-scale', '1');
+                });
+            });
+            
+            // Hero Title Word Animation
+            const titleWords = document.querySelectorAll('.title-word');
+            titleWords.forEach((word, index) => {
+                word.style.animationDelay = `${index * 0.1}s`;
+            });
+            
+            // Parallax Effect for Hero
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.blog-hero');
+                const heroContent = document.querySelector('.blog-hero-content');
+                
+                if (hero && scrolled < hero.offsetHeight) {
+                    heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
+                    heroContent.style.opacity = 1 - (scrolled / hero.offsetHeight);
+                }
+            });
+            
+            // Newsletter Form Animation
+            const newsletterInput = document.querySelector('.newsletter-input');
+            if (newsletterInput) {
+                newsletterInput.addEventListener('focus', function() {
+                    this.parentElement.classList.add('focused');
+                });
+                
+                newsletterInput.addEventListener('blur', function() {
+                    if (!this.value) {
+                        this.parentElement.classList.remove('focused');
+                    }
+                });
+            }
+            
+            // Search Input Animation
+            const searchInput = document.querySelector('.blog-search-input');
+            if (searchInput) {
+                searchInput.addEventListener('focus', function() {
+                    this.closest('.blog-search').classList.add('search-focused');
+                });
+                
+                searchInput.addEventListener('blur', function() {
+                    this.closest('.blog-search').classList.remove('search-focused');
+                });
+            }
+            
+        });
+    </script>
 </asp:Content>
