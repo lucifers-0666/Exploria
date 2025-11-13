@@ -75,3 +75,4 @@ D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.csproj.CoreCompileInputs.cache
 D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.csproj.CopyComplete
 D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.dll
 D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.pdb
+D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.csproj.AssemblyReference.cache
