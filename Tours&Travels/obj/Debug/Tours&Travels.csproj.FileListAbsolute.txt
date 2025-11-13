@@ -71,7 +71,6 @@ D:\Exploria\Tours&Travels\bin\CrystalDecisions.ReportAppServer.CommonControls.dl
 D:\Exploria\Tours&Travels\bin\stdole.dll
 D:\Exploria\Tours&Travels\bin\Newtonsoft.Json.xml
 D:\Exploria\Tours&Travels\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.csproj.AssemblyReference.cache
 D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.csproj.CoreCompileInputs.cache
 D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.csproj.CopyComplete
 D:\Exploria\Tours&Travels\obj\Debug\Tours&Travels.dll
