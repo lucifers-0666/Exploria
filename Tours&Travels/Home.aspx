@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <link rel="stylesheet" href="css/UltraModernHero.css?v=1.0" />
 <link rel="stylesheet" href="css/Home.css?v=4.0" />
-<link rel="stylesheet" href="css/DestinationsPremium.css?v=1.0" />
+<link rel="stylesheet" href="css/DestinationsSection.css?v=1.0" />
 <style>
 /* Critical CSS for Ultra-Modern Hero */
 .ultra-modern-hero {
@@ -466,473 +466,133 @@
            PREMIUM DESTINATIONS SECTION - 2025 REDESIGN
            Modern, Glassmorphism, Bento Grid Layout
            ============================================ -->
-      <section id="destinations" class="destinations-premium-section">
-        
-        <!-- Decorative Background Elements -->
-        <div class="dest-bg-decoration dest-circle-1"></div>
-        <div class="dest-bg-decoration dest-circle-2"></div>
-        <div class="dest-bg-decoration dest-blob-1"></div>
-        
-        <div class="destinations-container-premium">
-    
-    <!-- Section Header -->
-    <div class="destinations-header-premium">
-      <h2 class="destinations-title-premium">
-        Explore Our Curated Destinations
-      </h2>
-      <div class="title-underline-animated"></div>
-      <p class="destinations-subtitle-premium">
-        Discover 50+ handpicked destinations across the globe
-      </p>
-    </div>
-
-    <!-- Filter & Sort Bar -->
-    <div class="filter-sort-bar-premium">
-      <div class="filter-chips-container">
-        <button class="filter-chip-premium active" data-filter="all" role="radio" aria-checked="true" tabindex="0">
-          All
-        </button>
-        <button class="filter-chip-premium" data-filter="popular" role="radio" aria-checked="false" tabindex="-1">
-          Popular
-        </button>
-        <button class="filter-chip-premium" data-filter="adventure" role="radio" aria-checked="false" tabindex="-1">
-          Adventure
-        </button>
-        <button class="filter-chip-premium" data-filter="cultural" role="radio" aria-checked="false" tabindex="-1">
-          Cultural
-        </button>
-        <button class="filter-chip-premium" data-filter="beach" role="radio" aria-checked="false" tabindex="-1">
-          Beach
-        </button>
-        <button class="filter-chip-premium" data-filter="mountain" role="radio" aria-checked="false" tabindex="-1">
-          Mountain
-        </button>
-        <button class="filter-chip-premium" data-filter="city" role="radio" aria-checked="false" tabindex="-1">
-          City
-        </button>
-        <button class="filter-chip-premium" data-filter="luxury" role="radio" aria-checked="false" tabindex="-1">
-          Luxury
-        </button>
-      </div>
-      
-      <div class="sort-dropdown-premium">
-        <label for="sortDestinations" class="sort-label">Sort by:</label>
-        <select id="sortDestinations" class="sort-select-premium" aria-label="Sort destinations">
-          <option value="recommended">Recommended</option>
-          <option value="top-rated">Top Rated</option>
-          <option value="price-low">Price: Low → High</option>
-          <option value="price-high">Price: High → Low</option>
-          <option value="alphabetical">A → Z</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Destinations Bento Grid -->
-    <div class="destinations-bento-grid" role="list">
-            
-            <!-- Card 1: Machu Picchu - FEATURED (Spans 2 columns) -->
-            <article class="dest-card-premium dest-card-featured" data-category="adventure popular" data-price="1299" data-rating="4.8" role="listitem">
-              <div class="dest-card-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1549144511-f099e773c147?w=800&q=80" 
-                  alt="Machu Picchu ancient Incan ruins with misty mountain backdrop"
-                  class="dest-card-image"
-                  loading="eager"
-                />
-                <div class="dest-card-gradient"></div>
-                
-                <!-- Trending Badge -->
-                <span class="dest-badge-trending">
-                  <i class="las la-fire"></i> Trending
-                </span>
-                
-                <!-- Wishlist Heart -->
-                <button class="dest-wishlist-btn" aria-label="Add to wishlist" data-destination="machu-picchu">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                  </svg>
-                </button>
-              </div>
-              
-              <!-- Card Content Overlay -->
-              <div class="dest-card-content">
-                <div class="dest-info-top">
-                  <h3 class="dest-name">Machu Picchu</h3>
-                  <p class="dest-location">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
-                  </svg>
-                  Peru, South America
-                </p>
-                </div>
-                
-                <!-- Info Pills -->
-                <div class="dest-info-pills">
-                  <span class="info-pill">
-                    <i class="las la-clock"></i> 7 Days
-                  </span>
-                  <span class="info-pill">
-                    <i class="las la-chart-bar"></i> Moderate
-                  </span>
-                  <span class="info-pill">
-                    <i class="las la-sun"></i> Best: Spring
-                  </span>
-                </div>
-                
-                <!-- Rating & Price -->
-                <div class="dest-meta-row">
-                  <div class="dest-rating">
-                    <div class="rating-stars-inline">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <i class="las la-star"></i>
-                      <i class="las la-star"></i>
-                      <i class="las la-star"></i>
-                      <i class="las la-star"></i>
-                      <i class="las la-star-half-alt"></i>
+      <section id="destinations" class="destinations-section">
+        <div class="destinations-container">
+            <div class="destinations-header">
+                <h2 class="destinations-title">Top Destinations</h2>
+                <p class="destinations-subtitle">Explore our most popular and breathtaking destinations.</p>
+                <div class="destinations-controls">
+                    <div class="filter-chips">
+                        <button class="filter-chip active">All</button>
+                        <button class="filter-chip">Popular</button>
+                        <button class="filter-chip">Featured</button>
+                        <button class="filter-chip">New</button>
                     </div>
-                    <span class="rating-value">4.8</span>
-                    <span class="rating-count">(1,234)</span>
-                  </div>
-                  
-                  <div class="dest-price-tag">
-                    From <strong>$1,299</strong>
-                  </div>
+                    <a href="Destination.aspx" class="view-all-link">View All <i class="las la-arrow-right"></i></a>
                 </div>
-                
-                <!-- Explore Button -->
-                <a href="Destination.aspx?id=machu-picchu" class="dest-explore-btn">
-                  Explore Tours
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </a>
-              </div>
-            </article>
-
-            <!-- Card 2: Kyoto -->
-            <article class="dest-card-premium" data-category="cultural popular" data-price="899" data-rating="4.7" role="listitem">
-              <div class="dest-card-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=800&q=80" 
-                  alt="Kyoto traditional temples with autumn foliage"
-                  class="dest-card-image"
-                  loading="lazy"
-                />
-                <div class="dest-card-gradient"></div>
-                
-                <span class="dest-badge-popular">Popular</span>
-                
-                <button class="dest-wishlist-btn" aria-label="Add to wishlist" data-destination="kyoto">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                  </svg>
-                </button>
-              </div>
-              
-              <div class="dest-card-content">
-                <div class="dest-info-top">
-                  <h3 class="dest-name">Kyoto</h3>
-                  <p class="dest-location">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
-                  </svg>
-                  Japan, Asia
-                </p>
-                </div>
-                
-                <div class="dest-info-pills">
-                  <span class="info-pill"><i class="las la-clock"></i> 5 Days</span>
-                  <span class="info-pill"><i class="las la-chart-bar"></i> Easy</span>
-                  <span class="info-pill"><i class="las la-leaf"></i> Best: Fall</span>
-                </div>
-                
-                <div class="dest-meta-row">
-                  <div class="dest-rating">
-                    <div class="rating-stars-inline">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star-half-alt"></i>
+            </div>
+            <div class="destinations-grid">
+                <!-- Card 1 -->
+                <div class="destination-card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&q=80" alt="Paris" />
+                        <div class="wishlist-icon"><i class="lar la-heart"></i></div>
+                        <div class="image-overlay"></div>
                     </div>
-                    <span class="rating-value">4.7</span>
-                    <span class="rating-count">(892)</span>
-                  </div>
-                  
-                  <div class="dest-price-tag">
-                    From <strong>$899</strong>
-                  </div>
-                </div>
-                
-                <a href="Destination.aspx?id=kyoto" class="dest-explore-btn">
-                  Explore Tours
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                </a>
-              </div>
-            </article>
-
-            <!-- Card 3: Paris -->
-            <article class="dest-card-premium" data-category="city cultural" data-price="1099" data-rating="4.9" role="listitem">
-              <div class="dest-card-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80" 
-                  alt="Paris Eiffel Tower at sunset"
-                  class="dest-card-image"
-                  loading="lazy"
-                />
-                <div class="dest-card-gradient"></div>
-                
-                <button class="dest-wishlist-btn" aria-label="Add to wishlist" data-destination="paris">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                  </svg>
-                </button>
-              </div>
-              
-              <div class="dest-card-content">
-                <div class="dest-info-top">
-                  <h3 class="dest-name">Paris</h3>
-                  <p class="dest-location">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
-                  </svg>
-                  France, Europe
-                </p>
-                </div>
-                
-                <div class="dest-info-pills">
-                  <span class="info-pill"><i class="las la-clock"></i> 4 Days</span>
-                  <span class="info-pill"><i class="las la-chart-bar"></i> Easy</span>
-                  <span class="info-pill"><i class="las la-sun"></i> Best: Summer</span>
-                </div>
-                
-                <div class="dest-meta-row">
-                  <div class="dest-rating">
-                    <div class="rating-stars-inline">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i>
+                    <div class="card-content">
+                        <h3 class="destination-name">Paris, France</h3>
+                        <p class="destination-description">The city of love, lights, and art.</p>
+                        <div class="card-footer">
+                            <div class="rating">
+                                <i class="las la-star"></i> 4.9
+                            </div>
+                            <a href="Destination.aspx?id=paris" class="details-button">View Details</a>
+                        </div>
                     </div>
-                    <span class="rating-value">4.9</span>
-                    <span class="rating-count">(2,156)</span>
-                  </div>
-                  
-                  <div class="dest-price-tag">
-                    From <strong>$1,099</strong>
-                  </div>
                 </div>
-                
-                <a href="Destination.aspx?id=paris" class="dest-explore-btn">
-                  Explore Tours
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                </a>
-              </div>
-            </article>
-
-            <!-- Card 4: Bora Bora - TALL (Spans 2 rows) -->
-            <article class="dest-card-premium dest-card-tall" data-category="beach luxury" data-price="2499" data-rating="5.0" role="listitem">
-              <div class="dest-card-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" 
-                  alt="Bora Bora overwater bungalows"
-                  class="dest-card-image"
-                  loading="lazy"
-                />
-                <div class="dest-card-gradient"></div>
-                
-                <button class="dest-wishlist-btn" aria-label="Add to wishlist" data-destination="bora-bora">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                  </svg>
-                </button>
-              </div>
-              
-              <div class="dest-card-content">
-                <div class="dest-info-top">
-                  <h3 class="dest-name">Bora Bora</h3>
-                  <p class="dest-location">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
-                  </svg>
-                  French Polynesia
-                </p>
-                </div>
-                
-                <div class="dest-info-pills">
-                  <span class="info-pill"><i class="las la-clock"></i> 6 Days</span>
-                  <span class="info-pill"><i class="las la-gem"></i> Luxury</span>
-                  <span class="info-pill"><i class="las la-sun"></i> Year-round</span>
-                </div>
-                
-                <div class="dest-meta-row">
-                  <div class="dest-rating">
-                    <div class="rating-stars-inline">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i>
+                <!-- Card 2 -->
+                <div class="destination-card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1513415564515-763d91423bdd?w=500&q=80" alt="Santorini" />
+                        <div class="wishlist-icon"><i class="lar la-heart"></i></div>
+                        <div class="image-overlay"></div>
                     </div>
-                    <span class="rating-value">5.0</span>
-                    <span class="rating-count">(543)</span>
-                  </div>
-                  
-                  <div class="dest-price-tag">
-                    From <strong>$2,499</strong>
-                  </div>
-                </div>
-                
-                <a href="Destination.aspx?id=bora-bora" class="dest-explore-btn">
-                  Explore Tours
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                </a>
-              </div>
-            </article>
-
-            <!-- Card 5: Santorini -->
-            <article class="dest-card-premium" data-category="beach cultural" data-price="1399" data-rating="4.8" role="listitem">
-              <div class="dest-card-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1513415564515-763d91423bdd?w=800&q=80" 
-                  alt="Santorini white buildings"
-                  class="dest-card-image"
-                  loading="lazy"
-                />
-                <div class="dest-card-gradient"></div>
-                
-                <button class="dest-wishlist-btn" aria-label="Add to wishlist" data-destination="santorini">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                  </svg>
-                </button>
-              </div>
-              
-              <div class="dest-card-content">
-                <div class="dest-info-top">
-                  <h3 class="dest-name">Santorini</h3>
-                  <p class="dest-location">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
-                  </svg>
-                  Greece, Europe
-                </p>
-                </div>
-                
-                <div class="dest-info-pills">
-                  <span class="info-pill"><i class="las la-clock"></i> 5 Days</span>
-                  <span class="info-pill"><i class="las la-heart"></i> Romantic</span>
-                  <span class="info-pill"><i class="las la-sun"></i> Best: Summer</span>
-                </div>
-                
-                <div class="dest-meta-row">
-                  <div class="dest-rating">
-                    <div class="rating-stars-inline">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star-half-alt"></i>
+                    <div class="card-content">
+                        <h3 class="destination-name">Santorini, Greece</h3>
+                        <p class="destination-description">Iconic sunsets and whitewashed villages.</p>
+                        <div class="card-footer">
+                            <div class="rating">
+                                <i class="las la-star"></i> 4.9
+                            </div>
+                            <a href="Destination.aspx?id=santorini" class="details-button">View Details</a>
+                        </div>
                     </div>
-                    <span class="rating-value">4.8</span>
-                    <span class="rating-count">(1,678)</span>
-                  </div>
-                  
-                  <div class="dest-price-tag">
-                    From <strong>$1,399</strong>
-                  </div>
                 </div>
-                
-                <a href="Destination.aspx?id=santorini" class="dest-explore-btn">
-                  Explore Tours
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                </a>
-              </div>
-            </article>
-
-            <!-- Card 6: Dubai -->
-            <article class="dest-card-premium" data-category="city luxury" data-price="1599" data-rating="4.6" role="listitem">
-              <div class="dest-card-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=800&q=80" 
-                  alt="Dubai skyline with Burj Khalifa"
-                  class="dest-card-image"
-                  loading="lazy"
-                />
-                <div class="dest-card-gradient"></div>
-                
-                <span class="dest-badge-popular">Popular</span>
-                
-                <button class="dest-wishlist-btn" aria-label="Add to wishlist" data-destination="dubai">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
-                  </svg>
-                </button>
-              </div>
-              
-              <div class="dest-card-content">
-                <div class="dest-info-top">
-                  <h3 class="dest-name">Dubai</h3>
-                  <p class="dest-location">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
-                  </svg>
-                  United Arab Emirates
-                </p>
-                </div>
-                
-                <div class="dest-info-pills">
-                  <span class="info-pill"><i class="las la-clock"></i> 4 Days</span>
-                  <span class="info-pill"><i class="las la-gem"></i> Luxury</span>
-                  <span class="info-pill"><i class="las la-sun"></i> Year-round</span>
-                </div>
-                
-                <div class="dest-meta-row">
-                  <div class="dest-rating">
-                    <div class="rating-stars-inline">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                      <i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star"></i><i class="las la-star-half-alt"></i>
+                <!-- Card 3 -->
+                <div class="destination-card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1549144511-f099e773c147?w=500&q=80" alt="Machu Picchu" />
+                        <div class="wishlist-icon active"><i class="las la-heart"></i></div>
+                        <div class="image-overlay"></div>
                     </div>
-                    <span class="rating-value">4.6</span>
-                    <span class="rating-count">(987)</span>
-                  </div>
-                  
-                  <div class="dest-price-tag">
-                    From <strong>$1,599</strong>
-                  </div>
+                    <div class="card-content">
+                        <h3 class="destination-name">Machu Picchu, Peru</h3>
+                        <p class="destination-description">Ancient Incan city high in the Andes.</p>
+                        <div class="card-footer">
+                            <div class="rating">
+                                <i class="las la-star"></i> 4.8
+                            </div>
+                            <a href="Destination.aspx?id=machu-picchu" class="details-button">View Details</a>
+                        </div>
+                    </div>
                 </div>
-                
-                <a href="Destination.aspx?id=dubai" class="dest-explore-btn">
-                  Explore Tours
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
-                </a>
-              </div>
-            </article>
-
-          </div>
-
-          <!-- View All Destinations Button -->
-          <div class="dest-view-all-container">
-            <a href="Destination.aspx" class="dest-view-all-btn">
-              <span>View All Destinations</span>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </a>
-          </div>
-
+                <!-- Card 4 -->
+                <div class="destination-card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=500&q=80" alt="Kyoto" />
+                        <div class="wishlist-icon"><i class="lar la-heart"></i></div>
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="destination-name">Kyoto, Japan</h3>
+                        <p class="destination-description">Temples, gardens, and traditional culture.</p>
+                        <div class="card-footer">
+                            <div class="rating">
+                                <i class="las la-star"></i> 4.8
+                            </div>
+                            <a href="Destination.aspx?id=kyoto" class="details-button">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="destination-card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80" alt="Bora Bora" />
+                        <div class="wishlist-icon"><i class="lar la-heart"></i></div>
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="destination-name">Bora Bora</h3>
+                        <p class="destination-description">Luxury overwater bungalows and turquoise waters.</p>
+                        <div class="card-footer">
+                            <div class="rating">
+                                <i class="las la-star"></i> 5.0
+                            </div>
+                            <a href="Destination.aspx?id=bora-bora" class="details-button">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="destination-card">
+                    <div class="card-image-container">
+                        <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=500&q=80" alt="Dubai" />
+                        <div class="wishlist-icon"><i class="lar la-heart"></i></div>
+                        <div class="image-overlay"></div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="destination-name">Dubai, UAE</h3>
+                        <p class="destination-description">Futuristic city with a vibrant culture.</p>
+                        <div class="card-footer">
+                            <div class="rating">
+                                <i class="las la-star"></i> 4.7
+                            </div>
+                            <a href="Destination.aspx?id=dubai" class="details-button">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </section>
-
-      <!-- Destinations Premium JavaScript -->
-      <script src="js/DestinationsPremium.js"></script>
+    </section>
 
       <!-- Journey Planning / Features Section -->
       <section id="journey-planning" class="journey-features-section">

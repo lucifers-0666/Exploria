@@ -1,879 +1,306 @@
 /* ============================================
-   DESTINATIONS GRID SECTION - 2025 REDESIGN
-   Critical Fixes Applied
+   DESTINATIONS SECTION - MODERN DESIGN
    ============================================ */
 
-/* Section Container */
-.destinations-grid-section {
+/* --- Base Variables --- */
+:root {
+    --dest-primary-color: #1d5e33; /* Deep Forest Green */
+    --dest-secondary-color: #E5CBAF; /* Soft Gold */
+    --dest-text-dark: #2c3e50; /* Dark Slate */
+    --dest-text-light: #f8f9fa; /* Off-White */
+    --dest-background-light: #fdfdfd;
+    --dest-background-grey: #f8f9fa;
+    --dest-border-color: #e0e0e0;
+    --dest-shadow-color: rgba(44, 62, 80, 0.15);
+    --dest-font-primary: 'Poppins', sans-serif;
+    --dest-font-secondary: 'Lora', serif;
+}
+
+/* --- Section Styling --- */
+.destinations-section {
     padding: 80px 0;
-    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-    position: relative;
+    background-color: var(--dest-background-light);
+    font-family: var(--dest-font-primary);
 }
 
 .destinations-container {
-    max-width: 1280px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 24px;
 }
 
-/* ============================================
-   SECTION HEADER - ENHANCED
-   ============================================ */
+/* --- Section Header --- */
 .destinations-header {
     text-align: center;
-    margin-bottom: 56px;
-    animation: fadeInUp 800ms ease-out;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    margin-bottom: 50px;
 }
 
 .destinations-title {
-    font-size: 48px;
+    font-family: var(--dest-font-secondary);
+    font-size: 42px;
     font-weight: 700;
-    color: #1d5e33;
-    margin-bottom: 16px;
-    letter-spacing: -0.5px;
-    line-height: 1.2;
-    text-align: center;
-}
-
-/* Animated Underline */
-.title-underline {
-    width: 120px;
-    height: 4px;
-    background: linear-gradient(90deg, #E5CBAF 0%, #c9a877 100%);
-    margin: 0 auto 20px;
-    border-radius: 2px;
-    animation: drawUnderlineGrow 600ms cubic-bezier(0.34, 1.56, 0.64, 1) 200ms backwards;
-}
-
-@keyframes drawUnderlineGrow {
-    from {
-        width: 0;
-        opacity: 0;
-    }
-    to {
-        width: 120px;
-        opacity: 1;
-    }
+    color: var(--dest-primary-color);
+    margin-bottom: 8px;
 }
 
 .destinations-subtitle {
     font-size: 18px;
-    color: rgba(22, 68, 38, 0.75);
-    max-width: 600px;
-    margin: 20px auto 0;
-    line-height: 1.6;
-    font-weight: 400;
-    text-align: center;
+    color: var(--dest-text-dark);
+    opacity: 0.8;
 }
 
-/* ============================================
-   FILTER & SORT BAR - ENHANCED
-   ============================================ */
+/* --- Filter & Sort Bar --- */
 .filter-sort-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 48px 0 40px;
-    padding: 0 24px;
+    margin-bottom: 40px;
     flex-wrap: wrap;
-    gap: 12px;
-    animation: slideInLeft 400ms ease-out 300ms backwards;
+    gap: 20px;
 }
 
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.filter-chips {
+.filter-pills {
     display: flex;
-    gap: 12px;
     flex-wrap: wrap;
+    gap: 10px;
 }
 
-/* Filter Chip Styles */
-.filter-chip {
-    padding: 10px 24px;
-    border-radius: 25px;
-    border: 2px solid rgba(29, 94, 51, 0.2);
-    background: white;
-    color: #164426;
+.filter-pill {
+    padding: 10px 20px;
+    border: 1px solid var(--dest-border-color);
+    border-radius: 20px;
+    background-color: #fff;
+    color: var(--dest-text-dark);
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    text-transform: capitalize;
-    position: relative;
-    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
-.filter-chip::before {
-    content: '';
+.filter-pill:hover {
+    background-color: var(--dest-background-grey);
+    transform: translateY(-2px);
+}
+
+.filter-pill.active {
+    background-color: var(--dest-primary-color);
+    color: var(--dest-text-light);
+    border-color: var(--dest-primary-color);
+}
+
+.sort-by {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-by label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dest-text-dark);
+}
+
+.sort-by select {
+    padding: 8px 12px;
+    border: 1px solid var(--dest-border-color);
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+/* --- Destinations Grid --- */
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* --- Destination Card --- */
+.destination-card {
+    background-color: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--dest-shadow-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destination-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px var(--dest-shadow-color);
+}
+
+/* Card Image */
+.card-image-wrapper {
+    position: relative;
+    height: 220px;
+}
+
+.card-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-gradient-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(232, 244, 237, 0.35);
-    transform: translateX(-100%);
-    transition: transform 300ms ease;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
 }
 
-.filter-chip:hover::before {
-    transform: translateX(0);
-}
-
-.filter-chip:hover {
-    background: rgba(232, 244, 237, 0.35);
-    border-color: rgba(29, 94, 51, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(29, 94, 51, 0.08);
-}
-
-.filter-chip.active {
-    background: #E5CBAF;
-    border-color: #E5CBAF;
-    color: #1d5e33;
+.card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 12px;
     font-weight: 600;
-    box-shadow: 0 4px 12px rgba(229, 203, 175, 0.3);
+    color: #fff;
 }
 
-/* Sort Dropdown */
-.sort-dropdown {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
+.card-badge.trending { background-color: #e74c3c; }
+.card-badge.popular { background-color: #3498db; }
 
-.sort-dropdown label {
-    font-size: 14px;
-    color: #164426;
-    font-weight: 500;
-}
-
-.sort-button,
-.sort-dropdown select {
-    padding: 10px 36px 10px 12px;
-    background: white;
-    border: 2px solid rgba(232, 244, 237, 0.5);
-    border-radius: 8px;
-    color: #1d5e33;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 300ms ease;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231d5e33' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-}
-
-.sort-button:hover,
-.sort-dropdown select:hover {
-    border-color: #E5CBAF;
-    box-shadow: 0 2px 8px rgba(229, 203, 175, 0.2);
-}
-
-/* ============================================
-   DESTINATIONS GRID - MASONRY LAYOUT
-   ============================================ */
-.destinations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 24px;
-    padding: 0 24px;
-    max-width: 1280px;
-    margin: 0 auto 48px;
-}
-
-/* Featured Card - Taller and spans 2 columns */
-.destination-card.featured {
-    grid-column: span 2;
-    min-height: 480px;
-}
-
-/* ============================================
-   DESTINATION CARD - REDESIGNED
-   ============================================ */
-.destination-card {
-    position: relative;
-    border-radius: 20px;
-    overflow: hidden;
-    background: white;
-    box-shadow: 0 8px 24px rgba(29, 94, 51, 0.12);
-    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
-    min-height: 380px;
-    aspect-ratio: 4/3;
-    opacity: 0;
-    transform: translateY(40px);
-    animation: cardEnter 600ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-}
-
-/* Staggered animation */
-.destination-card:nth-child(1) { animation-delay: 400ms; }
-.destination-card:nth-child(2) { animation-delay: 500ms; }
-.destination-card:nth-child(3) { animation-delay: 600ms; }
-.destination-card:nth-child(4) { animation-delay: 700ms; }
-.destination-card:nth-child(5) { animation-delay: 800ms; }
-.destination-card:nth-child(6) { animation-delay: 900ms; }
-.destination-card:nth-child(n+7) { animation-delay: 1000ms; }
-
-@keyframes cardEnter {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.destination-card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 16px 48px rgba(29, 94, 51, 0.25);
-}
-
-/* ============================================
-   IMAGE CONTAINER - FIXED: NO BLUR
-   ============================================ */
-.card-image-container {
-    position: relative;
-    height: 100%;
-    overflow: hidden;
-}
-
-.card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 600ms ease-out;
-    filter: none !important;
-    backdrop-filter: none !important;
-    background-size: cover;
-}
-
-.destination-card:hover .card-image {
-    transform: scale(1.1);
-}
-
-/* Gradient Overlay - FIXED: Bottom 40% only, lighter gradient */
-.card-gradient-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 40%;
-    background: linear-gradient(
-        to top,
-        rgba(29, 94, 51, 0.75) 0%,
-        rgba(29, 94, 51, 0.4) 30%,
-        transparent 100%
-    );
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Remove all backdrop filters */
-.card-gradient-overlay,
-.card-image-container::before,
-.card-image-container::after {
-    backdrop-filter: none !important;
-}
-
-/* ============================================
-   NEW BADGE - Top-Right
-   ============================================ */
-.new-badge {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: linear-gradient(135deg, #ff4757, #ff6b81);
-    color: white;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 6px 16px rgba(255, 71, 87, 0.5);
-    z-index: 2;
-    animation: newBadgePulse 2s ease-in-out infinite;
-}
-
-@keyframes newBadgePulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.08);
-    }
-}
-
-/* ============================================
-   WISHLIST HEART ICON - Top-Left
-   ============================================ */
-.wishlist-icon {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 2;
-    transition: all 300ms ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.wishlist-icon i {
-    font-size: 20px;
-    color: #1d5e33;
-    transition: all 300ms ease;
-}
-
-.wishlist-icon:hover {
-    background: white;
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.wishlist-icon:hover i {
-    transform: scale(1.15);
-}
-
-/* Active/Saved state */
-.wishlist-icon.active {
-    background: white;
-    animation: wishlistPop 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes wishlistPop {
-    0% {
-        transform: scale(1);
-    }
-    25% {
-        transform: scale(0.8);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-    75% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.wishlist-icon.active i {
-    color: #ff4757;
-}
-
-@keyframes wishlistPulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
-    }
-    50% {
-        transform: scale(1.1);
-        box-shadow: 0 0 0 8px rgba(255, 71, 87, 0);
-    }
-}
-
-.wishlist-icon.pulse {
-    animation: wishlistPulse 0.6s ease-in-out;
-}
-
-/* ============================================
-   INFO PILLS ROW - Bottom content area
-   ============================================ */
-.info-badges {
-    position: absolute;
-    bottom: 80px;
-    left: 24px;
-    display: flex;
-    gap: 10px;
-    z-index: 2;
-    flex-wrap: wrap;
-    margin-bottom: 12px;
-}
-
-.info-badge {
-    padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(12px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 16px;
-    font-size: 12px;
-    font-weight: 500;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
-.info-badge i {
-    font-size: 16px;
-}
-
-/* ============================================
-   BOTTOM CONTENT AREA
-   ============================================ */
+/* Card Content */
 .card-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 24px;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    padding: 20px;
 }
 
-.card-header {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 0;
+.card-info-top {
+    margin-bottom: 15px;
 }
 
-.destination-name {
-    font-size: 32px;
-    font-weight: 700;
-    color: white;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    line-height: 1.2;
-    margin-bottom: 4px;
-}
-
-.destination-location {
-    font-size: 14px;
-    color: #E8F4ED;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.destination-location i {
-    font-size: 16px;
-}
-
-/* ============================================
-   PRICE TAG - Bottom-Right
-   ============================================ */
-.price-tag {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    background: #E5CBAF;
-    color: #1d5e33;
-    padding: 12px 24px;
-    border-radius: 24px;
-    font-size: 16px;
-    font-weight: 700;
-    box-shadow: 0 6px 20px rgba(229, 203, 175, 0.5);
-    z-index: 2;
-    transition: all 300ms ease;
-    white-space: nowrap;
-}
-
-.destination-card:hover .price-tag {
-    transform: scale(1.05);
-    box-shadow: 0 8px 24px rgba(229, 203, 175, 0.6);
-    animation: pricePulse 400ms ease-in-out;
-}
-
-@keyframes pricePulse {
-    0%, 100% {
-        transform: scale(1.05);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-}
-
-/* ============================================
-   VIEW DETAILS BUTTON - Appears on Hover
-   ============================================ */
-.explore-button {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    padding: 12px 24px;
-    background: white;
-    color: #1d5e33;
-    border: none;
-    border-radius: 24px;
-    font-size: 14px;
+.card-title {
+    font-family: var(--dest-font-secondary);
+    font-size: 22px;
     font-weight: 600;
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 400ms ease-out 100ms;
-    z-index: 2;
+    color: var(--dest-text-dark);
+    margin: 0 0 5px 0;
+}
+
+.card-location {
+    font-size: 14px;
+    color: var(--dest-text-dark);
+    opacity: 0.7;
+    margin: 0;
+}
+
+.card-info-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.info-pill {
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-    text-decoration: none;
+    gap: 5px;
+    background-color: var(--dest-background-grey);
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--dest-text-dark);
 }
 
-.destination-card:hover .explore-button {
-    opacity: 1;
-    transform: translateY(0);
+.info-pill i {
+    font-size: 14px;
+    color: var(--dest-primary-color);
 }
 
-.explore-button:hover {
-    background: #E5CBAF;
-    color: #1d5e33;
-    transform: translateX(4px);
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--dest-border-color);
+    padding-top: 15px;
 }
 
-.explore-button i {
-    font-size: 16px;
-    transition: transform 300ms ease;
+.card-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
 }
 
-.explore-button:hover i {
-    transform: translateX(4px);
+.card-rating i {
+    color: #f39c12; /* Gold color for stars */
 }
 
-/* ============================================
-   LOAD MORE SECTION
-   ============================================ */
-.load-more-container {
+.card-price {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dest-primary-color);
+}
+
+/* --- View All Button --- */
+.view-all-container {
     text-align: center;
-    margin-top: 64px;
-    display: flex;
-    justify-content: center;
+    margin-top: 50px;
 }
 
-.load-more-button {
-    padding: 16px 40px;
-    background: transparent;
-    border: 2px solid #1d5e33;
-    border-radius: 30px;
-    color: #1d5e33;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+.view-all-button {
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    padding: 12px 25px;
+    background-color: var(--dest-primary-color);
+    color: var(--dest-text-light);
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
 }
 
-.load-more-button:hover {
-    background: #1d5e33;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(29, 94, 51, 0.25);
+.view-all-button:hover {
+    background-color: #164426; /* Darker green */
 }
 
-.load-more-button:active {
-    transform: scale(0.97);
+.view-all-button i {
+    transition: transform 0.3s ease;
 }
 
-.load-more-button.loading {
-    opacity: 0.6;
-    pointer-events: none;
+.view-all-button:hover i {
+    transform: translateX(5px);
 }
 
-.load-more-button i {
-    font-size: 18px;
-    transition: transform 300ms ease;
-}
-
-.load-more-button:hover i {
-    transform: translateX(6px);
-}
-
-.load-more-button.loading i {
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* ============================================
-   RESPONSIVE DESIGN
-   ============================================ */
-
-/* Tablet (768px - 1199px) */
-@media (max-width: 1199px) {
-    .destinations-title {
-        font-size: 42px;
-    }
-
-    .destinations-subtitle {
-        font-size: 17px;
-    }
-
+/* --- Responsive Design --- */
+@media (max-width: 1200px) {
     .destinations-grid {
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 24px;
-    }
-
-    .destination-card.featured {
-        grid-column: span 1;
-        min-height: 400px;
-    }
-
-    .destination-card {
-        min-height: 360px;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     }
 }
 
-@media (max-width: 1024px) {
-    .destinations-grid {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 0 16px;
-    }
-
-    .filter-sort-bar {
-        padding: 0 16px;
-    }
-
-    .destinations-title {
-        font-size: 36px;
-    }
-}
-
-/* Mobile (<768px) */
-@media (max-width: 768px) {
-    .destinations-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 0 16px;
-    }
-
-    .destination-card {
-        min-height: 340px;
-    }
-
-    .destinations-title {
-        font-size: 28px;
-    }
-
-    .destinations-subtitle {
-        font-size: 16px;
-    }
-
+@media (max-width: 992px) {
     .filter-sort-bar {
         flex-direction: column;
         align-items: flex-start;
-        gap: 16px;
-        padding: 0 16px;
-    }
-
-    .filter-chips {
-        width: 100%;
-        overflow-x: auto;
-        padding-bottom: 8px;
-        scrollbar-width: thin;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .filter-chip {
-        scroll-snap-align: start;
-        flex-shrink: 0;
-    }
-
-    .filter-chips::-webkit-scrollbar {
-        height: 4px;
-    }
-
-    .filter-chips::-webkit-scrollbar-thumb {
-        background: #E5CBAF;
-        border-radius: 2px;
-    }
-
-    .sort-dropdown {
-        width: 100%;
-    }
-
-    .sort-dropdown select,
-    .sort-button {
-        width: 100%;
-    }
-
-    .card-content {
-        padding: 20px;
-    }
-
-    .destination-name {
-        font-size: 22px;
-    }
-
-    .destination-location {
-        font-size: 13px;
-    }
-
-    .price-tag {
-        font-size: 14px;
-        padding: 8px 16px;
-        bottom: 20px;
-        right: 20px;
-    }
-
-    /* Make View Details always visible on mobile */
-    .explore-button {
-        opacity: 1;
-        transform: translateY(0);
-        position: static;
-        margin-top: 12px;
-    }
-
-    .load-more-container {
-        margin-top: 40px;
     }
 }
 
-/* Extra Small Mobile (<480px) */
-@media (max-width: 480px) {
-    .destinations-container {
-        padding: 0 12px;
+@media (max-width: 768px) {
+    .destinations-section {
+        padding: 60px 0;
     }
-
     .destinations-title {
-        font-size: 24px;
+        font-size: 36px;
     }
-
-    .destinations-subtitle {
-        font-size: 15px;
-    }
-
     .destinations-grid {
-        padding: 0 12px;
-        gap: 16px;
-    }
-
-    .destination-card {
-        min-height: 320px;
-    }
-
-    .destination-name {
-        font-size: 20px;
-    }
-
-    .destination-location {
-        font-size: 12px;
-    }
-
-    .card-content {
-        padding: 16px;
-    }
-
-    .info-badges {
-        left: 16px;
-        bottom: 70px;
-    }
-
-    .info-badge {
-        padding: 4px 10px;
-        font-size: 11px;
-    }
-
-    .explore-button {
-        font-size: 13px;
-        padding: 10px 20px;
-    }
-
-    .price-tag {
-        font-size: 13px;
-        padding: 6px 14px;
-        bottom: 16px;
-        right: 16px;
-    }
-
-    .wishlist-icon {
-        width: 36px;
-        height: 36px;
-        top: 12px;
-        left: 12px;
-    }
-
-    .wishlist-icon i {
-        font-size: 18px;
-    }
-
-    .filter-chip {
-        padding: 8px 20px;
-        font-size: 13px;
-    }
-
-    .load-more-button {
-        padding: 14px 32px;
-        font-size: 14px;
+        grid-template-columns: 1fr;
     }
 }
 
-/* ============================================
-   ACCESSIBILITY
-   ============================================ */
-.destination-card:focus {
-    outline: 2px solid #E5CBAF;
-    outline-offset: 4px;
-}
-
-.filter-chip:focus,
-.sort-button:focus,
-.explore-button:focus,
-.load-more-button:focus,
-.wishlist-icon:focus {
-    outline: 2px solid #E5CBAF;
-    outline-offset: 2px;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    .destination-card {
-        border: 2px solid #1d5e33;
+@media (max-width: 480px) {
+    .destinations-title {
+        font-size: 30px;
     }
-
-    .filter-chip {
-        border-width: 3px;
+    .destinations-subtitle {
+        font-size: 16px;
     }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-    .destination-card,
-    .filter-chip,
-    .explore-button,
-    .load-more-button,
-    .wishlist-icon {
-        animation: none;
-        transition: none;
+    .filter-pills {
+        justify-content: center;
     }
 }
