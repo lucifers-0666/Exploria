@@ -801,6 +801,231 @@ CREATE TABLE Contacts (
 
 </details>
 
+### Chen Notation ER Diagram (Conceptual)
+
+The diagram below models the core business entities and relationships in Chen notation. Relationship diamonds (BOOKS, REVIEWS, HAS, HAS_TOKEN) carry their own attributes where the association is an associative entity (e.g., Bookings, Reviews).
+
+```mermaid
+flowchart TB
+  %% Styles
+  classDef entity fill:#f6f8fa,stroke:#333,stroke-width:1px,color:#111;
+  classDef rel fill:#fff3cd,stroke:#b58900,stroke-width:1px,color:#111;
+  classDef attr fill:#e8f0fe,stroke:#3b82f6,stroke-width:1px,color:#111;
+
+  %% Entities
+  USERS[Users]:::entity
+  DEST[Destinations]:::entity
+  BLOGPOSTS[BlogPosts]:::entity
+  BLOGCOMMENTS[BlogComments]:::entity
+  NEWSLETTER[NewsletterSubscriptions]:::entity
+  TOKENS[EmailVerificationTokens]:::entity
+  CONTACTS[Contacts]:::entity
+
+  %% Relationship diamonds
+  BOOKS{BOOKS}:::rel
+  REVIEWS{REVIEWS}:::rel
+  HAS_COMMENT{HAS}:::rel
+  HAS_TOKEN{HAS_TOKEN}:::rel
+
+  %% Users attributes
+  IdU(Id PK):::attr --> USERS
+  EmailU(Email UNIQUE):::attr --> USERS
+  FirstName(FirstName):::attr --> USERS
+  LastName(LastName):::attr --> USERS
+  PhoneU(Phone):::attr --> USERS
+  Role(Role):::attr --> USERS
+  EmailVerified(EmailVerified BIT):::attr --> USERS
+
+  %% Destinations attributes
+  IdD(Id PK):::attr --> DEST
+  Name(Name):::attr --> DEST
+  Price(Price DECIMAL):::attr --> DEST
+  Category(Category):::attr --> DEST
+  Region(Region):::attr --> DEST
+  DateAdded(DateAdded):::attr --> DEST
+
+  %% BOOKS (associative relationship) attributes
+  IdBkg(BookingId PK):::attr --> BOOKS
+  TravelDate(TravelDate):::attr --> BOOKS
+  Adults(Adults):::attr --> BOOKS
+  Children(Children):::attr --> BOOKS
+  TotalAmount(TotalAmount DECIMAL):::attr --> BOOKS
+  Status(Status):::attr --> BOOKS
+  DateOfBooking(DateOfBooking):::attr --> BOOKS
+
+  %% REVIEWS (associative relationship) attributes
+  IdRev(ReviewId PK):::attr --> REVIEWS
+  Rating(Rating 1-5):::attr --> REVIEWS
+  ReviewText(Review):::attr --> REVIEWS
+  ReviewDate(Date):::attr --> REVIEWS
+  IsApproved(IsApproved BIT):::attr --> REVIEWS
+
+  %% Blog entities attributes (key fields only for clarity)
+  IdBP(BlogId PK):::attr --> BLOGPOSTS
+  Title(Title):::attr --> BLOGPOSTS
+  PublishedDate(PublishedDate):::attr --> BLOGPOSTS
+
+  IdBC(CommentId PK):::attr --> BLOGCOMMENTS
+  CommenterName(CommenterName):::attr --> BLOGCOMMENTS
+  CommentDate(CommentDate):::attr --> BLOGCOMMENTS
+  IsApprovedC(IsApproved BIT):::attr --> BLOGCOMMENTS
+
+  %% Tokens & Contacts attributes
+  IdTok(TokenId PK):::attr --> TOKENS
+  TokenValue(Token UNIQUE):::attr --> TOKENS
+  TokenExpiry(ExpiryDate):::attr --> TOKENS
+  TokenUsed(IsUsed BIT):::attr --> TOKENS
+
+  IdC(ContactId PK):::attr --> CONTACTS
+  ContactEmail(Email):::attr --> CONTACTS
+  DateSubmitted(DateSubmitted):::attr --> CONTACTS
+
+  %% Chen cardinalities (annotated as edge labels)
+  USERS -- "1" --- BOOKS
+  BOOKS --- "N" -- USERS
+
+  DEST -- "1" --- BOOKS
+  BOOKS --- "N" -- DEST
+
+  USERS -- "1" --- REVIEWS
+  REVIEWS --- "N" -- USERS
+
+  DEST -- "1" --- REVIEWS
+  REVIEWS --- "N" -- DEST
+
+  BLOGPOSTS -- "1" --- HAS_COMMENT
+  HAS_COMMENT --- "N" -- BLOGCOMMENTS
+
+  USERS -- "1" --- HAS_TOKEN
+  HAS_TOKEN --- "N" -- TOKENS
+
+  %% Independent entities (no identifying relationships)
+  %% NEWSLETTER and CONTACTS are standalone in the conceptual model
+```
+
+Notes:
+- Bookings and Reviews are modeled as associative relationships (diamonds) with their own attributes, connecting Users and Destinations.
+- BlogComments is an entity related 1:N from BlogPosts via HAS.
+- NewsletterSubscriptions and Contacts are standalone conceptual entities without identifying relationships.
+
+### Logical ER (Crow’s Foot) – Detailed
+
+For a compact, attribute-rich view, here is the logical ER (crow’s-foot) diagram that aligns with the 9-table schema described above.
+
+```mermaid
+erDiagram
+  USERS {
+    INT Id PK
+    NVARCHAR FirstName
+    NVARCHAR LastName
+    NVARCHAR Email UNIQUE
+    NVARCHAR Password
+    NVARCHAR Phone
+    NVARCHAR Country
+    NVARCHAR State
+    NVARCHAR City
+    NVARCHAR Image
+    NVARCHAR Role
+    BIT EmailVerified
+  }
+
+  DESTINATIONS {
+    INT Id PK
+    NVARCHAR Name
+    NVARCHAR Tagline
+    NVARCHAR Duration
+    NVARCHAR GroupSize
+    NVARCHAR Region
+    NVARCHAR Description
+    NVARCHAR Included
+    DECIMAL Price
+    NVARCHAR Category
+    NVARCHAR MainImage
+    NVARCHAR Image
+    DATETIME DateAdded
+  }
+
+  BOOKINGS {
+    INT BookingId PK
+    INT UserId FK
+    INT DestinationId FK
+    DATETIME TravelDate
+    INT Adults
+    INT Children
+    DECIMAL TotalAmount
+    NVARCHAR Status
+    DATETIME DateOfBooking
+  }
+
+  DESTINATIONREVIEWS {
+    INT Id PK
+    INT DestinationId FK
+    INT UserId FK
+    INT Rating
+    NVARCHAR Review
+    DATETIME Date
+    BIT IsApproved
+  }
+
+  BLOGPOSTS {
+    INT Id PK
+    NVARCHAR Title
+    NVARCHAR Content
+    NVARCHAR Excerpt
+    NVARCHAR Category
+    NVARCHAR Author
+    NVARCHAR ImageUrl
+    DATETIME PublishedDate
+    INT ViewCount
+    BIT IsFeatured
+    BIT IsPublished
+    NVARCHAR Tags
+  }
+
+  BLOGCOMMENTS {
+    INT Id PK
+    INT BlogId FK
+    NVARCHAR CommenterName
+    NVARCHAR CommenterEmail
+    NVARCHAR CommentText
+    DATETIME CommentDate
+    BIT IsApproved
+  }
+
+  NEWSLETTERSUBSCRIPTIONS {
+    INT Id PK
+    NVARCHAR Email UNIQUE
+    DATETIME SubscribedDate
+    BIT IsActive
+  }
+
+  EMAILVERIFICATIONTOKENS {
+    INT Id PK
+    INT UserId FK
+    NVARCHAR Email
+    NVARCHAR Token UNIQUE
+    DATETIME CreatedDate
+    DATETIME ExpiryDate
+    BIT IsUsed
+  }
+
+  CONTACTS {
+    INT Id PK
+    NVARCHAR Name
+    NVARCHAR Email
+    NVARCHAR Subject
+    NVARCHAR Message
+    DATETIME DateSubmitted
+  }
+
+  USERS ||--o{ BOOKINGS : makes
+  DESTINATIONS ||--o{ BOOKINGS : for
+  USERS ||--o{ DESTINATIONREVIEWS : writes
+  DESTINATIONS ||--o{ DESTINATIONREVIEWS : receives
+  BLOGPOSTS ||--o{ BLOGCOMMENTS : has
+  USERS ||--o{ EMAILVERIFICATIONTOKENS : has
+```
+
 ---
 
 ## 📁 Project Structure

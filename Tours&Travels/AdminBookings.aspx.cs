@@ -10,6 +10,34 @@ namespace Tours_Travels
     {
         SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["constr"].ConnectionString);
 
+        // Utility: check if a column exists in a given table (for handling schema variations)
+        private bool ColumnExists(SqlConnection connection, string tableName, string columnName)
+        {
+            const string sql = @"SELECT 1 
+                                  FROM INFORMATION_SCHEMA.COLUMNS 
+                                  WHERE TABLE_NAME = @Table AND COLUMN_NAME = @Column";
+
+            using (SqlCommand cmd = new SqlCommand(sql, connection))
+            {
+                cmd.Parameters.AddWithValue("@Table", tableName);
+                cmd.Parameters.AddWithValue("@Column", columnName);
+
+                bool closeAfter = false;
+                if (connection.State != ConnectionState.Open)
+                {
+                    connection.Open();
+                    closeAfter = true;
+                }
+
+                object result = cmd.ExecuteScalar();
+
+                if (closeAfter && connection.State == ConnectionState.Open)
+                    connection.Close();
+
+                return result != null;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -69,10 +97,22 @@ namespace Tours_Travels
         {
             try
             {
-                string query = @"SELECT 
+                // Detect schema variations for PK column names
+                // Some databases may use Users.Id / Destinations.Id, others may use Users.UserId / Destinations.DestinationId
+                string usersPkColumn = ColumnExists(con, "Users", "Id") ? "Id" : (ColumnExists(con, "Users", "UserId") ? "UserId" : "Id");
+                string destPkColumn  = ColumnExists(con, "Destinations", "Id") ? "Id" : (ColumnExists(con, "Destinations", "DestinationId") ? "DestinationId" : "Id");
+
+                // Build a safe customer name expression depending on available columns
+                bool hasFirstName = ColumnExists(con, "Users", "FirstName");
+                bool hasLastName  = ColumnExists(con, "Users", "LastName");
+                string customerNameExpr = (hasFirstName && hasLastName)
+                    ? "CONCAT(u.FirstName, ' ', u.LastName)"
+                    : "u.Email"; // Fallback
+
+                string query = $@"SELECT 
                     b.BookingId,
                     d.Name AS DestinationName,
-                    CONCAT(u.FirstName, ' ', u.LastName) AS CustomerName,
+                    {customerNameExpr} AS CustomerName,
                     b.TravelerEmail,
                     b.TravelDate,
                     b.NumberOfAdults,
@@ -81,8 +121,8 @@ namespace Tours_Travels
                     b.BookingStatus,
                     b.DateOfBooking
                     FROM Bookings b
-                    INNER JOIN Destinations d ON b.DestinationId = d.Id
-                    INNER JOIN Users u ON b.UserId = u.Id
+                    INNER JOIN Destinations d ON b.DestinationId = d.{destPkColumn}
+                    INNER JOIN Users u ON b.UserId = u.{usersPkColumn}
                     WHERE 1=1";
 
                 // Apply filters
@@ -105,7 +145,8 @@ namespace Tours_Travels
 
                 if (!string.IsNullOrEmpty(txtToDate.Text))
                 {
-                    query += " AND b.DateOfBooking <= @ToDate";
+                    // include the whole end date by adding one day and using < comparison
+                    query += " AND b.DateOfBooking < DATEADD(day, 1, @ToDate)";
                 }
 
                 query += " ORDER BY b.DateOfBooking DESC";
@@ -119,10 +160,22 @@ namespace Tours_Travels
                     cmd.Parameters.AddWithValue("@Search", "%" + txtSearch.Text + "%");
 
                 if (!string.IsNullOrEmpty(txtFromDate.Text))
-                    cmd.Parameters.AddWithValue("@FromDate", txtFromDate.Text);
+                {
+                    DateTime from;
+                    if (DateTime.TryParse(txtFromDate.Text, out from))
+                        cmd.Parameters.AddWithValue("@FromDate", from);
+                    else
+                        cmd.Parameters.AddWithValue("@FromDate", txtFromDate.Text);
+                }
 
                 if (!string.IsNullOrEmpty(txtToDate.Text))
-                    cmd.Parameters.AddWithValue("@ToDate", txtToDate.Text);
+                {
+                    DateTime to;
+                    if (DateTime.TryParse(txtToDate.Text, out to))
+                        cmd.Parameters.AddWithValue("@ToDate", to);
+                    else
+                        cmd.Parameters.AddWithValue("@ToDate", txtToDate.Text);
+                }
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();

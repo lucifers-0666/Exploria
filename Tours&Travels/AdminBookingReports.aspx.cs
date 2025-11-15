@@ -262,7 +262,7 @@ namespace Tours_Travels
 
         private DataTable GetBookingsData()
         {
-            DataTable dt = new DataTable();
+            DataTable dt = new DataTable("Bookings");
 
             try
             {
@@ -272,18 +272,23 @@ namespace Tours_Travels
                         SELECT 
                             b.BookingId,
                             b.UserId,
-                            CAST(b.DestinationId AS NVARCHAR(50)) AS DestinationId,
+                            u.FirstName + ' ' + u.LastName AS CustomerName,
+                            u.Email AS CustomerEmail,
+                            d.Name AS DestinationName,
+                            d.Category AS DestinationCategory,
                             b.TravelDate,
                             b.NumberOfAdults,
-                            ISNULL(b.NumberOfChildren, 0) AS NumberOfChildren,
+                            b.NumberOfChildren,
                             b.TotalAmount,
-                            ISNULL(b.BookingStatus, 'Pending') AS BookingStatus,
-                            ISNULL(b.TravelerFirstName, 'Unknown') AS TravelerFirstName,
-                            ISNULL(b.TravelerLastName, 'Traveler') AS TravelerLastName,
-                            ISNULL(b.TravelerEmail, 'N/A') AS TravelerEmail,
-                            ISNULL(b.TravelerPhone, 'N/A') AS TravelerPhone,
-                            ISNULL(b.DateOfBooking, GETDATE()) AS DateOfBooking
+                            b.BookingStatus,
+                            b.DateOfBooking,
+                            b.TravelerFirstName,
+                            b.TravelerLastName,
+                            b.TravelerEmail,
+                            b.TravelerPhone
                         FROM Bookings b
+                        JOIN Users u ON b.UserId = u.Id
+                        JOIN Destinations d ON b.DestinationId = d.Id
                         WHERE 1=1";
 
                     // Apply filters
@@ -294,7 +299,8 @@ namespace Tours_Travels
 
                     if (!string.IsNullOrEmpty(txtToDate.Text))
                     {
-                        query += " AND b.DateOfBooking <= @ToDate";
+                        // Add 1 day to include the end date
+                        query += " AND b.DateOfBooking < DATEADD(day, 1, @ToDate)";
                     }
 
                     if (ddlStatusFilter.SelectedValue != "All")
@@ -302,15 +308,15 @@ namespace Tours_Travels
                         query += " AND b.BookingStatus = @Status";
                     }
 
-                    query += " ORDER BY b.DestinationId, b.TravelerLastName, b.DateOfBooking DESC, b.BookingStatus";
+                    query += " ORDER BY b.DateOfBooking DESC";
 
                     SqlCommand cmd = new SqlCommand(query, con);
 
                     if (!string.IsNullOrEmpty(txtFromDate.Text))
-                        cmd.Parameters.AddWithValue("@FromDate", txtFromDate.Text);
+                        cmd.Parameters.AddWithValue("@FromDate", Convert.ToDateTime(txtFromDate.Text));
 
                     if (!string.IsNullOrEmpty(txtToDate.Text))
-                        cmd.Parameters.AddWithValue("@ToDate", txtToDate.Text);
+                        cmd.Parameters.AddWithValue("@ToDate", Convert.ToDateTime(txtToDate.Text));
 
                     if (ddlStatusFilter.SelectedValue != "All")
                         cmd.Parameters.AddWithValue("@Status", ddlStatusFilter.SelectedValue);
@@ -321,7 +327,8 @@ namespace Tours_Travels
             }
             catch (Exception ex)
             {
-                throw new Exception("Error retrieving bookings data: " + ex.Message);
+                // Provide a more detailed error message
+                throw new Exception("Error retrieving bookings data. Please ensure the database schema is correct and all tables (Bookings, Users, Destinations) exist. Details: " + ex.Message, ex);
             }
 
             return dt;
