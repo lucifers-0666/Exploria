@@ -803,20 +803,26 @@ CREATE TABLE Contacts (
 
 ### Chen Notation ER Diagram (Conceptual)
 
-The diagram below models the core business entities and relationships in Chen notation. Relationship diamonds (BOOKS, REVIEWS, HAS, HAS_TOKEN) carry their own attributes where the association is an associative entity (e.g., Bookings, Reviews).
+The diagram below models the core business entities and relationships in Chen notation. Relationship diamonds (BOOKS, REVIEWS, HAS, HAS_TOKEN, SUBSCRIBES) represent associations; associative relationships like Bookings and Reviews are drawn as diamonds.
 
 ```mermaid
 graph TD
-  %% Minimal, GitHub-safe Chen-style conceptual view
+  %% GitHub-safe, Chen-style conceptual view
+  %% Entities
   USERS[Users]
   DEST[Destinations]
-  BOOKINGS{BOOKS}
-  REVIEWS{REVIEWS}
   BLOGPOSTS[BlogPosts]
   BLOGCOMMENTS[BlogComments]
-  TOKENS[EmailVerificationTokens]
   NEWSLETTER[NewsletterSubscriptions]
+  TOKENS[EmailVerificationTokens]
   CONTACTS[Contacts]
+
+  %% Relationship diamonds
+  BOOKINGS{BOOKS}
+  REVIEWS{REVIEWS}
+  HAS_COMMENT{HAS}
+  HAS_TOKEN{HAS_TOKEN}
+  SUBSCRIBES{SUBSCRIBES}
 
   %% Core associations
   USERS --- BOOKINGS
@@ -825,17 +831,25 @@ graph TD
   USERS --- REVIEWS
   DEST --- REVIEWS
 
-  BLOGPOSTS --- BLOGCOMMENTS
-  USERS --- TOKENS
+  BLOGPOSTS --- HAS_COMMENT
+  HAS_COMMENT --- BLOGCOMMENTS
 
-  %% Standalone conceptual entities
-  NEWSLETTER
+  USERS --- HAS_TOKEN
+  HAS_TOKEN --- TOKENS
+
+  USERS --- SUBSCRIBES
+  SUBSCRIBES --- NEWSLETTER
+
+  %% Standalone conceptual entity
   CONTACTS
 ```
 
 Notes:
 - Bookings and Reviews are modeled as associative relationships (diamonds) connecting Users and Destinations.
-- BlogComments relates to BlogPosts; NewsletterSubscriptions and Contacts are standalone conceptual entities.
+- BlogComments relates to BlogPosts via HAS.
+- Users SUBSCRIBE to NewsletterSubscriptions via SUBSCRIBES.
+- EmailVerificationTokens are linked to Users via HAS_TOKEN.
+- Contacts remain standalone in the conceptual model.
 
 ### Logical ER (Crow’s Foot) – Detailed
 
