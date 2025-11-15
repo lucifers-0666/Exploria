@@ -484,8 +484,8 @@
             <div class="destinations-grid">
                 <!-- Card 1 -->
                 <div class="destination-card">
-                    <div class="card-image-container">
-                        <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=500&q=80" alt="Paris" />
+                    <div class="card-image-wrapper">
+                        <img src="Images/destination-paris.jpg" alt="Paris" />
                         <div class="wishlist-icon"><i class="lar la-heart"></i></div>
                         <div class="image-overlay"></div>
                     </div>
@@ -502,8 +502,8 @@
                 </div>
                 <!-- Card 2 -->
                 <div class="destination-card">
-                    <div class="card-image-container">
-                        <img src="https://images.unsplash.com/photo-1513415564515-763d91423bdd?w=500&q=80" alt="Santorini" />
+                    <div class="card-image-wrapper">
+                        <img src="Images/destination-santorini.jpg" alt="Santorini" />
                         <div class="wishlist-icon"><i class="lar la-heart"></i></div>
                         <div class="image-overlay"></div>
                     </div>
@@ -520,8 +520,8 @@
                 </div>
                 <!-- Card 3 -->
                 <div class="destination-card">
-                    <div class="card-image-container">
-                        <img src="https://images.unsplash.com/photo-1549144511-f099e773c147?w=500&q=80" alt="Machu Picchu" />
+                    <div class="card-image-wrapper">
+                        <img src="Images/destination-machu-picchu.jpg" alt="Machu Picchu" />
                         <div class="wishlist-icon active"><i class="las la-heart"></i></div>
                         <div class="image-overlay"></div>
                     </div>
@@ -538,8 +538,8 @@
                 </div>
                 <!-- Card 4 -->
                 <div class="destination-card">
-                    <div class="card-image-container">
-                        <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=500&q=80" alt="Kyoto" />
+                    <div class="card-image-wrapper">
+                        <img src="Images/destination-kyoto.jpg" alt="Kyoto" />
                         <div class="wishlist-icon"><i class="lar la-heart"></i></div>
                         <div class="image-overlay"></div>
                     </div>
@@ -556,8 +556,8 @@
                 </div>
                 <!-- Card 5 -->
                 <div class="destination-card">
-                    <div class="card-image-container">
-                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80" alt="Bora Bora" />
+                    <div class="card-image-wrapper">
+                        <img src="Images/destination-bora-bora.jpg" alt="Bora Bora" />
                         <div class="wishlist-icon"><i class="lar la-heart"></i></div>
                         <div class="image-overlay"></div>
                     </div>
@@ -574,8 +574,8 @@
                 </div>
                 <!-- Card 6 -->
                 <div class="destination-card">
-                    <div class="card-image-container">
-                        <img src="https://images.unsplash.com/photo-1523482580672-f109ba8cb9be?w=500&q=80" alt="Dubai" />
+                    <div class="card-image-wrapper">
+                        <img src="Images/destination-dubai.jpg" alt="Dubai" />
                         <div class="wishlist-icon"><i class="lar la-heart"></i></div>
                         <div class="image-overlay"></div>
                     </div>
