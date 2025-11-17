@@ -2695,72 +2695,15 @@
                     </a>
                 </li>
 
-                <!-- Destinations Dropdown -->
+                <!-- Destinations (single link) -->
                 <li class="nav-item">
-                    <a href="/Destination.aspx" class="nav-link">
-                        <i class="las la-map-marker"></i>
-                        Destinations
-                        <i class="las la-angle-down chevron-icon"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="/Destination.aspx">
-                            <i class="las la-globe-americas"></i>
-                            Browse All Destinations
-                        </a>
-                        <a href="/Destination.aspx?filter=trending">
-                            <i class="las la-fire fire-icon"></i>
-                            Currently Trending
-                            <span class="trending-badge">HOT</span>
-                        </a>
-                        <a href="/Destination.aspx?filter=popular">
-                            <i class="las la-star"></i>
-                            Popular Destinations
-                        </a>
-                        <a href="/Destination.aspx?view=details">
-                            <i class="las la-info-circle"></i>
-                            View Details
-                        </a>
-                        <a href="/Destination.aspx?search=true">
-                            <i class="las la-search"></i>
-                            Search Tours
-                        </a>
-                    </div>
+                  <a href="/Destination.aspx" class="nav-link">
+                    <i class="las la-map-marker"></i>
+                    Destinations
+                  </a>
                 </li>
 
-                <!-- Packages Dropdown -->
-                <li class="nav-item">
-                    <a href="/Destination.aspx?view=packages" class="nav-link">
-                        <i class="las la-gift"></i>
-                        Packages
-                        <i class="las la-angle-down chevron-icon"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="/Destination.aspx?package=adventure">
-                            <i class="las la-hiking"></i>
-                            Adventure Packages
-                        </a>
-                        <a href="/Destination.aspx?package=luxury">
-                            <i class="las la-gem"></i>
-                            Luxury Packages
-                        </a>
-                        <a href="/Destination.aspx?package=family">
-                            <i class="las la-users"></i>
-                            Family Packages
-                        </a>
-                        <a href="/Destination.aspx?package=honeymoon">
-                            <i class="las la-heart"></i>
-                            Honeymoon Packages
-                        </a>
-                        <a href="/Destination.aspx?package=custom">
-                            <i class="las la-cog"></i>
-                            Custom Packages
-                        </a>
-                        <a href="/Destination.aspx?package=weekend">
-                            <i class="las la-calendar-week"></i>
-                            Weekend Getaways
-                        </a>
-                    </div>
-                </li>
+                <!-- Packages removed (no Packages.aspx) -->
 
                 <!-- My Bookings (For logged-in users) -->
                 <% if (Session["Role"] != null && Session["Role"].ToString() == "users") { %>
@@ -2795,52 +2738,23 @@
                     </a>
                 </li>
 
-                <!-- Admin (Conditional - admin only) -->
+                <!-- Admin Panel (Conditional - admin only) -->
                 <% if (Session["Role"] != null && Session["Role"].ToString() == "admin") { %>
                 <li class="nav-item">
-                    <a href="/AdminDestinations.aspx" class="nav-link">
-                        <i class="las la-user-shield"></i>
-                        Admin
-                        <i class="las la-angle-down chevron-icon"></i>
-                    </a>
-                    <div class="dropdown-menu">
-                        <a href="/AdminBookings.aspx">
-                            <i class="las la-clipboard-list"></i>
-                            Manage Bookings
-                        </a>
-                        <a href="/AdminBookingReports.aspx">
-                            <i class="las la-chart-bar"></i>
-                            Booking Reports
-                        </a>
-                        <a href="/AdminDestinations.aspx">
-                            <i class="las la-map-marked-alt"></i>
-                            Manage Destinations
-                        </a>
-                        <a href="/AddDest.aspx">
-                            <i class="las la-plus-circle"></i>
-                            Add Single Destination
-                        </a>
-                        <a href="/AddDestinations.aspx">
-                            <i class="las la-plus-square"></i>
-                            Bulk Add Destinations
-                        </a>
-                        <a href="/AdminUserManagement.aspx">
-                            <i class="las la-users-cog"></i>
-                            User Management
-                        </a>
-                        <a href="/AdminUserView.aspx">
-                            <i class="las la-users"></i>
-                            View Users
-                        </a>
-                        <a href="/AdminBlog.aspx">
-                            <i class="las la-pen-fancy"></i>
-                            Manage Blog
-                        </a>
-                        <a href="/AdminReviews.aspx">
-                            <i class="las la-star-half-alt"></i>
-                            Moderate Reviews
-                        </a>
-                    </div>
+                  <a href="/AdminDestinations.aspx" class="nav-link">
+                    <i class="las la-user-shield"></i>
+                    Admin Panel
+                    <i class="las la-angle-down chevron-icon"></i>
+                  </a>
+                  <div class="dropdown-menu">
+                    <a href="/AdminDestinations.aspx"><i class="las la-map-marked-alt"></i> Manage Destinations</a>
+                    <a href="/AdminUserManagement.aspx"><i class="las la-users-cog"></i> Manage Users</a>
+                    <a href="/AdminBookings.aspx"><i class="las la-clipboard-list"></i> Manage Bookings</a>
+                    <a href="/AdminReviews.aspx"><i class="las la-star-half-alt"></i> Manage Reviews</a>
+                    <a href="/AdminBlog.aspx"><i class="las la-pen-fancy"></i> Manage Blog</a>
+                    <a href="/AdminBookingReports.aspx"><i class="las la-chart-bar"></i> Booking Reports</a>
+                    <a href="/BulkEmailSender.aspx"><i class="las la-envelope-open-text"></i> Bulk Email</a>
+                  </div>
                 </li>
                 <% } %>
 
@@ -2852,7 +2766,7 @@
                     </a>
                 </li>
 
-                <!-- More Dropdown -->
+                <!-- More Dropdown (grouped links) -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="las la-ellipsis-h"></i>
@@ -2860,42 +2774,17 @@
                         <i class="las la-angle-down chevron-icon"></i>
                     </a>
                     <div class="dropdown-menu">
-                        <a href="/Blog.aspx">
-                            <i class="las la-book-open"></i>
-                            Travel Blog
-                        </a>
-                        <a href="/Gallery.aspx">
-                            <i class="las la-images"></i>
-                            Gallery
-                        </a>
-                        <a href="/Testimonials.aspx">
-                            <i class="las la-quote-left"></i>
-                            Testimonials
-                        </a>
-                        <a href="/Reviews.aspx">
-                            <i class="las la-star"></i>
-                            Reviews
-                        </a>
-                        <a href="/FAQ.aspx">
-                            <i class="las la-question-circle"></i>
-                            FAQ
-                        </a>
-                        <a href="/About.aspx">
-                            <i class="las la-info-circle"></i>
-                            About Us
-                        </a>
-                        <a href="/Contact.aspx">
-                            <i class="las la-envelope"></i>
-                            Contact Us
-                        </a>
-                        <a href="/Privacy.aspx">
-                            <i class="las la-shield-alt"></i>
-                            Privacy Policy
-                        </a>
-                        <a href="/Terms.aspx">
-                            <i class="las la-file-contract"></i>
-                            Terms & Conditions
-                        </a>
+                    <!-- Content & Information -->
+                    <a href="/Blog.aspx"><i class="las la-book-open"></i> Travel Blog</a>
+                    <a href="/Gallery.aspx"><i class="las la-images"></i> Gallery</a>
+                    <a href="/Testimonials.aspx"><i class="las la-quote-left"></i> Testimonials</a>
+                    <a href="/Reviews.aspx"><i class="las la-star"></i> Reviews</a>
+                    <a href="/FAQ.aspx"><i class="las la-question-circle"></i> FAQ</a>
+                    <!-- Company (About/Contact are already in main nav, so only Sitemap here) -->
+                    <a href="/Sitemap.aspx"><i class="las la-sitemap"></i> Sitemap</a>
+                    <!-- Legal -->
+                    <a href="/Privacy.aspx"><i class="las la-shield-alt"></i> Privacy Policy</a>
+                    <a href="/Terms.aspx"><i class="las la-file-contract"></i> Terms & Conditions</a>
                     </div>
                 </li>
             </ul>
@@ -2913,60 +2802,42 @@
                             <div class="dropdown-header">
                                 <span>Welcome, <%= Session["FirstName"] != null ? Session["FirstName"].ToString() : "User" %></span>
                             </div>
-                            <% if (Session["Role"].ToString() == "users") { %>
-                            <a href="/Dashboard.aspx">
-                                <i class="las la-tachometer-alt"></i>
-                                Dashboard
-                            </a>
-                            <% } %>
+                      <% if (Session["Role"].ToString() == "users") { %>
+                      <a href="/Dashboard.aspx"><i class="las la-tachometer-alt"></i> Dashboard</a>
+                      <% } %>
                             <a href="/Profile.aspx">
                                 <i class="las la-user-circle"></i>
                                 My Profile
                             </a>
-                            <% if (Session["Role"].ToString() == "users") { %>
-                            <a href="/MyBookings.aspx">
-                                <i class="las la-ticket-alt"></i>
-                                My Bookings
-                            </a>
-                            <a href="/Wishlist.aspx">
-                                <i class="las la-heart"></i>
-                                My Wishlist
-                            </a>
-                            <a href="/MyBookings.aspx?history=true">
-                                <i class="las la-history"></i>
-                                Booking History
-                            </a>
-                            <a href="/bookingConfirmation.aspx">
-                                <i class="las la-check-circle"></i>
-                                Confirmations
-                            </a>
-                            <% } %>
+                      <% if (Session["Role"].ToString() == "users") { %>
+                      <a href="/MyBookings.aspx"><i class="las la-ticket-alt"></i> My Bookings</a>
+                      <a href="/Wishlist.aspx"><i class="las la-heart"></i> My Wishlist</a>
+                      <a href="/Newsletter.aspx"><i class="las la-newspaper"></i> Newsletter</a>
+                      <% } %>
                             <div class="dropdown-divider"></div>
                             <a href="/Logout.aspx">
                                 <i class="las la-sign-out-alt"></i>
                                 Logout
                             </a>
                         <% } else { %>
-                            <a href="/Login.aspx">
-                                <i class="las la-sign-in-alt"></i>
-                                Login
-                            </a>
-                            <a href="/Register.aspx">
-                                <i class="las la-user-plus"></i>
-                                Sign Up
-                            </a>
-                            <a href="/ForgetPassword.aspx">
-                                <i class="las la-key"></i>
-                                Forgot Password
-                            </a>
+                      <a href="/Login.aspx"><i class="las la-sign-in-alt"></i> Login</a>
+                      <a href="/Register.aspx"><i class="las la-user-plus"></i> Register</a>
                         <% } %>
                     </div>
                 </div>
 
-                <!-- Search Button -->
-                <a href="/SearchResults.aspx" class="cta-book-now" style="background: transparent; color: inherit; border: 2px solid #c9a877; margin-right: 12px; min-width: auto; padding: 12px 20px;" title="Search Destinations">
-                    <i class="las la-search" style="margin: 0; font-size: 20px;"></i>
-                </a>
+                <!-- Search Bar (hidden by default) -->
+                <div class="search-bar" id="searchBar" style="display:none; margin-right: 12px;">
+                  <form id="searchForm" action="/SearchResults.aspx" method="get">
+                    <input id="searchInput" class="search-input" type="text" name="q" placeholder="Search destinations..." />
+                    <i class="las la-search search-icon"></i>
+                  </form>
+                </div>
+
+                <!-- Search Toggle Button -->
+                <button id="searchToggle" class="cta-book-now" type="button" style="background: transparent; color: inherit; border: 2px solid #c9a877; margin-right: 12px; min-width: auto; padding: 12px 20px;" title="Search">
+                  <i class="las la-search" style="margin: 0; font-size: 20px;"></i>
+                </button>
 
                 <!-- CTA Button -->
                 <a href="/Destination.aspx" class="cta-book-now">
@@ -3030,10 +2901,6 @@
             <i class="las la-tasks"></i>
             <span>Manage Destinations</span>
         </a>
-        <a href="/AddDestinations.aspx" class="mobile-nav-link">
-            <i class="las la-plus-circle"></i>
-            <span>Add Destination</span>
-        </a>
         <a href="/AdminUserManagement.aspx" class="mobile-nav-link">
             <i class="las la-users-cog"></i>
             <span>User Management</span>
@@ -3045,6 +2912,10 @@
         <a href="/AdminReviews.aspx" class="mobile-nav-link">
             <i class="las la-star-half-alt"></i>
             <span>Moderate Reviews</span>
+        </a>
+        <a href="/BulkEmailSender.aspx" class="mobile-nav-link">
+          <i class="las la-envelope-open-text"></i>
+          <span>Bulk Email</span>
         </a>
         <% } %>
 
@@ -3068,6 +2939,10 @@
             <i class="las la-question-circle"></i>
             <span>FAQ</span>
         </a>
+        <a href="/Sitemap.aspx" class="mobile-nav-link">
+          <i class="las la-sitemap"></i>
+          <span>Sitemap</span>
+        </a>
 
         <a href="/About.aspx" class="mobile-nav-link">
             <i class="las la-info-circle"></i>
@@ -3077,10 +2952,10 @@
             <i class="las la-envelope"></i>
             <span>Contact</span>
         </a>
-        <a href="/Profile.aspx" class="mobile-nav-link">
-            <i class="las la-user-circle"></i>
-            <span>Profile</span>
-        </a>
+        <a href="/Profile.aspx" class="mobile-nav-link"><i class="las la-user-circle"></i><span>Profile</span></a>
+        <% if (Session["Role"] != null && Session["Role"].ToString() == "users") { %>
+        <a href="/Newsletter.aspx" class="mobile-nav-link"><i class="las la-newspaper"></i><span>Newsletter</span></a>
+        <% } %>
 
         <% if (Session["Role"] != null) { %>
         <a href="/Logout.aspx" class="mobile-nav-link">
@@ -3088,10 +2963,8 @@
             <span>Logout</span>
         </a>
         <% } else { %>
-        <a href="/Login.aspx" class="mobile-nav-link">
-            <i class="las la-sign-in-alt"></i>
-            <span>Login</span>
-        </a>
+        <a href="/Login.aspx" class="mobile-nav-link"><i class="las la-sign-in-alt"></i><span>Login</span></a>
+        <a href="/Register.aspx" class="mobile-nav-link"><i class="las la-user-plus"></i><span>Register</span></a>
         <% } %>
     </div>
 
@@ -3915,6 +3788,31 @@
             // Initialize footer reveal
             revealFooterColumns();
         });
+    </script>
+
+    <!-- Search toggle script -->
+    <script>
+      (function(){
+        var toggle = document.getElementById('searchToggle');
+        var bar = document.getElementById('searchBar');
+        var input = document.getElementById('searchInput');
+        var form = document.getElementById('searchForm');
+        if(!toggle || !bar || !input || !form) return;
+        toggle.addEventListener('click', function(){
+          var isHidden = bar.style.display === 'none' || bar.style.display === '';
+          if (isHidden) {
+            bar.style.display = 'block';
+            input.focus();
+          } else {
+            var q = (input.value || '').trim();
+            if (q.length === 0) {
+              window.location.href = '/SearchResults.aspx';
+            } else {
+              form.submit();
+            }
+          }
+        });
+      })();
     </script>
 
     </form>
